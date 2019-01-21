@@ -1,0 +1,28 @@
+.nav-container{
+    background-color: steelblue;
+    height: 75px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-name{
+    margin-left: 40px;
+    color: white;
+}
+
+nav {
+    display: flex;
+}
+
+nav a {
+    margin-right: 50px;
+    color: white;
+    text-decoration: none!important;
+    display: inline;
+}
+
+nav a:hover {
+    color: black;
+}
