@@ -28,6 +28,25 @@ namespace back_end
         }
 
         [HttpPost]
+         [Route("Login")]
+        public string GetToken([FromBody] User user)
+        {
+            var tempUser = _context.users.FirstOrDefault(u=>u.username == user.username);
+            bool validPassword = BCrypt.Net.BCrypt.Verify(user.password,tempUser.password);
+
+            if(tempUser != null && validPassword)
+            {
+            return BuildToken();
+            }
+            else
+            {
+                return "not a valid login";
+            }
+
+            
+        }
+
+         [HttpPost]
          [Route("Register")]
         public string Register([FromBody] User user)
         {
