@@ -6,10 +6,10 @@ password                varchar(100),
 creation_date           timestamp,
 company_affiliation     varchar(255) NULL,
 user_industry           varchar(255) NULL,
-real_name               varchar(100),
+real_name               varchar(100) NULL,
 activity_count          integer,
 active_date             timestamp,
-avatar                  text
+avatar                  text NULL
 );
 
 INSERT INTO USERS (username, email, password, creation_date, company_affiliation, user_industry, real_name, activity_count, active_date, avatar)
@@ -20,8 +20,8 @@ VALUES
 CREATE TABLE ARTICLES(
 article_id SERIAL       PRIMARY KEY,
 article_link            text,
-publisher               varchar(100) NULL,
-snippet                 text
+title                   varchar(255),
+summary                 text
 );
 
 CREATE TABLE COMMENTS(
