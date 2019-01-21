@@ -12080,23 +12080,23 @@
     ]
   },
   "packageFolders": {
-    "/Users/aozai/.nuget/packages/": {},
+    "/Users/Austin/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/aozai/Documents/WebDevelopment/Redwood/DontLoseYourLicense/back-end/back-end.csproj",
+      "projectUniqueName": "/Users/Austin/Projects/redwood/finalProject/DontLoseYourLicense/back-end/back-end.csproj",
       "projectName": "back-end",
-      "projectPath": "/Users/aozai/Documents/WebDevelopment/Redwood/DontLoseYourLicense/back-end/back-end.csproj",
-      "packagesPath": "/Users/aozai/.nuget/packages/",
-      "outputPath": "/Users/aozai/Documents/WebDevelopment/Redwood/DontLoseYourLicense/back-end/obj/",
+      "projectPath": "/Users/Austin/Projects/redwood/finalProject/DontLoseYourLicense/back-end/back-end.csproj",
+      "packagesPath": "/Users/Austin/.nuget/packages/",
+      "outputPath": "/Users/Austin/Projects/redwood/finalProject/DontLoseYourLicense/back-end/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/aozai/.nuget/NuGet/NuGet.Config"
+        "/Users/Austin/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
