@@ -13,6 +13,14 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.IdentityModel.Tokens.Jwt;
+using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+
 namespace back_end
 {
     public class Startup
@@ -53,6 +61,7 @@ namespace back_end
             }
 
             // app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
