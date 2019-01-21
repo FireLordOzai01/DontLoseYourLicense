@@ -1,0 +1,20 @@
+.signUpForm{
+    border: 1px solid black;
+    /* top right bottom left */
+    margin:  70px 0px 10px 500px;
+    padding: 100px;
+    box-shadow: 5px 5px 1px #4d4d4d;
+}
+.signUpButton{
+    margin: 0px 0px 0px 828px;
+    background-color: #272727;
+    border: 1px solid black;
+}
+.signUpButton:hover{
+    background-color: #FFD439;
+    color: #272727;
+    border: 1px solid #FFD439;
+}
+#text-in-form{
+    margin:  -20px 0px 20px 60px;
+}
