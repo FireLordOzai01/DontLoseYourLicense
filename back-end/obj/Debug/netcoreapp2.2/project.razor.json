@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "ProjectFilePath": "/Users/heathercapati/Desktop/Redwood/Week11/DontLoseYourLicense/back-end/back-end.csproj",
+=======
+  "ProjectFilePath": "/Users/aozai/Documents/WebDevelopment/Redwood/DontLoseYourLicense/back-end/back-end.csproj",
+>>>>>>> a0175223b73e686e1fc3e9d856a610e2d816cadd
   "TargetFramework": "netcoreapp2.2",
   "TagHelpers": [],
   "Configuration": {
