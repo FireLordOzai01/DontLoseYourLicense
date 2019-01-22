@@ -27,27 +27,31 @@ class SignUp extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="social-media col-md-4 flex-container">
-                                <h5>Use a social network to sign up</h5>
-                                    <button 
-                                        id="facebook"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                        >Sign in with Facebook</button>
-                                    <button 
-                                        id="google"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                        >Sign in with Google+</button>
-                                    <button 
-                                        id="linkedin"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                        >Sign in with Linkedin</button>
-                                    <button 
-                                        id="twitter"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                        >Sign in with Twitter</button>
+                                <h5>Sign up with a social network</h5>
+                                    <div className="combo ">
+                                        <img
+                                            src={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Facebook_logo_36x36.svg/2000px-Facebook_logo_36x36.svg.png"} alt="" 
+                                            className="btn btn-primary icon"
+                                            onClick={this.facebook}
+                                            /> &nbsp; &nbsp; &nbsp;
+                                        <img
+                                            src={"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Google_Plus_logo.svg/1027px-Google_Plus_logo.svg.png"} alt="" 
+                                            className="btn btn-primary icon"
+                                            onClick={this.google}
+                                            />
+                                    </div>
+                                    <div className="combo ">
+                                        <img
+                                            src={"https://www.yourhrg.com/wp-content/uploads/2018/11/2000px-Linkedin.svg-1.png"} alt="" 
+                                            className="btn btn-primary icon"
+                                            onClick={this.linkedin}
+                                            /> &nbsp; &nbsp; &nbsp;
+                                        <img
+                                            src={"https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/1259px-Twitter_Bird.svg.png"} alt="" 
+                                            className="btn btn-primary icon"
+                                            onClick={this.twitter}
+                                            /> 
+                                    </div>                                      
                                 </div>
                             <form>
                                 <h3>&nbsp; Sign up to comment, write and receive news by email</h3>

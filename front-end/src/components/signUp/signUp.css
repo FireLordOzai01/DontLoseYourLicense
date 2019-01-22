@@ -1,13 +1,13 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
-*:focus{
-    outline: none;
+*:active{
+    border-color: #FFD439;
 }
 .signUpForm{
     /* top right bottom left */
     margin: 0px 0px -0px 0px;
-    padding: 0px 0px 20px 0px;
+    padding: 15px 0px 20px 0px;
     flex-direction: column;
     background-color: white;
 }
@@ -38,43 +38,38 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+.input:active{
+   outline: none;
+}
 
 .HOTDOG{
     width: 170% !important;
 
 }
 html{
-    background-color: #2E4E64;
+    background-color: #6dd5ff;
 }
 .social-media{
-    padding:  2% 1% 3.5% 1%;
+    padding:  2% 3% 3.5% 3%;
     margin:  -1.9% 0% -1.9% -1.9%;;
     /* border: 1px solid black; */
-    background-color: #E3E3E3;
+    background-color: #FFD439;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
 }
-#facbook{
-    background-color: #3B5997;
-    
+.icon{
+    background-color: #FFD439;
+    border: 1px solid #FFD439;
 }
-#twitter{
-    border: 1px solid #45ACEE;
-    background-color: #45ACEE;
-}
-#linkedin{
-    border: 1px solid #144263;
-    background-color: #144263;
-}
-#google{
-    border: 1px solid #DE4B39;
-    background-color: #DE4b39;
+.icon:hover{
+    background-color: #976dff;
+    border: 1px solid #976dff;
 }
 .background-div{
-    border: 50px solid #2E4E64;
-    background-color: #2E4E64;
+    border: 50px solid #6dd5ff;
+    background-color: #6dd5ff;
     padding:  210px 0px 0px 0px;
 
 }
@@ -83,5 +78,13 @@ html{
     padding: 20px 20px;
     margin: 0px 0px 0px 0px;
     background-color: white;
+}
+img{
+    height: 15%;
+    width: 40%;
+}
+.combo{
+    margin: 10% 0% 16% 0%;
+    padding: 10% 0% 0% 0%;
 
 }
