@@ -20,5 +20,6 @@ namespace back_end
         public DateTime active_date         { get; set; }
         public string avatar                { get; set; }
         public List<Comment> comments       { get; set; }
+        public List<Post> posts             { get; set; }
     }
 }
