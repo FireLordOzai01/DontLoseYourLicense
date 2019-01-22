@@ -19,7 +19,7 @@ namespace back_end
 
         public Comment ()
         {
-            
+    
         }
 
         public Comment (string comment, int user, int article, DateTime time)
