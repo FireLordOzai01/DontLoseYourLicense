@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -18,5 +19,6 @@ namespace back_end
         public int activity_count           { get; set; }
         public DateTime active_date         { get; set; }
         public string avatar                { get; set; }
+        public List<Comment> comments       { get; set; }
     }
 }

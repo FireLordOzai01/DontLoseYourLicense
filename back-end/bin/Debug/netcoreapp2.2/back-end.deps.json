@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "163c6742132998652a6d332c49f3acf2c44034b9"
+    "signature": "e98bcc30fa133fa63a52a75b0b4f450e0af8810f"
   },
   "compilationOptions": {
     "defines": [
@@ -27,13 +27,25 @@
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.0"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.0.0",
+          "BCrypt.Net-Core": "1.6.0"
         },
         "runtime": {
           "back-end.dll": {}
         },
         "compile": {
           "back-end.dll": {}
+        }
+      },
+      "BCrypt.Net-Core/1.6.0": {
+        "runtime": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {
+            "assemblyVersion": "1.6.0.0",
+            "fileVersion": "1.6.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/BCrypt.Net-Core.dll": {}
         }
       },
       "Microsoft.NETCore.App/2.2.0": {
@@ -3259,6 +3271,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net-Core/1.6.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FSHnTNSQNIQvgTEX1bxLW2F2pFZXPq4aCMWeBJtPdjKSsC/zL+IpNycdBMNt+fvLBH9UVCbfxp0fufQxHs+jgg==",
+      "path": "bcrypt.net-core/1.6.0",
+      "hashPath": "bcrypt.net-core.1.6.0.nupkg.sha512"
     },
     "Microsoft.NETCore.App/2.2.0": {
       "type": "package",
