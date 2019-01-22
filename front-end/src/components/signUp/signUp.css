@@ -1,12 +1,18 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+*:focus{
+    outline: none;
+}
 .signUpForm{
-    border: 1px solid black;
     /* top right bottom left */
-    margin:  70px 0px 10px 500px;
-    padding: 100px;
-    box-shadow: 5px 5px 1px #4d4d4d;
+    margin: 0px 0px -0px 0px;
+    padding: 0px 0px 20px 0px;
+    flex-direction: column;
+    background-color: white;
 }
 .signUpButton{
-    margin: 0px 0px 0px 828px;
+    margin: 0px 0px 0px 30px;
     background-color: #272727;
     border: 1px solid black;
 }
@@ -15,6 +21,67 @@
     color: #272727;
     border: 1px solid #FFD439;
 }
-#text-in-form{
-    margin:  -20px 0px 20px 60px;
+.input {
+    border: 1px solid transparent;
+    border-bottom: 1px solid black;
+    /* box-shadow: 2px 2px 5px #4d4d4d; */
+    display: inline;
+    margin: 0% 0% 4% 0%;
+    width: 152% !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.input:focus{
+    -webkit-appearance: none;
+    border-bottom-color: black;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.HOTDOG{
+    width: 170% !important;
+
+}
+html{
+    background-color: #2E4E64;
+}
+.social-media{
+    padding:  2% 1% 3.5% 1%;
+    margin:  -1.9% 0% -1.9% -1.9%;;
+    /* border: 1px solid black; */
+    background-color: #E3E3E3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+#facbook{
+    background-color: #3B5997;
+    
+}
+#twitter{
+    border: 1px solid #45ACEE;
+    background-color: #45ACEE;
+}
+#linkedin{
+    border: 1px solid #144263;
+    background-color: #144263;
+}
+#google{
+    border: 1px solid #DE4B39;
+    background-color: #DE4b39;
+}
+.background-div{
+    border: 50px solid #2E4E64;
+    background-color: #2E4E64;
+    padding:  210px 0px 0px 0px;
+
+}
+.inner-div{
+    /* border: 2px solid black; */
+    padding: 20px 20px;
+    margin: 0px 0px 0px 0px;
+    background-color: white;
+
 }
