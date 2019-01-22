@@ -32,3 +32,11 @@ user_id                 integer REFERENCES USERS (user_id),
 article_id              integer REFERENCES ARTICLES (article_id),
 time                    timestamp
 );
+
+CREATE TABLE POSTS(
+post_id SERIAL          PRIMARY KEY,
+user_id                 integer REFERENCES USERS (user_id),
+title                   varchar(100),
+body                    text,
+time                    timestamp
+);
