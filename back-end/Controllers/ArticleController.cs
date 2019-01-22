@@ -20,7 +20,7 @@ namespace back_end.Controllers
         }
 
 
-         void ParseRssFile(String xml)
+        void ParseRssFile(String xml)
         {
             XmlDocument rssXmlDoc = new XmlDocument();
 
@@ -35,6 +35,15 @@ namespace back_end.Controllers
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
             {
+                //get current date to add to article
+                string today =
+                System.DateTime.Now.Year.ToString() + "-" +
+                System.DateTime.Now.Month.ToString() + "-" +
+                System.DateTime.Now.Day.ToString() + " " +
+                System.DateTime.Now.Hour.ToString() + ":" +
+                System.DateTime.Now.Minute.ToString() + ":" +
+                System.DateTime.Now.Second.ToString();
+
                 XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? rssSubNode.InnerText : "";
 
@@ -51,12 +60,35 @@ namespace back_end.Controllers
                 {
                     //if no matches with the database, we need to add it. 
                     // aka: (new article published from websites below)
-                    if((_context.articles.FirstOrDefault(a => a.title == title))==null)
+                    if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
-                        Article tempArticle = new Article();
+
+                        //Article tempArticle = new Article(link,title,description,Convert.ToDateTime(today));
 
                     }
-                    
+                    //we need to check current articles in the DB for date older than a week
+                    else
+                    {
+                        DlylContext _tempContext = _context;
+
+                        foreach (var article in _tempContext.articles)
+                        {
+                            if ((article.time - DateTime.Now).TotalDays > 7)
+                            {
+
+                                _context.articles.Remove(article);
+
+                            }
+
+                        }
+
+
+
+
+
+                    }
+
+
                     rssContent.Append("<a href='" + link + Environment.NewLine);
 
                 }
@@ -65,7 +97,7 @@ namespace back_end.Controllers
 
         }
 
-         void AddArticles()
+        void AddArticles()
         {
 
             List<String> links = new List<String>();
@@ -104,14 +136,14 @@ namespace back_end.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            if(_context.articles.ToList().Count() == 0)
+            if (_context.articles.ToList().Count() == 0)
             {
                 return NoContent();
             }
-           
-                //need to add articles to DB
-                AddArticles();
-                return Ok(_context.articles.ToList());
+
+            //need to add articles to DB
+            AddArticles();
+            return Ok(_context.articles.ToList());
         }
 
         // GET BY ID api
@@ -146,7 +178,7 @@ namespace back_end.Controllers
         public ActionResult Put(int id, [FromBody] Article a)
         {
             Article article = _context.articles.FirstOrDefault(_a => _a.article_id == id);
-            if(article == null)
+            if (article == null)
             {
                 return NotFound();
             }
@@ -164,7 +196,7 @@ namespace back_end.Controllers
         public ActionResult Delete(int id)
         {
             Article article = _context.articles.FirstOrDefault(a => a.article_id == id);
-            if(article == null)
+            if (article == null)
             {
                 return NotFound();
             }
