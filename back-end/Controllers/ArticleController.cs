@@ -35,7 +35,7 @@ namespace back_end.Controllers
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
             {
-                //get current date for checks
+                //get current date for article age check
                 string today =
                 System.DateTime.Now.Year.ToString() + "-" +
                 System.DateTime.Now.Month.ToString() + "-" +
@@ -44,6 +44,7 @@ namespace back_end.Controllers
                 System.DateTime.Now.Minute.ToString() + ":" +
                 System.DateTime.Now.Second.ToString();
 
+                //get all article data
                 XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? rssSubNode.InnerText : "";
 
@@ -59,6 +60,7 @@ namespace back_end.Controllers
                 rssSubNode = rssNode.SelectSingleNode("pubDate");
                 string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
 
+
                 //Articles too old? stop searching
                 if((DateTime.Now-Convert.ToDateTime(pubDate)).TotalDays > 5)
                 {
@@ -66,6 +68,7 @@ namespace back_end.Controllers
                     break;
                 }
 
+                //check for relevant pages from each site
                 if (title.Contains("California") && (title.Contains("compliance")
                 || title.Contains("regulation")
                 || title.Contains("approve")
