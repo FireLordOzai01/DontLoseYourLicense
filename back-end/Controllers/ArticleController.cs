@@ -64,6 +64,9 @@ namespace back_end.Controllers
                     {
 
                         Article tempArticle = new Article(link,title,description,Convert.ToDateTime(today));
+                         _context.articles.Add(tempArticle);
+                         Console.WriteLine("hereeee");
+
 
                     }
                     //we need to check current articles in the DB for date older than a week
@@ -85,6 +88,8 @@ namespace back_end.Controllers
                     }
                     rssContent.Append("<a href='" + link + Environment.NewLine);
                 }
+
+                  _context.SaveChanges();
 
             }
 
@@ -127,15 +132,17 @@ namespace back_end.Controllers
 
         // GET api
         [HttpGet]
-        public ActionResult Get()
+        public IActionResult Get()
         {
+            //need to add articles to DB
+            Console.WriteLine("helooo");
+            AddArticles();
+
             if (_context.articles.ToList().Count() == 0)
             {
                 return NoContent();
             }
 
-            //need to add articles to DB
-            AddArticles();
             return Ok(_context.articles.ToList());
         }
 
