@@ -63,7 +63,7 @@ namespace back_end.Controllers
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
 
-                        //Article tempArticle = new Article(link,title,description,Convert.ToDateTime(today));
+                        Article tempArticle = new Article(link,title,description,Convert.ToDateTime(today));
 
                     }
                     //we need to check current articles in the DB for date older than a week
@@ -82,15 +82,8 @@ namespace back_end.Controllers
 
                         }
 
-
-
-
-
                     }
-
-
                     rssContent.Append("<a href='" + link + Environment.NewLine);
-
                 }
 
             }
