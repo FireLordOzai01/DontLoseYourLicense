@@ -86,7 +86,6 @@ namespace back_end.Controllers
                         }
 
                     }
-                    rssContent.Append("<a href='" + link + Environment.NewLine);
                 }
 
                   _context.SaveChanges();
