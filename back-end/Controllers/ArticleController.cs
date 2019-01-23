@@ -35,15 +35,7 @@ namespace back_end.Controllers
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
             {
-                //get current date for article age check
-                string today =
-                System.DateTime.Now.Year.ToString() + "-" +
-                System.DateTime.Now.Month.ToString() + "-" +
-                System.DateTime.Now.Day.ToString() + " " +
-                System.DateTime.Now.Hour.ToString() + ":" +
-                System.DateTime.Now.Minute.ToString() + ":" +
-                System.DateTime.Now.Second.ToString();
-
+                
                 //get all article data
                 XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? rssSubNode.InnerText : "";
@@ -54,57 +46,39 @@ namespace back_end.Controllers
                 rssSubNode = rssNode.SelectSingleNode("description");
                 string description = rssSubNode != null ? rssSubNode.InnerText : "";
 
-                rssSubNode = rssNode.SelectSingleNode("content");
-                string content = rssSubNode != null ? rssSubNode.InnerText : "";
-
                 rssSubNode = rssNode.SelectSingleNode("pubDate");
                 string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
 
 
                 //Articles too old? stop searching
-                if((DateTime.Now-Convert.ToDateTime(pubDate)).TotalDays > 5)
+                if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 100)
                 {
-                    Console.WriteLine("too old");
                     break;
                 }
 
-                //check for relevant pages from each site
-                if (title.Contains("California") && (title.Contains("compliance")
-                || title.Contains("regulation")
-                || title.Contains("approve")
-                || description.Contains("regulation")
-                || description.Contains("approve")
-                || content.Contains("approve")
-                || content.Contains("regulation")))
+
+                //check for relevant pages from each site, get all from ca.gov sites
+                if ((title.Contains("California") || description.Contains("California") || link.Contains("ca.gov")) && (title.Contains("compliance")
+                || title.Contains("regulation") || title.Contains("regulations")|| title.Contains("regulated")
+                || title.Contains("approve") || title.Contains("approved")|| title.Contains("approves")
+                || description.Contains("regulation") || description.Contains("regulations")|| description.Contains("regulated")
+                || description.Contains("approve") || link.Contains("ca.gov")))
                 {
                     //if no matches with the database, we need to add it. 
                     // aka: (new article published from websites below)
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
-
-                        Article tempArticle = new Article(link,title,description,Convert.ToDateTime(pubDate));
-                         _context.articles.Add(tempArticle);
-
-
+                        Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
+                        _context.articles.Add(tempArticle);
                     }
-                    //we need to check current article in the DB for date older than 15
                     else
                     {
-                        DlylContext _tempContext = _context;
-                         Article article =  _context.articles.FirstOrDefault(a => a.title == title);
-                         if ((DateTime.Now-article.time).TotalDays > 15)
-                            {
-
-                                _context.articles.Remove(article);
-
-                            }
-
-                            //we can break out of this feed because we know we have searched this far since we have an article from this source
-                            break;
+                        //we can break out of this feed because we know we have searched this far since we have an article from this source
+                        break;
                     }
                 }
 
-                  _context.SaveChanges();
+                _context.SaveChanges();
 
             }
 
@@ -113,13 +87,26 @@ namespace back_end.Controllers
         void AddArticles()
         {
 
+            //all the sites to scrap from
             List<String> links = new List<String>();
-            links.Add("https://mjbizdaily.com/feed/"); //good
-            links.Add("https://www.cannalawblog.com/feed/"); //good
-            links.Add("https://news.weedmaps.com/feed/"); //good
-            links.Add("https://cannabislaw.report/feed/"); //good
-            links.Add("https://cannabis.ca.gov/feed/"); //none but keep
+             links.Add("https://mjbizdaily.com/feed/");  //keep
+             links.Add("https://www.cannalawblog.com/feed/");  //keep
+             links.Add("https://cannabislaw.report/feed/"); //keep
+             links.Add("https://cannabis.ca.gov/feed/");  //keep
 
+
+            //check for articles out of date, greater than 100 days
+            foreach (var article in _context.articles)
+            {
+                if ((DateTime.Now - article.time).TotalDays > 100)
+                {
+
+                    _context.articles.Remove(article);
+
+                }
+            }
+
+            //find or update article DB
             foreach (var link in links)
             {
                 ParseRssFile(link);
@@ -140,64 +127,85 @@ namespace back_end.Controllers
                 return NoContent();
             }
 
-            return Ok(_context.articles.ToList());
+            return Ok(_context.articles
+            .Include(a=>a.comments)
+            .ThenInclude(a=>a.user));
         }
 
-        // GET BY ID api
-        [HttpGet("{id}")]
-        public ActionResult Get(int id)
-        {
-            Article article = _context.articles.FirstOrDefault(a => a.article_id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-            return Ok(article);
-        }
+        // // GET BY ID api
+        // [HttpGet("{id}")]
+        // public ActionResult Get(int id)
+        // {
+        //     Article article = _context.articles.FirstOrDefault(a => a.article_id == id);
+        //     if (article == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return Ok(article);
+        // }
 
         // POST api may not need this, done when page is loaded
         [HttpPost]
-        public ActionResult Post([FromBody] Article a)
+        public IActionResult Post([FromBody] Comment c)
         {
-            if (a == null)
+            if (c == null)
             {
                 return BadRequest();
             }
 
-            _context.articles.Add(a);
-            _context.SaveChanges();
+                string today =   
+                System.DateTime.Now.Year.ToString() + "-" +
+                System.DateTime.Now.Month.ToString() + "-" +
+                System.DateTime.Now.Day.ToString()  + " " +
+                System.DateTime.Now.Hour.ToString() +  ":" +
+                System.DateTime.Now.Minute.ToString() + ":" +
+                System.DateTime.Now.Second.ToString();
 
-            return Ok(_context.articles.ToList());
+                c.time = Convert.ToDateTime(today);
+                _context.comments.Add(c);
+                _context.SaveChanges();
+                _context.articles.Find(c.article_id).comments.Add(c);
+                _context.SaveChanges();
+           
+
+        
+               
+             return Ok(_context.articles
+            .Include(a=>a.comments)
+            .ThenInclude(a=>a.user));
         }
 
-        // PUT api
-        [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Article a)
-        {
-            Article article = _context.articles.FirstOrDefault(_a => _a.article_id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
+        // // PUT api
+        // [HttpPut("{id}")]
+        // public ActionResult Put(int id, [FromBody] Article a)
+        // {
+        //     Article article = _context.articles.FirstOrDefault(_a => _a.article_id == id);
+        //     if (article == null)
+        //     {
+        //         return NotFound();
+        //     }
 
-            article.article_link = a.article_link;
-            article.title = a.title;
-            article.summary = a.summary;
-            _context.SaveChanges();
+        //     article.article_link = a.article_link;
+        //     article.title = a.title;
+        //     article.summary = a.summary;
+        //     _context.SaveChanges();
 
-            return Ok(_context.articles.ToList());
-        }
+        //     return Ok(_context.articles.ToList());
+        // }
+
+
 
         // DELETE api
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpDelete("{article_id}/{comment_id}")]
+        public ActionResult Delete(int article_id,int comment_id)
         {
-            Article article = _context.articles.FirstOrDefault(a => a.article_id == id);
-            if (article == null)
-            {
-                return NotFound();
-            }
-            _context.articles.Remove(article);
+            
+            Comment tempComment = new Comment();
+            Article article = _context.articles.FirstOrDefault(a => a.article_id == article_id);
+            Console.WriteLine(article.title);
+            Comment comment = article.comments.FirstOrDefault(c=>c.comment_id == comment_id);
+            _context.comments.Remove(tempComment);
+            article.comments.Remove(tempComment);
             _context.SaveChanges();
 
             return Ok(_context.articles.ToList());
