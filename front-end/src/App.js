@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LogoLogo from './components/logo/logo.js';
 import Navbar from './components/navbar/navbar.js';
 import './App.css';
 
@@ -14,8 +13,6 @@ class App extends Component {
   render() {
     return (
       <div id="outer-wrapper" className="index home">
-        {/* Logo */}
-        <LogoLogo />
         {/* Main Menu */}
         <Navbar />
         <div className="clear">

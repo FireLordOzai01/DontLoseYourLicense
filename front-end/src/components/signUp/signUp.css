@@ -65,9 +65,8 @@
     border: 3px solid #090909;
 }
 .background-div{
-    border: linear-gradient(#C3C3C3, 70%, #090909);
-    background: linear-gradient(#C3C3C3, 40%, #090909);
-    padding:  2% 1%;
+    background: linear-gradient(to right,#C3C3C3, 40%, #090909);
+    padding:  5% 0%;
 
 }
 .inner-div{
