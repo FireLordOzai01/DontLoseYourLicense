@@ -14,7 +14,7 @@ class Navbar extends Component {
                     <div className="header-menu row">
                         <ul>
                             <li>
-                                <Link className="nav-item" to="/"><LogoLogo /></Link>
+                                <Link className="nav-logo" to="/"><LogoLogo /></Link>
                             </li>
                             <li>
                                 <Link className="nav-item" to="/">Home </Link>
