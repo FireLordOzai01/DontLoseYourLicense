@@ -1,8 +1,1 @@
-.vscode/
-.DS_Store
-
-
-# Backend
-back-end/bin
-back-end/obj
-back-end/.DS_Store
+/front-end/node_modules/
