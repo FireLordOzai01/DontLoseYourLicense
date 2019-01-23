@@ -15,7 +15,7 @@ namespace back_end
         public string title             { get; set; }
         public string body              { get; set; }
         public DateTime time            { get; set; }
-        public List<Comment> comments   { get; set; }
+        //public List<Comment> comments   { get; set; }
 
         public Post()
         {
