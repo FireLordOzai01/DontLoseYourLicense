@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import Profile from './components/userProfile'
+import Profile from './components/userProfile/profile';
 // import SignUp from './components/signUp/signUp';
 
 // import Navbar from './components/navbar/navbar';
@@ -14,6 +14,7 @@ class App extends Component {
       <div>
         {/* <Navbar/> */}
         <Profile />
+        {/* <SignUp /> */}
         <Switch>
           {/* <Route exact path='/' render={(renderProps) => <Home /> } /> */}
         </Switch>
