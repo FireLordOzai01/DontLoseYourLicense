@@ -1,8 +1,14 @@
 .vscode/
 .DS_Store
 
+#backend
 
-# Backend
-back-end/bin
-back-end/obj
+back-end/bin/
+back-end/obj/
+back-end/appsettings.json
 back-end/.DS_Store
+
+#frontend
+front-end/node_modules/
+front-end/.DS_Store
+

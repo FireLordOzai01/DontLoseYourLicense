@@ -1,0 +1,40 @@
+.header-content {
+    margin: 0 auto;
+    overflow: hidden;
+    height: 100px
+}
+
+
+.header-logo {
+    float: left;
+    width: 260px;
+    max-height: 60px;
+    margin: 0px 0 0
+}
+
+.header-logo img {
+    max-width: 100%;
+    height: auto;
+    margin: 0
+}
+
+.section,
+.widget,
+.widget ul {
+    margin: 0;
+    padding: 0
+}
+
+#header-inner {
+    display:block;
+}
+
+#header-inner h1{
+    display:none;
+}
+
+#header-inner img{
+    height: 102px;
+    width: 306px;
+    display:block;
+}
