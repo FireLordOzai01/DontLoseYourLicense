@@ -13,7 +13,7 @@ import {
 
 export const addUser = user => async dispatch => {
     console.log(user);
-    let response = await axios.post('http://localhost:5000/api/users', user);
+    let response = await axios.post('http://localhost:5000/api/token/register', user);
     console.log(response);
     dispatch({ type: ADD_USER, payload: response.data })
 }
