@@ -42,12 +42,10 @@ namespace back_end
             {
                 return "not a valid login";
             }
-
-            
         }
 
-         [HttpPost]
-         [Route("Register")]
+        [HttpPost]
+        [Route("Register")]
         public string Register([FromBody] User user)
         {
             

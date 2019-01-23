@@ -21,12 +21,23 @@ CREATE TABLE ARTICLES(
 article_id SERIAL       PRIMARY KEY,
 article_link            text,
 title                   varchar(255),
-summary                 text
+summary                 text,
+time                    timestamp
+);
+
+CREATE TABLE POSTS(
+post_id SERIAL          PRIMARY KEY,
+user_id                 integer REFERENCES USERS (user_id),
+title                   varchar(100),
+body                    text,
+time                    timestamp
 );
 
 CREATE TABLE COMMENTS(
 comment_id SERIAL       PRIMARY KEY,
 comment                 text,
 user_id                 integer REFERENCES USERS (user_id),
-article_id              integer REFERENCES ARTICLES (article_id)
+post_id                 integer REFERENCES POSTS (post_id) NULL,
+article_id              integer REFERENCES ARTICLES (article_id) NULL,
+time                    timestamp
 );

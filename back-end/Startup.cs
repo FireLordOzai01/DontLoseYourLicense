@@ -11,15 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace back_end
 {
@@ -35,7 +31,7 @@ namespace back_end
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().AddJsonOptions(options => 
+            services.AddMvc().AddJsonOptions(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             })
@@ -43,6 +39,26 @@ namespace back_end
 
             var connectionString = Configuration.GetConnectionString("DlylContext");
             services.AddEntityFrameworkNpgsql().AddDbContext<DlylContext>(options => options.UseNpgsql(connectionString));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+   .AddJwtBearer(options =>
+   {
+       options.TokenValidationParameters = new TokenValidationParameters
+       {
+           ValidateIssuer = true,
+           ValidateAudience = true,
+           ValidateLifetime = true,
+           ValidateIssuerSigningKey = true,
+           ValidIssuer = Configuration["Jwt:Issuer"],
+           ValidAudience = Configuration["Jwt:Issuer"],
+           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+       };
+   });
+
+            services.AddMvc().AddJsonOptions(options =>
+                    {
+                        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    });
 
             services.AddCors();
         }
@@ -62,6 +78,10 @@ namespace back_end
 
             // app.UseHttpsRedirection();
             app.UseAuthentication();
+
+            app.UseCors(builder =>
+               builder.WithOrigins("*"));
+
             app.UseMvc();
         }
     }

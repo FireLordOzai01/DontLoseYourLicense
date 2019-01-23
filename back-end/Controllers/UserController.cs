@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace back_end.Controllers
 {
@@ -25,7 +27,11 @@ namespace back_end.Controllers
             {
                 return NoContent();
             }
-            return Ok(_context.users.ToList());
+            return Ok(_context.users
+            .Include(u => u.comments)
+            .ThenInclude(u => u.article)
+            .Include(u => u.posts)
+            .ToList());
         }
 
         // GET BY ID api
@@ -49,10 +55,18 @@ namespace back_end.Controllers
                 return BadRequest();
             }
 
+            DateTime CurrentDate;
+            CurrentDate = DateTime.Now;
+            u.creation_date = CurrentDate;
+
             _context.users.Add(u);
             _context.SaveChanges();
 
-            return Ok(_context.users.ToList());
+            return Ok(_context.users
+            .Include(_u => _u.comments)
+            .ThenInclude(_u => _u.article)
+            .Include(_u => _u.posts)
+            .ToList());
         }
 
         // PUT api
@@ -76,7 +90,11 @@ namespace back_end.Controllers
             user.avatar = u.avatar;
             _context.SaveChanges();
 
-            return Ok(_context.users.ToList());
+            return Ok(_context.users
+            .Include(_u => _u.comments)
+            .ThenInclude(_u => _u.article)
+            .Include(_u => _u.posts)
+            .ToList());
         }
 
         // DELETE api
@@ -91,7 +109,11 @@ namespace back_end.Controllers
             _context.users.Remove(user);
             _context.SaveChanges();
 
-            return Ok(_context.users.ToList());
+            return Ok(_context.users
+            .Include(_u => _u.comments)
+            .ThenInclude(_u => _u.article)
+            .Include(_u => _u.posts)
+            .ToList());
         }
     }
 }
