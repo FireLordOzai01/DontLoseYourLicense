@@ -17,6 +17,27 @@ namespace back_end
     [Route("api/token")]
     [ApiController]
 
+public class ValidUser
+{
+    public int? user_id{get;set;} = null;
+    public  string token{get;set;}
+
+     public ValidUser(){}
+     public ValidUser(string str)
+    {
+        this.token = str;
+    }
+
+    public ValidUser( int user_id,string str)
+    {
+        this.user_id = user_id;
+        this.token = str;
+    }
+
+
+}
+
+
     public class TokenController : Controller
     {
         private IConfiguration _config;
@@ -29,18 +50,19 @@ namespace back_end
 
         [HttpPost]
          [Route("loginUser")]
-        public string GetToken([FromBody] User user)
+        public ValidUser GetToken([FromBody] User user)
         {
             var tempUser = _context.users.FirstOrDefault(u=>u.username == user.username);
             bool validPassword = BCrypt.Net.BCrypt.Verify(user.password,tempUser.password);
 
             if(tempUser != null && validPassword)
             {
-            return BuildToken(tempUser.user_id);
+
+                return BuildToken(tempUser.user_id);
             }
             else
             {
-                return "not a valid login";
+                return (new ValidUser("not a valid login"));
             }
         }
 
@@ -56,8 +78,10 @@ namespace back_end
            
         }
 
-        private string BuildToken(int id)
+        private ValidUser BuildToken(int id)
         {
+            ValidUser vUser = new ValidUser();
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
@@ -65,8 +89,11 @@ namespace back_end
               _config["Jwt:Issuer"],
               expires: DateTime.Now.AddMinutes(30),
               signingCredentials: creds);
+              
+              vUser.user_id = id;
+              vUser.token = new JwtSecurityTokenHandler().WriteToken(token);
 
-            return new JwtSecurityTokenHandler().WriteToken(token) + "," + id;
+            return new ValidUser(id,new JwtSecurityTokenHandler().WriteToken(token));
         }
 
     }

@@ -3,6 +3,7 @@ using System.Xml;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+ using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -22,12 +23,15 @@ namespace back_end.Controllers
         }
 
 
-          void ParseRssFile(String xml)
+        void ParseRssFile(String xml)
         {
             XmlDocument rssXmlDoc = new XmlDocument();
 
             // Load the RSS file from the RSS URL
-            rssXmlDoc.Load(xml);
+                rssXmlDoc.Load(xml);
+          
+            
+
             // Parse the Items in the RSS file
             XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
 
@@ -85,13 +89,13 @@ namespace back_end.Controllers
 
         }
 
-        
+
 
 
         void AddArticles()
         {
             List<String> links = new List<String>();
-            //List<List<Article>> articlesList = new List<List<Article>>();
+            List<Task> TaskList = new List<Task>(); // list of tasks
 
             links.Add("https://mjbizdaily.com/feed/");  //keep
             links.Add("https://www.cannalawblog.com/feed/");  //keep
@@ -115,9 +119,10 @@ namespace back_end.Controllers
             //find or update article DB
             foreach (var link in links)
             {
-                
+
                 ParseRssFile(link);
-               
+                
+
             }
 
         }
