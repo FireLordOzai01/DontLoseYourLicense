@@ -78,6 +78,10 @@ namespace back_end
 
             // app.UseHttpsRedirection();
             app.UseAuthentication();
+
+            app.UseCors(builder =>
+               builder.WithOrigins("*"));
+
             app.UseMvc();
         }
     }

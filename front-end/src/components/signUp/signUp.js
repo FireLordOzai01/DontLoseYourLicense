@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
 import './signUp.css';
+import { connect } from 'react-redux';
+import { addUser } from '../../actions';
+
 class SignUp extends Component {
-    state = { 
-        fullName: "",
-        email: "",
-        companyAffiliation: "",
-        userIndustry: "",
-        username: "",
-        password: "",
+    state = {
+        user: {
+            username: "",
+            email: "",
+            password: "",
+            company_affiliation: "",
+            user_industry: "",
+            real_name: "",
+            avatar: ""
+        },
         confirmPassword: ""
     }
 
-    match = () => {
-        if(this.state.password !== this.state.confirmPassword){
+    matchPasswords = (e) => {
+        e.preventDefault();
+        if (this.state.user.password !== this.state.confirmPassword) {
             alert("Passwords don't match");
-        } else {
-            alert("passwords matche");
         }
+        this.props.onAddUser(this.state.user);
     }
 
-    render() { 
-        return ( 
+    render() {
+        return (
             <div className="background-div">
                 <div className="container">
                     <div className="container inner-div">
@@ -52,74 +58,100 @@ class SignUp extends Component {
                                             onClick={this.twitter}
                                             /> 
                                     </div>                                      
+                                    <h5>Use a social network to sign up</h5>
+                                    <button
+                                        id="facebook"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Facebook</button>
+                                    <button
+                                        id="google"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Google+</button>
+                                    <button
+                                        id="linkedin"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Linkedin</button>
+                                    <button
+                                        id="twitter"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Twitter</button>
                                 </div>
-                            <form>
-                                <h3>&nbsp; Sign up to comment, write and receive news by email</h3>
-                                <div className="signUpForm">
-                                    <div className="container">
-                                        <div className="col-md-8">
-                                        {/* First Name */}
-                                            <div>
-                                                <input 
-                                                    value={this.state.fullName}
-                                                    onChange={e => this.setState({fullName: e.target.value})}
-                                                    type="text" className="form-control input" placeholder="Full Name"/>
-                                            </div>
-                                            {/* Email */}
-                                            <div>
-                                                <input 
-                                                    value={this.state.email}
-                                                    onChange={e => this.setState({email: e.target.value})}
-                                                    type="email" className="form-control input" placeholder="Email address"/>
-                                            </div>
-                                            {/* Company Affiliation */}
-                                            <div>
-                                                <input
-                                                    value={this.state.companyAffiliation}
-                                                    onChange={e => this.setState({companyAffiliation: e.target.value})}
-                                                    type="text" className="form-control input" placeholder="Company Affiliation"/>
-                                            </div>
-                                            {/* User Industry */}
-                                            <div>
-                                                <input
-                                                    value={this.state.userIndustry}
-                                                    onChange={e => this.setState({userIndustry: e.target.value})}
-                                                    type="text" className="form-control input" placeholder="User Industry" />
-                                            </div>
-                                            {/* Username */}
+                                <form>
+                                    <h3>&nbsp; Sign up to comment, write and receive news by email</h3>
+                                    <div className="signUpForm">
+                                        <div className="container">
+                                            <div className="col-md-8">
+                                                {/* Full Name */}
+                                                <div>
+                                                    <input
+                                                        value={this.state.user.real_name}
+                                                        onChange={e => this.setState({ ...this.state, user: { ...this.state.user, real_name: e.target.value} })}
+                                                        type="text" className="form-control input" placeholder="Full Name" />
+                                                </div>
+                                                {/* Email */}
+                                                <div>
+                                                    <input
+                                                        value={this.state.user.email}
+                                                        onChange={e => this.setState({ ...this.state, user: { ...this.state.user, email: e.target.value } })}
+                                                        type="email" className="form-control input" placeholder="Email address" />
+                                                </div>
+                                                {/* Company Affiliation */}
+                                                <div>
+                                                    <input
+                                                        value={this.state.user.company_affiliation}
+                                                        onChange={e => this.setState({ ...this.state, user: { ...this.state.user, company_affiliation: e.target.value } })}
+                                                        type="text" className="form-control input" placeholder="Company Affiliation" />
+                                                </div>
+                                                {/* User Industry */}
+                                                <div>
+                                                    <input
+                                                        value={this.state.user.user_industry}
+                                                        onChange={e => this.setState({ ...this.state, user: { ...this.state.user, user_industry: e.target.value} })}
+                                                        type="text" className="form-control input" placeholder="User Industry" />
+                                                </div>
+                                                {/* Username */}
                                                 <input
                                                     value={this.state.username}
-                                                    onChange={e => this.setState({username: e.target.value})}
+                                                    onChange={e => this.setState({ ...this.state, user: { ...this.state.user, username: e.target.value } })}
                                                     type="text" className="form-control input" placeholder="Username" />
-                                            {/* Password */}
-                                            
-                                            <div className="HOTDOG">
-                                                <input
-                                                    value={this.state.password}
-                                                    onChange={e => this.setState({password: e.target.value})}
-                                                    type="password" className="form-control input col-md-5" placeholder="Password" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+                                                {/* Password */}
+
+                                                <div className="HOTDOG">
+                                                    <input
+                                                        value={this.state.user.password}
+                                                        onChange={e => this.setState({ ...this.state, user: { ...this.state.user, password: e.target.value } })}
+                                                        type="password" className="form-control input col-md-5" placeholder="Password" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                                 {/* Confirm Password */}
-                                                <input
-                                                    value={this.state.confirmPassword}
-                                                    onChange={e => this.setState({confirmPassword: e.target.value})}
-                                                    type="password" className="form-control input col-md-5" placeholder="Confirm Password"/>
+                                                    <input
+                                                        value={this.state.confirmPassword}
+                                                        onChange={e => this.setState({ confirmPassword: e.target.value })}
+                                                        type="password" className="form-control input col-md-5" placeholder="Confirm Password" />
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <button 
-                                        className="btn btn-primary signUpButton"
-                                        onClick={this.match}
+                                        <button
+                                            className="btn btn-primary signUpButton"
+                                            onClick={(e)=>this.matchPasswords(e)}
                                         >Submit</button>
                                     </div>
                                 </form>
                             </div>
-                        
+
                         </div>
                     </div>
                 </div>
             </div>
-         );
+        );
     }
 }
- 
-export default SignUp;
+
+const mapDispatchToProps = dispatch => ({
+    onAddUser: (user) => (dispatch(addUser(user)))
+})
+
+
+export default connect(null,mapDispatchToProps)(SignUp);
