@@ -11,8 +11,8 @@ class Home extends Component {
             <div className="row" id="content-wrapper">
                     <div className="clear">
                     </div>
-                    <Featured />
-                    <Sidebar />
+                    {/* <Featured />
+                    <Sidebar /> */}
                     <div className="clear">
                     </div>                  
                 </div>

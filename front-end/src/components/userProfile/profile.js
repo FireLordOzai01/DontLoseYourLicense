@@ -10,7 +10,7 @@ class Profile extends Component {
         return (
             <div className="profile-container container">
                 <div className="row1">
-                    <img src="https://media.licdn.com/dms/image/C5603AQGfmyW1kozVdw/profile-displayphoto-shrink_200_200/0?e=1552521600&v=beta&t=8g-n8obltWx0lFBXyj3-oeckviWZO7VgQJcpXzDodDI" alt="profile" />
+                    <img classname="Profile-pic" src="https://media.licdn.com/dms/image/C5603AQGfmyW1kozVdw/profile-displayphoto-shrink_200_200/0?e=1552521600&v=beta&t=8g-n8obltWx0lFBXyj3-oeckviWZO7VgQJcpXzDodDI" alt="profile" />
                     <hr />
                     <h5>COMPANY</h5>
                     {/* {this.props.users.map((user, index) => {
