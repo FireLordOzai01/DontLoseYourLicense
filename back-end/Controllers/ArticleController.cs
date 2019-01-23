@@ -3,9 +3,11 @@ using System.Xml;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 namespace back_end.Controllers
 {
@@ -20,8 +22,10 @@ namespace back_end.Controllers
         }
 
 
-        void ParseRssFile(String xml)
+        async Task ParseRssFile(String xml)
         {
+
+            Console.WriteLine("Async");
             XmlDocument rssXmlDoc = new XmlDocument();
 
             // Load the RSS file from the RSS URL
@@ -86,6 +90,7 @@ namespace back_end.Controllers
 
         void AddArticles()
         {
+            List<Task> TaskList = new List<Task>(); // list of tasks
 
             //all the sites to scrap from
             List<String> links = new List<String>();
@@ -109,8 +114,11 @@ namespace back_end.Controllers
             //find or update article DB
             foreach (var link in links)
             {
-                ParseRssFile(link);
+                //ParseRssFile(link);
+                TaskList.Add(ParseRssFile(link));
             }
+
+            Task.WaitAll(TaskList.ToArray()); // wait for all tasks to complete
 
         }
 
