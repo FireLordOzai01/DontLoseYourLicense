@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import SignUp from './components/signUp/signUp';
+import Profile from './components/userProfile/profile'
+// import SignUp from './components/signUp/signUp';
 
 // import Navbar from './components/navbar/navbar';
 // import Home from './components/home/home';
@@ -12,7 +13,7 @@ class App extends Component {
     return (
       <div>
         {/* <Navbar/> */}
-        <SignUp />
+        <Profile />
         <Switch>
           {/* <Route exact path='/' render={(renderProps) => <Home /> } /> */}
         </Switch>
