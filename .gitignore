@@ -1,5 +1,14 @@
-<<<<<<< HEAD
+.vscode/
+.DS_Store
+
+#backend
+
+back-end/bin/
+back-end/obj/
+back-end/appsettings.json
+back-end/.DS_Store
+
+#frontend
 front-end/node_modules/
-=======
-/front-end/node_modules/
->>>>>>> 394734f9c1f5f44cf0fff237a91736e69ac1096d
+front-end/.DS_Store
+
