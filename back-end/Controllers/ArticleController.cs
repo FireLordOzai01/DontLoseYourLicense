@@ -35,7 +35,7 @@ namespace back_end.Controllers
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
             {
-                //get current date to add to article
+                //get current date for article age check
                 string today =
                 System.DateTime.Now.Year.ToString() + "-" +
                 System.DateTime.Now.Month.ToString() + "-" +
@@ -44,6 +44,7 @@ namespace back_end.Controllers
                 System.DateTime.Now.Minute.ToString() + ":" +
                 System.DateTime.Now.Second.ToString();
 
+                //get all article data
                 XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? rssSubNode.InnerText : "";
 
@@ -53,38 +54,53 @@ namespace back_end.Controllers
                 rssSubNode = rssNode.SelectSingleNode("description");
                 string description = rssSubNode != null ? rssSubNode.InnerText : "";
 
-                if (title.Contains("compliance")
+                rssSubNode = rssNode.SelectSingleNode("content");
+                string content = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssSubNode = rssNode.SelectSingleNode("pubDate");
+                string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
+
+
+                //Articles too old? stop searching
+                if((DateTime.Now-Convert.ToDateTime(pubDate)).TotalDays > 5)
+                {
+                    Console.WriteLine("too old");
+                    break;
+                }
+
+                //check for relevant pages from each site
+                if (title.Contains("California") && (title.Contains("compliance")
                 || title.Contains("regulation")
-                || title.Contains("approves")
-                || description.Contains("regulation"))
+                || title.Contains("approve")
+                || description.Contains("regulation")
+                || description.Contains("approve")
+                || content.Contains("approve")
+                || content.Contains("regulation")))
                 {
                     //if no matches with the database, we need to add it. 
                     // aka: (new article published from websites below)
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
 
-                        Article tempArticle = new Article(link,title,description,Convert.ToDateTime(today));
+                        Article tempArticle = new Article(link,title,description,Convert.ToDateTime(pubDate));
                          _context.articles.Add(tempArticle);
-                         Console.WriteLine("hereeee");
 
 
                     }
-                    //we need to check current articles in the DB for date older than a week
+                    //we need to check current article in the DB for date older than 15
                     else
                     {
                         DlylContext _tempContext = _context;
-
-                        foreach (var article in _tempContext.articles)
-                        {
-                            if ((article.time - DateTime.Now).TotalDays > 7)
+                         Article article =  _context.articles.FirstOrDefault(a => a.title == title);
+                         if ((DateTime.Now-article.time).TotalDays > 15)
                             {
 
                                 _context.articles.Remove(article);
 
                             }
 
-                        }
-
+                            //we can break out of this feed because we know we have searched this far since we have an article from this source
+                            break;
                     }
                 }
 
@@ -98,29 +114,11 @@ namespace back_end.Controllers
         {
 
             List<String> links = new List<String>();
-            links.Add("https://mjbizdaily.com/feed/");
-            links.Add("https://cannabiz.media/feed/");
-            links.Add("https://www.liwts.org/feed/");
-            links.Add("https://www.covasoftware.com/blog/rss.xml");
-            links.Add("https://medicalmarijuana411.com/feed/");
-            links.Add("https://www.medicalmarijuanainc.com/feed/");
-            links.Add("https://grizzle.com/marijuana/feed/");
-            links.Add("https://merryjane.com/feed/all.rss");
-            links.Add("https://www.cannalawblog.com/feed/");
-            links.Add("https://news.weedmaps.com/feed/");
-            links.Add("https://hightimes.com/feed/");
-            links.Add("https://cannabislaw.report/feed/");
-            links.Add("http://www.cnbc.com/id/101432347/device/rss");
-            links.Add("https://cannabis.ca.gov/feed/");
-            links.Add("https://www.cannabisculture.com/feed/");
-            links.Add("https://mjobserver.com/feed/");
-            links.Add("https://www.leafly.com/feed");
-            links.Add("https://greencamp.com/feed/");
-            links.Add("https://thebluntinvestor.com/feed/");
-            links.Add("http://daggamagazine.com/feed/");
-            links.Add("https://www.crrh.org/news/taxonomy/term/3956/0/feed");
-            links.Add("http://marijuanaworldnews.com/feed/");
-            links.Add("https://www.marijuana.com/feed/");
+            links.Add("https://mjbizdaily.com/feed/"); //good
+            links.Add("https://www.cannalawblog.com/feed/"); //good
+            links.Add("https://news.weedmaps.com/feed/"); //good
+            links.Add("https://cannabislaw.report/feed/"); //good
+            links.Add("https://cannabis.ca.gov/feed/"); //none but keep
 
             foreach (var link in links)
             {
