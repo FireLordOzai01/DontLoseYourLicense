@@ -13,3 +13,8 @@
 .clear {
     clear:both;
 }
+html, body {
+    margin: 0% 0% 0% 0%;
+    padding: 2% 0%;
+    background: linear-gradient(to right,#090909, 60%, #c3c3c3);
+} 

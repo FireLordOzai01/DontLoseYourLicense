@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
+import LogoLogo from './../logo/logo';
 
 
 
@@ -13,6 +14,9 @@ class Navbar extends Component {
                     <div className="header-menu row">
                         <ul>
                             <li>
+                                <Link className="nav-logo" to="/"><LogoLogo /></Link>
+                            </li>
+                            <li>
                                 <Link className="nav-item" to="/">Home </Link>
 
                             </li>
@@ -20,6 +24,7 @@ class Navbar extends Component {
                                 <Link className="nav-item" to="/signup">Signup </Link>
                             </li>
                             <li>
+                            <Link className="nav-item" to="/profile">Profile </Link>                                
                             </li>
                         </ul>
                     </div>
