@@ -1,0 +1,91 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+*:active{
+    border-color: #FFD439;
+}
+.signUpForm{
+    /* top right bottom left */
+    margin: 0px 0px -0px 0px;
+    padding: 15px 0px 20px 0px;
+    flex-direction: column;
+    background-color: white;
+}
+.signUpButton{
+    margin: 0px 0px 0px 30px;
+    background-color: #272727;
+    border: 1px solid black;
+}
+.signUpButton:hover{
+    background-color: #FFD439;
+    color: #272727;
+    border: 1px solid #FFD439;
+}
+.input {
+    border: 1px solid transparent;
+    border-bottom: 2px solid black;
+    /* box-shadow: 2px 2px 5px #4d4d4d; */
+    display: inline;
+    margin: 0% 0% 4% 0%;
+    width: 152% !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.input:focus{
+    -webkit-appearance: none;
+    border-bottom-color: black;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.input:active{
+   outline: none;
+}
+
+.HOTDOG{
+    width: 170% !important;
+
+}
+/* html{
+    background-color: #6dd5ff;
+} */
+.social-media{
+    padding:  2% 3% 3.5% 3%;
+    margin:  -1.9% 0% -1.9% -1.9%;;
+    /* border: 1px solid black; */
+    background: #FFD439;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+.icon{
+    background-color: #FFD439;
+    border: 1px solid #FFD439;
+}
+.icon:hover{
+    background-color: #272727;
+    border: 1px solid #272727;
+}
+.background-div{
+    /* border: linear-gradient(#C3C3C3, 70%, #090909); */
+    background: linear-gradient(#C3C3C3, 30%, #090909);
+    padding:  210px 0px 254px 0px;
+
+}
+.inner-div{
+    /* border: 2px solid black; */
+    padding: 20px 20px;
+    margin: 0px 0px 0px 0px;
+    background-color: white;
+    box-shadow: 10px 5px 5px ;
+}
+img{
+    height: 15%;
+    width: 40%;
+}
+.combo{
+    margin: 10% 0% 16% 0%;
+    padding: 10% 0% 0% 0%;
+
+}

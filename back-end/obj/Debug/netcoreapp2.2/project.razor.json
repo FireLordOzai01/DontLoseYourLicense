@@ -1,6 +1,18 @@
 {
+<<<<<<< HEAD
   "ProjectFilePath": "c:\\Redwood\\Week 11\\Monday\\DontLoseYourLicense\\back-end\\back-end.csproj",
+=======
+  "ProjectFilePath": "/Users/Austin/Projects/redwood/finalProject/DontLoseYourLicense/back-end/back-end.csproj",
+>>>>>>> 394734f9c1f5f44cf0fff237a91736e69ac1096d
   "TargetFramework": "netcoreapp2.2",
   "TagHelpers": [],
-  "Configuration": null
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  }
 }
