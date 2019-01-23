@@ -14,8 +14,6 @@ using BCrypt.Net;
 
 namespace back_end
 {
-    [Route("api/token")]
-    [ApiController]
 
 public class ValidUser
 {
@@ -37,6 +35,8 @@ public class ValidUser
 
 }
 
+[Route("api/token")]
+    [ApiController]
 
     public class TokenController : Controller
     {
@@ -57,11 +57,11 @@ public class ValidUser
 
             if(tempUser != null && validPassword)
             {
-
+                //Console.WriteLine("made it here");
                 return BuildToken(tempUser.user_id);
             }
             else
-            {
+            {   Console.WriteLine("made it here1");
                 return (new ValidUser("not a valid login"));
             }
         }
@@ -80,7 +80,6 @@ public class ValidUser
 
         private ValidUser BuildToken(int id)
         {
-            ValidUser vUser = new ValidUser();
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -90,8 +89,7 @@ public class ValidUser
               expires: DateTime.Now.AddMinutes(30),
               signingCredentials: creds);
               
-              vUser.user_id = id;
-              vUser.token = new JwtSecurityTokenHandler().WriteToken(token);
+              
 
             return new ValidUser(id,new JwtSecurityTokenHandler().WriteToken(token));
         }
