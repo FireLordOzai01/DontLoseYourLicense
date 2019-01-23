@@ -28,7 +28,7 @@ namespace back_end
         }
 
         [HttpPost]
-         [Route("Login")]
+         [Route("loginUser")]
         public string GetToken([FromBody] User user)
         {
             var tempUser = _context.users.FirstOrDefault(u=>u.username == user.username);
@@ -36,7 +36,7 @@ namespace back_end
 
             if(tempUser != null && validPassword)
             {
-            return BuildToken();
+            return BuildToken(tempUser.user_id);
             }
             else
             {
@@ -56,7 +56,7 @@ namespace back_end
            
         }
 
-        private string BuildToken()
+        private string BuildToken(int id)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -66,7 +66,7 @@ namespace back_end
               expires: DateTime.Now.AddMinutes(30),
               signingCredentials: creds);
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return new JwtSecurityTokenHandler().WriteToken(token) + "," + id;
         }
 
     }
