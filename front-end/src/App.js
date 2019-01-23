@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/home';
 import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
+import LogInForm from './components/login/login';
 
 class App extends Component {
   render() {
@@ -25,6 +26,7 @@ class App extends Component {
 
         </Switch>
         {/* End of Content Wrapper */}
+        <LogInForm />
         <div className="clear">
         </div>
       </div>
