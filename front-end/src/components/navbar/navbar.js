@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './navbar.css';
 import { logoutUser } from '../../actions';
+import LogoLogo from './../logo/logo';
 
 class Navbar extends Component {
 
