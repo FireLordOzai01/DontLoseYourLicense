@@ -38,7 +38,10 @@ class App extends Component {
             <Route path='/signup' render={(renderProps) => <SignUp />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/login' render={(renderProps) => <LogInForm/> } />
+<<<<<<< Updated upstream
             <Route path='/fourm' render={(renderProps) => <Fourm /> } />
+=======
+>>>>>>> Stashed changes
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
           {/* End of Content Wrapper */}
