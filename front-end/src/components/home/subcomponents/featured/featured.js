@@ -56,10 +56,9 @@ class Featured extends Component {
                                                     </a>
                                                 </div>
                                                 <div className="resumo">
-                                                <span>
-                            
+                                                <div>
                                                 {article.summary}              
-                                                </span>
+                                                </div>
                                                     <a className="read-more" href={article.article_link}>Read More
                                                 </a>
                                                 </div>
