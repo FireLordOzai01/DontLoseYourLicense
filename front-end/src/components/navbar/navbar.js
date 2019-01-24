@@ -13,6 +13,9 @@ class Navbar extends Component {
                 <nav id="main-nav">
                     <div className="header-menu row">
                         <ul>
+                            <li id="logo-hover">
+                                <Link  to="/"><LogoLogo /></Link>
+                            </li>
                             <li>
                                 <Link className="nav-item" to="/">Home</Link>
                             </li>

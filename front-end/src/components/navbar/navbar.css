@@ -30,7 +30,6 @@ nav{
 .header-menu {
     background-color: #202020;
     height: 48px;
-    margin: 3% auto;
     position: relative;
     padding: 0;
 }
@@ -62,7 +61,9 @@ ul{
     border-right: 1px solid #272727;
 }
 
-
+#logo-hover:hover {
+    background: none !important;
+}
 
 .nav-item {
     cursor: pointer;

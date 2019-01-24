@@ -19,52 +19,6 @@ class Featured extends Component {
                                 <div className="post">
                                     <div className="block-image">
                                         <div className="thumb">
-                                            <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">
-                                                <span className="thumb-overlay">
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div className="postags">
-                                            <a className="News" href="http://newcon-themexpose.blogspot.com/search/label/News?&amp;max-results=10" rel="tag">News</a>
-                                        </div>
-                                    </div>
-                                    <div className="post-header">
-                                    </div>
-                                    <article>
-                                        <font className="retitle">
-                                            <h2 className="post-title entry-title">
-                                                <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">
-                                                    Apple’s new ipad lets you play the latest games for a fraction of the price
-                                                </a>
-                                            </h2>
-                                        </font>
-                                        <div className="date-header">
-                                            <div id="meta-post">
-                                                <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
-                                                    <abbr className="published" itemprop="datePublished dateModified" title="2016-08-01T04:22:00-07:00">August 01, 2016
-                                                </abbr>
-                                                </a>
-                                            </div>
-                                            <div className="resumo">
-                                                <span>                   Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo cons...
-                                                </span>
-                                                <a className="read-more" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">Read More
-                                                </a>
-                                            </div>
-                                            <div className ="clear">
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <div className ="clear">
-                                    </div>
-                                    <div className="post-footer">
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="post-outer">
-                                <div className="post">
-                                    <div className="block-image">
-                                        <div className="thumb">
                                             <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" className="img-effect">
                                                 <span className="thumb-overlay">
                                                 </span>
@@ -74,8 +28,6 @@ class Featured extends Component {
                                             <a className="News" href="http://newcon-themexpose.blogspot.com/search/label/News?&amp;max-results=10" rel="tag">News</a>
                                         </div>
                                     </div>
-                                    <div className="post-header">
-                                    </div>
                                     <article>
                                         <font className="retitle">
                                             <h2 className="post-title entry-title">
@@ -87,120 +39,30 @@ class Featured extends Component {
                                         <div className="date-header">
                                             <div id="meta-post">
                                                 <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
-                                                    <abbr className="published" itemprop="datePublished dateModified" title="2016-08-01T04:22:00-07:00">August 01, 2016
-                                                </abbr>
+                                                    <abbr 
+                                                        className="published" 
+                                                        itemprop="datePublished dateModified" 
+                                                        title="2016-08-01T04:22:00-07:00">
+                                                        August 01, 2016
+                                                    </abbr>
                                                 </a>
                                             </div>
                                             <div className="resumo">
-                                                <span>                   Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo cons...
+                                                <span>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo cons...
                                                 </span>
-                                                <a className="read-more" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">Read More
+                                                <a 
+                                                    className="read-more" 
+                                                    href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">
+                                                    Read More
                                                 </a>
-                                            </div>
-                                            <div className ="clear">
                                             </div>
                                         </div>
                                     </article>
-                                    <div className ="clear">
-                                    </div>
-                                    <div className="post-footer">
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="post-outer">
-                                <div className="post">
-                                    <div className="block-image">
-                                        <div className="thumb">
-                                            <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" className="img-effect">
-                                                <span className="thumb-overlay">
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div className="postags">
-                                            <a className="News" href="http://newcon-themexpose.blogspot.com/search/label/News?&amp;max-results=10" rel="tag">News</a>
-                                        </div>
-                                    </div>
-                                    <div className="post-header">
-                                    </div>
-                                    <article>
-                                        <font className="retitle">
-                                            <h2 className="post-title entry-title">
-                                                <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">
-                                                    Apple’s new ipad lets you play the latest games for a fraction of the price
-                                                </a>
-                                            </h2>
-                                        </font>
-                                        <div className="date-header">
-                                            <div id="meta-post">
-                                                <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
-                                                    <abbr className="published" itemprop="datePublished dateModified" title="2016-08-01T04:22:00-07:00">August 01, 2016
-                                                </abbr>
-                                                </a>
-                                            </div>
-                                            <div className="resumo">
-                                                <span>                   Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo cons...
-                                                </span>
-                                                <a className="read-more" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">Read More
-                                                </a>
-                                            </div>
-                                            <div className ="clear">
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <div className ="clear">
-                                    </div>
-                                    <div className="post-footer">
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="post-outer">
-                                <div className="post">
-                                    <div className="block-image">
-                                        <div className="thumb">
-                                            <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" className="img-effect">
-                                                <span className="thumb-overlay">
-                                                </span>
-                                            </a>
-                                        </div>
-                                        <div className="postags">
-                                            <a className="News" href="http://newcon-themexpose.blogspot.com/search/label/News?&amp;max-results=10" rel="tag">News</a>
-                                        </div>
-                                    </div>
-                                    <div className="post-header">
-                                    </div>
-                                    <article>
-                                        <font className="retitle">
-                                            <h2 className="post-title entry-title">
-                                                <a href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">
-                                                    Apple’s new ipad lets you play the latest games for a fraction of the price
-                                                </a>
-                                            </h2>
-                                        </font>
-                                        <div className="date-header">
-                                            <div id="meta-post">
-                                                <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
-                                                    <abbr className="published" itemprop="datePublished dateModified" title="2016-08-01T04:22:00-07:00">August 01, 2016
-                                                </abbr>
-                                                </a>
-                                            </div>
-                                            <div className="resumo">
-                                                <span>                   Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo cons...
-                                                </span>
-                                                <a className="read-more" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html">Read More
-                                                </a>
-                                            </div>
-                                            <div className ="clear">
-                                            </div>
-                                        </div>
-                                    </article>
-                                    <div className ="clear">
-                                    </div>
-                                    <div className="post-footer">
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="blog-pager" id="blog-pager">
+                            {/* NAVIGATION NUMBERS */}
+                        {/* <div className="blog-pager" id="blog-pager">
                             <span className="showpageOf">Page 1 of 2
                             </span>
                             <span className="showpagePoint">1
@@ -215,36 +77,9 @@ class Featured extends Component {
                                     </i>
                                 </a>
                             </span>
-                        </div>
-                        <div className="clear">
-                        </div>
-                        <div className="blog-feeds">
-                            <div className="feed-links"> Subscribe to:
-                                <a className="feed-link" href="http://newcon-themexpose.blogspot.com/feeds/posts/default" target="_blank" type="application/atom+xml">
-                                    Posts
-                                                          (
-                                                          Atom
-                                                          )
-                                </a>
-                            </div>
-                        </div>
+                        </div> */}
                     </div>
-                    <div className="widget HTML" data-version="1" id="HTML300">
-                    </div>
-                    <div className="widget HTML" data-version="1" id="HTML301">
-                    </div></div>
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
             </div>
         )
     }
