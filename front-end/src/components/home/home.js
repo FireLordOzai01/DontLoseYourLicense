@@ -13,6 +13,8 @@ class Home extends Component {
                     </div>
                     <Featured />
                     {/* <Sidebar />  */}
+                    <Sidebar />
+
                     <div className="clear">
                     </div>                  
             </div>
