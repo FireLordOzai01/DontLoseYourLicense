@@ -55,9 +55,15 @@ namespace back_end.Controllers
                 return BadRequest();
             }
 
-            DateTime CurrentDate;
-            CurrentDate = DateTime.Now;
-            u.creation_date = CurrentDate;
+            string today =
+            System.DateTime.Now.Year.ToString() + "-" +
+            System.DateTime.Now.Month.ToString() + "-" +
+            System.DateTime.Now.Day.ToString() + " " +
+            System.DateTime.Now.Hour.ToString() + ":" +
+            System.DateTime.Now.Minute.ToString() + ":" +
+            System.DateTime.Now.Second.ToString();
+
+            u.creation_date = Convert.ToDateTime(today);
 
             _context.users.Add(u);
             _context.SaveChanges();
