@@ -3,8 +3,8 @@
 package-lock.json
 
 #backend
-back-end/bin/
-back-end/obj/
+back-end/bin
+back-end/obj
 back-end/appsettings.json
 back-end/.DS_Store
 
