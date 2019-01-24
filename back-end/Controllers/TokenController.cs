@@ -81,6 +81,17 @@ namespace back_end
         {
 
             user.password = BCrypt.Net.BCrypt.HashPassword(user.password, SaltRevision.Revision2A);
+
+            string today =
+            System.DateTime.Now.Year.ToString() + "-" +
+            System.DateTime.Now.Month.ToString() + "-" +
+            System.DateTime.Now.Day.ToString() + " " +
+            System.DateTime.Now.Hour.ToString() + ":" +
+            System.DateTime.Now.Minute.ToString() + ":" +
+            System.DateTime.Now.Second.ToString();
+
+            user.creation_date = Convert.ToDateTime(today);
+
             _context.users.Add(user);
             _context.SaveChanges();
             return "created";
