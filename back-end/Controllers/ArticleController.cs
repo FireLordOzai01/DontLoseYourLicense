@@ -68,13 +68,16 @@ namespace back_end.Controllers
                 {
                     //if no matches with the database, we need to add it. 
                     // aka: (new article published from websites below)
+                    //Console.WriteLine(_context.articles.FirstOrDefault(a => a.title == title).article_id);
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
+                        
                         Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
                         _context.articles.Add(tempArticle);
                     }
                     else
                     {
+                        Console.WriteLine("made it here");
                         //we can break out of this feed because we know we have searched this far since we have an article from this source
                         break;
                     }
@@ -102,13 +105,16 @@ namespace back_end.Controllers
 
             if (_context.articles != null)
             {
+                 DlylContext tempContext = _context;
+
                 //check for articles out of date, greater than 100 days
-                foreach (var article in _context.articles)
+                foreach (var article in tempContext.articles)
                 {
                     if ((DateTime.Now - article.time).TotalDays > 100)
                     {
 
                         _context.articles.Remove(article);
+
 
                     }
                 }
