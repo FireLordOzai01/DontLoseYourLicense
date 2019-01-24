@@ -7,9 +7,9 @@ class Sidebar extends Component {
     render() {
         return (
             <div id="sidebar-wrapper">
-                <div className="sidebar ready-widget section" id="sidebar2" name="Sidebar Right A">
+                <div className="section sidebar ready-widget ">
                     {/* FORUM POSTS */}
-                    <div className="widget BlogArchive" data-version="1" id="BlogArchive1">
+                    <div className="widget BlogArchive">
                         <div className="title-wrap">
                             <h2>Blog Archive
                             </h2>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './home.css';
-import Featured from './../featured/featured.js';
-import Sidebar from './../sidebar/sidebar.js';
+import Featured from './subcomponents/featured/featured.js';
+import Sidebar from './subcomponents/sidebar/sidebar.js';
 
 
 
@@ -15,7 +15,7 @@ class Home extends Component {
                     <Sidebar />
                     <div className="clear">
                     </div>                  
-                </div>
+            </div>
         );
     }
 }
