@@ -33,9 +33,8 @@
     border-radius: 0;
 }
 .input:focus{
-    -webkit-appearance: none;
+    appearance: none;
     border-bottom-color: black;
-    -webkit-box-shadow: none;
     box-shadow: none;
 }
 .input:active{
@@ -59,10 +58,12 @@
 .icon{
     background-color: #FFD439;
     border: 1px solid #FFD439;
+    /* width: 30%; */
 }
 .icon:hover{
-    background:  #090909;
-    border: 3px solid #090909;
+    transform: scale(1.1, 1.1);
+    /* background:  #090909; */
+    /* border: 3px solid #090909; */
 }
 .background-div{
     background: linear-gradient(to right,#C3C3C3, 40%, #090909);

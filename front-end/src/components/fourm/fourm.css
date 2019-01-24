@@ -1,0 +1,28 @@
+.post-input{
+    width: 300% !important;
+    margin: 0% 5%;
+    border-image-source: linear-gradient(to right,#FFD439, 50%, #090909);
+    border-width: thick;
+    border-image-slice: 1;
+
+}
+.input-button{
+    margin: 0% 0% 0% 650%;
+    background-color: #272727;
+    border: 1px solid black;
+}
+.input-button:hover{
+    background-color: #FFD439;
+    color: #272727;
+    border: 1px solid #FFD439;
+}
+#mapped-post{
+    border: 1px solid black;
+    padding: 20%;
+    margin: 2%;
+}
+#comment-section{
+    border: 1px solid black;
+    margin: 2% 2%;
+    padding: 5%;
+}
