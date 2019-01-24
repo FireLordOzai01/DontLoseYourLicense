@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './signUp.css';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
 
@@ -14,7 +15,8 @@ class SignUp extends Component {
             real_name: "",
             avatar: ""
         },
-        confirmPassword: ""
+        confirmPassword: "",
+        redirect: false
     }
     
     matchPasswords = (e) => {
@@ -23,10 +25,14 @@ class SignUp extends Component {
             alert("Passwords don't match");
         }
         this.props.onAddUser(this.state.user);
+        this.setState({ redirect: true });
     }
 
     render() {
         return (
+            this.state.redirect
+            ? <Redirect to='/profile'/>
+            :
             <div className="background-div">
                 <div className="container">
                     <div className="container inner-div">

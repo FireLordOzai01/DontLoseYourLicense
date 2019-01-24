@@ -14,16 +14,13 @@ class Navbar extends Component {
                     <div className="header-menu row">
                         <ul>
                             <li>
-                                <Link className="nav-item" to="/">Home </Link>
+                                <Link className="nav-item" to="/">Home</Link>
                             </li>
                             <li>
-                                <Link className="nav-item" to="/signup">SignUp </Link>
+                                <Link className="nav-item" to="/login">Login</Link>
                             </li>
-                            {/* <li>
-                                <Link className="nav-item" to="/signup">SignUp </Link>
-                            </li> */}
                             <li>
-                            <Link className="nav-item" to="/profile">Profile </Link>                                
+                                <Link className="nav-item" to="/signup">Signup </Link>
                             </li>
                             <li>
                                 <Link className="nav-item" to="/fourm">Fourm </Link>

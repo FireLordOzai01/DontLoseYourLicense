@@ -1,8 +1,8 @@
 .vscode/
 .DS_Store
+package-lock.json
 
 #backend
-
 back-end/bin/
 back-end/obj/
 back-end/appsettings.json

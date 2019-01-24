@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { getUserToken } from '../../actions';
 
 class LogInForm extends Component {
     state = {
         username: '',
-        password: ''
+        password: '',
+        redirect: false
     }
 
     onLogIn = e => {
@@ -16,13 +18,17 @@ class LogInForm extends Component {
             password: this.state.password
         };
 
-        this.props.logIn(user)
+        this.props.logIn(user);
+        this.setState({ redirect: true });
     }
 
     render() {
         return (
+            this.state.redirect
+            ? <Redirect to='/profile'/>
+            :
             <div className="container">
-                <h2>Log In</h2>
+                <h2 className="mt-3">Log In</h2>
                 <form>
                     <div className="form-group">
                         <label>Username</label>
@@ -41,7 +47,7 @@ class LogInForm extends Component {
                                 onChange={(e) => this.setState({ password: e.target.value })}/>
                     </div>
                     <button 
-                        className="btn btn-outline-primary float-right"
+                        className="btn btn-outline-primary float-right mt-3 mb-4"
                         onClick={(e) => this.onLogIn(e)}>Log In</button>
                 </form>
             </div>
