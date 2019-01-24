@@ -10,9 +10,12 @@ import Home from './components/home/home.js';
 import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
 import LogInForm from './components/login/login';
+import Fourm from './components/fourm/fourm';
+
 
 
 class App extends Component {
+
   render() {
     return (
       <div>
@@ -35,6 +38,7 @@ class App extends Component {
             <Route path='/signup' render={(renderProps) => <SignUp />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/loginform' render={(renderProps) => <LogInForm/> } />
+            <Route path='/fourm' render={(renderProps) => <Fourm /> } />
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
           {/* End of Content Wrapper */}
