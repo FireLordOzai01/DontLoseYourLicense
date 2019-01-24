@@ -16,7 +16,7 @@ class SignUp extends Component {
         },
         confirmPassword: ""
     }
-
+    
     matchPasswords = (e) => {
         e.preventDefault();
         if (this.state.user.password !== this.state.confirmPassword) {

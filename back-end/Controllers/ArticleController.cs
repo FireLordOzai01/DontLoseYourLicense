@@ -3,6 +3,7 @@ using System.Xml;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
+ using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -24,98 +25,100 @@ namespace back_end.Controllers
 
         void ParseRssFile(String xml)
         {
-                XmlDocument rssXmlDoc = new XmlDocument();
+            XmlDocument rssXmlDoc = new XmlDocument();
 
-                // Load the RSS file from the RSS URL
+            // Load the RSS file from the RSS URL
                 rssXmlDoc.Load(xml);
+          
 
-                // Parse the Items in the RSS file
-                XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
+            // Parse the Items in the RSS file
+            XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
 
-                StringBuilder rssContent = new StringBuilder();
+            // Iterate through the items in the RSS file
+            foreach (XmlNode rssNode in rssNodes)
+            {
 
-                // Iterate through the items in the RSS file
-                foreach (XmlNode rssNode in rssNodes)
+                //get all article data
+                XmlNode rssSubNode = rssNode.SelectSingleNode("title");
+                string title = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssSubNode = rssNode.SelectSingleNode("link");
+                string link = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssSubNode = rssNode.SelectSingleNode("description");
+                string description = rssSubNode != null ? rssSubNode.InnerText : "";
+
+                rssSubNode = rssNode.SelectSingleNode("pubDate");
+                string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
+
+
+                //Articles too old? stop searching
+                if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 100)
                 {
-
-                    //get all article data
-                    XmlNode rssSubNode = rssNode.SelectSingleNode("title");
-                    string title = rssSubNode != null ? rssSubNode.InnerText : "";
-
-                    rssSubNode = rssNode.SelectSingleNode("link");
-                    string link = rssSubNode != null ? rssSubNode.InnerText : "";
-
-                    rssSubNode = rssNode.SelectSingleNode("description");
-                    string description = rssSubNode != null ? rssSubNode.InnerText : "";
-
-                    rssSubNode = rssNode.SelectSingleNode("pubDate");
-                    string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
+                    break;
+                }
 
 
-                    //Articles too old? stop searching
-                    if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 100)
+                //check for relevant pages from each site, get all from ca.gov sites
+                if ((title.Contains("California") || description.Contains("California") || link.Contains("ca.gov")) && (title.Contains("compliance")
+                || title.Contains("regulation") || title.Contains("regulations") || title.Contains("regulated")
+                || title.Contains("approve") || title.Contains("approved") || title.Contains("approves")
+                || description.Contains("regulation") || description.Contains("regulations") || description.Contains("regulated")
+                || description.Contains("approve") || link.Contains("ca.gov")))
+                {
+                    //if no matches with the database, we need to add it. 
+                    // aka: (new article published from websites below)
+                    if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
+                        Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
+                        _context.articles.Add(tempArticle);
+                    }
+                    else
+                    {
+                        //we can break out of this feed because we know we have searched this far since we have an article from this source
                         break;
                     }
-
-
-                    //check for relevant pages from each site, get all from ca.gov sites
-                    if ((title.Contains("California") || description.Contains("California") || link.Contains("ca.gov")) && (title.Contains("compliance")
-                    || title.Contains("regulation") || title.Contains("regulations") || title.Contains("regulated")
-                    || title.Contains("approve") || title.Contains("approved") || title.Contains("approves")
-                    || description.Contains("regulation") || description.Contains("regulations") || description.Contains("regulated")
-                    || description.Contains("approve") || link.Contains("ca.gov")))
-                    {
-                        //if no matches with the database, we need to add it. 
-                        // aka: (new article published from websites below)
-                        if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
-                        {
-                            Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
-                            _context.articles.Add(tempArticle);
-                        }
-                        else
-                        {
-                            //we can break out of this feed because we know we have searched this far since we have an article from this source
-                            break;
-                        }
-                    }
-
-                    _context.SaveChanges();
-
                 }
+
+                _context.SaveChanges();
+
+            }
 
         }
 
 
+
+
         void AddArticles()
         {
-
-            //all the sites to scrap from
             List<String> links = new List<String>();
-            links.Add("https://mjbizdaily.com/feed/");  //keep
-            links.Add("https://www.cannalawblog.com/feed/");  //keep
-            links.Add("https://cannabislaw.report/feed/"); //keep
-            links.Add("https://cannabis.ca.gov/feed/");  //keep
+            List<Task> TaskList = new List<Task>(); // list of tasks
 
+            links.Add("https://mjbizdaily.com/feed/");
+            links.Add("https://www.cannalawblog.com/feed/"); 
+            links.Add("https://cannabislaw.report/feed/"); 
+            links.Add("https://cannabis.ca.gov/feed/"); 
+            links.Add("https://420intel.com/taxonomy/term/401/feed");
 
-            //check for articles out of date, greater than 100 days
-            foreach (var article in _context.articles)
+            if (_context.articles != null)
             {
-                if ((DateTime.Now - article.time).TotalDays > 100)
+                //check for articles out of date, greater than 100 days
+                foreach (var article in _context.articles)
                 {
+                    if ((DateTime.Now - article.time).TotalDays > 100)
+                    {
 
-                    _context.articles.Remove(article);
+                        _context.articles.Remove(article);
 
+                    }
                 }
             }
 
             //find or update article DB
             foreach (var link in links)
             {
-                //ParseRssFile(link);
                 ParseRssFile(link);
             }
-
 
         }
 
@@ -124,8 +127,7 @@ namespace back_end.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            //need to add articles to DB
-            Console.WriteLine("helooo");
+            //need to update articles to DB 
             AddArticles();
 
             if (_context.articles.ToList().Count() == 0)
@@ -139,7 +141,7 @@ namespace back_end.Controllers
         }
 
 
-        // POST api may not need this, done when page is loaded
+        // POST used to add comment to a specific article
         [HttpPost]
         public IActionResult Post([FromBody] Comment c)
         {
@@ -170,9 +172,8 @@ namespace back_end.Controllers
         [HttpDelete("{article_id}/{comment_id}")]
         public ActionResult Delete(int article_id, int comment_id)
         {
-            
+
             Comment comment = _context.comments.FirstOrDefault(c => c.article_id == article_id && c.comment_id == comment_id);
-            Console.WriteLine(comment.comment);
             _context.comments.Remove(comment);
             _context.SaveChanges();
 

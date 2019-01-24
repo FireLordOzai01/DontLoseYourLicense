@@ -3,8 +3,7 @@
     background-color: #202020;
     position: relative;
     width: 100%;
-    max-width: 1140px;
-    height: 48px;
+    height: 80px;
     font-size: 12px;
     margin: 0 auto;
 }
@@ -38,12 +37,6 @@
     list-style-type:none
 }
 
-#main-nav ul li:hover {
-    /* main color */
-    background-color: #FFD439;
-    list-style-type:none
-}
-
 .nav-item {
     float: left;
     color: #F2F2F2;
@@ -56,6 +49,7 @@
 }
 .nav-item:hover{
     color: #000;
-    list-style-type:none
+    list-style-type:none;
+    background-color: #FFD439;
 
 }
