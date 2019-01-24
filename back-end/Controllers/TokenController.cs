@@ -54,12 +54,8 @@ namespace back_end
             System.DateTime.Now.Hour.ToString() + ":" +
             System.DateTime.Now.Minute.ToString() + ":" +
             System.DateTime.Now.Second.ToString();
-<<<<<<< HEAD
                 tempUser.active_date = Convert.ToDateTime(today);
                 _context.SaveChanges();
-=======
-            tempUser.active_date = Convert.ToDateTime(today);
->>>>>>> cce0da2c5e6c60b5e2d36b5916442f15e4319689
                 return BuildToken(tempUser);
             }
             else
@@ -69,7 +65,7 @@ namespace back_end
         }
         [HttpPost]
         [Route("Register")]
-        public string Register([FromBody] User user)
+        public User Register([FromBody] User user)
         {
             user.password = BCrypt.Net.BCrypt.HashPassword(user.password, SaltRevision.Revision2A);
 
@@ -85,7 +81,7 @@ namespace back_end
 
             _context.users.Add(user);
             _context.SaveChanges();
-            return "created";
+            return user;
         }
         private ValidUser BuildToken(User user)
         {
