@@ -3,6 +3,7 @@ import {
     DELETE_USER,
     EDIT_USER, 
     GET_USERS,
+    GET_USER_BY_ID,
     ADD_ARTICLE,
     DELETE_ARTICLE,
     EDIT_ARTICLE,
@@ -24,13 +25,18 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             users: action.payload
         }
+        case GET_USER_BY_ID: 
+        return {
+            ...state,
+            loggedUser: action.payload
+        }
         case GET_USERS:
         return {
             ...state,
             users: action.payload
         }
         case GET_USER_TOKEN:
-            localStorage.setItem('token', action.token.token);
+            localStorage.setItem('token', action.token);
             break;
         case DELETE_USER:
         return {

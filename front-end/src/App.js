@@ -17,17 +17,16 @@ class App extends Component {
         {/* Main Menu */}
         <Navbar />
         <div className="clear">
-        </div>
-        {/* Routes */}
-        <Switch>
-          <Route exact path='/' render={(renderProps) => <Home />} />
-          <Route  path='/signup' render={(renderProps) => <SignUp /> } />
-          <Route  path='/profile' render={(renderProps) => <Profile /> } />
-
-        </Switch>
-        {/* End of Content Wrapper */}
-        <LogInForm />
-        <div className="clear">
+          </div>
+          {/* Routes */}
+          <Switch>
+            <Route exact path='/' render={() => <Home />} />
+            <Route path='/signup' render={() => <SignUp /> } />
+            <Route path='/profile' render={() => <Profile /> } />
+            <Route path='/login' render={() => <LogInForm /> } />
+          </Switch>
+          {/* End of Content Wrapper */}
+          <div className="clear">
         </div>
       </div>
     );

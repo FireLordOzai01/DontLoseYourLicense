@@ -17,14 +17,13 @@ class Navbar extends Component {
                                 <Link className="nav-logo" to="/"><LogoLogo /></Link>
                             </li>
                             <li>
-                                <Link className="nav-item" to="/">Home </Link>
-
+                                <Link className="nav-item" to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link className="nav-item" to="/login">Login</Link>
                             </li>
                             <li>
                                 <Link className="nav-item" to="/signup">Signup </Link>
-                            </li>
-                            <li>
-                            <Link className="nav-item" to="/profile">Profile </Link>                                
                             </li>
                         </ul>
                     </div>
