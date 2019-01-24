@@ -56,10 +56,9 @@ class Featured extends Component {
                                                     </a>
                                                 </div>
                                                 <div className="resumo">
-                                                <span>
-                            
+                                                <div>
                                                 {article.summary}              
-                                                </span>
+                                                </div>
                                                     <a className="read-more" href={article.article_link}>Read More
                                                 </a>
                                                 </div>
@@ -105,22 +104,7 @@ class Featured extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="widget HTML" data-version="1" id="HTML300">
-                    </div>
-                    <div className="widget HTML" data-version="1" id="HTML301">
-                    </div></div>
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
             </div>
         )
     }

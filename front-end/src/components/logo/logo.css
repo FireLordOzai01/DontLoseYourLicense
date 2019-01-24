@@ -15,10 +15,9 @@ div {
 }
 
 #header-blog {
-    height: 90px;
+    height: 150px;
     position: relative;
     overflow: hidden;
-    padding: 35px 0;
     font: normal normal 14px Poppins;
     color: #4f4f4f;
     word-break: break-word;
@@ -62,11 +61,11 @@ div {
     text-decoration:none;
     color:#FFD439;
     padding: 0% 0%;
-    margin:1% 0%;
+    margin:0% 0%;
     border: 0;
     outline: 0;
     background: 0 0;
-    height: 50px;
-    width: 306px;
+    height: 70%;
+    width: 70%;
     display:block;
 }

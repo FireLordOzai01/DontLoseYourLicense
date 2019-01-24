@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 
 namespace back_end.Controllers
@@ -160,6 +161,13 @@ namespace back_end.Controllers
 
         }
 
+
+public static string StripHTML(string input)
+{
+   return Regex.Replace(input, "<.*?>", String.Empty);
+}
+
+
         // GET api
         [HttpGet]
         public IActionResult Get()
@@ -167,10 +175,12 @@ namespace back_end.Controllers
             //need to update articles to DB 
             AddArticles();
 
-            if (_context.articles.ToList().Count() == 0)
+            foreach(var article in _context.articles)
             {
-                return NoContent();
+                article.summary = StripHTML(article.summary);
             }
+            _context.SaveChanges();
+
 
             return Ok(_context.articles
             .Include(a => a.comments)
