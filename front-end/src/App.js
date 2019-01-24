@@ -8,6 +8,9 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/home.js';
 import SignUp from './components/signUp/signUp';
+import Profile from './components/userProfile/profile';
+import LogInForm from './components/login/login';
+
 
 class App extends Component {
   render() {
@@ -30,12 +33,15 @@ class App extends Component {
           <Switch>
             <Route exact path='/' render={(renderProps) => <Home />} />
             <Route path='/signup' render={(renderProps) => <SignUp />} />
+            <Route path='/profile' render={(renderProps) => <Profile />} />
+            <Route path='/loginform' render={(renderProps) => <LogInForm/> } />
+            {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
           {/* End of Content Wrapper */}
           <div className="clear">
           </div>
-        </div>
       </div>
+    </div>
     );
   }
 }

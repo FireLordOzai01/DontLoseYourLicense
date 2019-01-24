@@ -3,9 +3,12 @@ using System.Xml;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+ using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 namespace back_end.Controllers
 {
@@ -13,7 +16,7 @@ namespace back_end.Controllers
     [ApiController]
     public class ArticleController : ControllerBase
     {
-        private DlylContext _context;
+        private readonly DlylContext _context;
         public ArticleController(DlylContext context)
         {
             _context = context;
@@ -25,17 +28,16 @@ namespace back_end.Controllers
             XmlDocument rssXmlDoc = new XmlDocument();
 
             // Load the RSS file from the RSS URL
-            rssXmlDoc.Load(xml);
+                rssXmlDoc.Load(xml);
+          
 
             // Parse the Items in the RSS file
             XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
 
-            StringBuilder rssContent = new StringBuilder();
-
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
             {
-                
+
                 //get all article data
                 XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? rssSubNode.InnerText : "";
@@ -59,9 +61,9 @@ namespace back_end.Controllers
 
                 //check for relevant pages from each site, get all from ca.gov sites
                 if ((title.Contains("California") || description.Contains("California") || link.Contains("ca.gov")) && (title.Contains("compliance")
-                || title.Contains("regulation") || title.Contains("regulations")|| title.Contains("regulated")
-                || title.Contains("approve") || title.Contains("approved")|| title.Contains("approves")
-                || description.Contains("regulation") || description.Contains("regulations")|| description.Contains("regulated")
+                || title.Contains("regulation") || title.Contains("regulations") || title.Contains("regulated")
+                || title.Contains("approve") || title.Contains("approved") || title.Contains("approves")
+                || description.Contains("regulation") || description.Contains("regulations") || description.Contains("regulated")
                 || description.Contains("approve") || link.Contains("ca.gov")))
                 {
                     //if no matches with the database, we need to add it. 
@@ -84,25 +86,31 @@ namespace back_end.Controllers
 
         }
 
+
+
+
         void AddArticles()
         {
-
-            //all the sites to scrap from
             List<String> links = new List<String>();
-             links.Add("https://mjbizdaily.com/feed/");  //keep
-             links.Add("https://www.cannalawblog.com/feed/");  //keep
-             links.Add("https://cannabislaw.report/feed/"); //keep
-             links.Add("https://cannabis.ca.gov/feed/");  //keep
+            List<Task> TaskList = new List<Task>(); // list of tasks
 
+            links.Add("https://mjbizdaily.com/feed/");
+            links.Add("https://www.cannalawblog.com/feed/"); 
+            links.Add("https://cannabislaw.report/feed/"); 
+            links.Add("https://cannabis.ca.gov/feed/"); 
+            links.Add("https://420intel.com/taxonomy/term/401/feed");
 
-            //check for articles out of date, greater than 100 days
-            foreach (var article in _context.articles)
+            if (_context.articles != null)
             {
-                if ((DateTime.Now - article.time).TotalDays > 100)
+                //check for articles out of date, greater than 100 days
+                foreach (var article in _context.articles)
                 {
+                    if ((DateTime.Now - article.time).TotalDays > 100)
+                    {
 
-                    _context.articles.Remove(article);
+                        _context.articles.Remove(article);
 
+                    }
                 }
             }
 
@@ -114,12 +122,12 @@ namespace back_end.Controllers
 
         }
 
+
         // GET api
         [HttpGet]
         public IActionResult Get()
         {
-            //need to add articles to DB
-            Console.WriteLine("helooo");
+            //need to update articles to DB 
             AddArticles();
 
             if (_context.articles.ToList().Count() == 0)
@@ -128,23 +136,12 @@ namespace back_end.Controllers
             }
 
             return Ok(_context.articles
-            .Include(a=>a.comments)
-            .ThenInclude(a=>a.user));
+            .Include(a => a.comments)
+            .ThenInclude(a => a.user));
         }
 
-        // // GET BY ID api
-        // [HttpGet("{id}")]
-        // public ActionResult Get(int id)
-        // {
-        //     Article article = _context.articles.FirstOrDefault(a => a.article_id == id);
-        //     if (article == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     return Ok(article);
-        // }
 
-        // POST api may not need this, done when page is loaded
+        // POST used to add comment to a specific article
         [HttpPost]
         public IActionResult Post([FromBody] Comment c)
         {
@@ -153,62 +150,36 @@ namespace back_end.Controllers
                 return BadRequest();
             }
 
-                string today =   
-                System.DateTime.Now.Year.ToString() + "-" +
-                System.DateTime.Now.Month.ToString() + "-" +
-                System.DateTime.Now.Day.ToString()  + " " +
-                System.DateTime.Now.Hour.ToString() +  ":" +
-                System.DateTime.Now.Minute.ToString() + ":" +
-                System.DateTime.Now.Second.ToString();
+            string today =
+            System.DateTime.Now.Year.ToString() + "-" +
+            System.DateTime.Now.Month.ToString() + "-" +
+            System.DateTime.Now.Day.ToString() + " " +
+            System.DateTime.Now.Hour.ToString() + ":" +
+            System.DateTime.Now.Minute.ToString() + ":" +
+            System.DateTime.Now.Second.ToString();
 
-                c.time = Convert.ToDateTime(today);
-                _context.comments.Add(c);
-                _context.SaveChanges();
-                _context.articles.Find(c.article_id).comments.Add(c);
-                _context.SaveChanges();
-           
+            c.time = Convert.ToDateTime(today);
+            _context.comments.Add(c);
+            _context.SaveChanges();
 
-        
-               
-             return Ok(_context.articles
-            .Include(a=>a.comments)
-            .ThenInclude(a=>a.user));
+            return Ok(_context.articles
+           .Include(a => a.comments)
+           .ThenInclude(a => a.user));
         }
-
-        // // PUT api
-        // [HttpPut("{id}")]
-        // public ActionResult Put(int id, [FromBody] Article a)
-        // {
-        //     Article article = _context.articles.FirstOrDefault(_a => _a.article_id == id);
-        //     if (article == null)
-        //     {
-        //         return NotFound();
-        //     }
-
-        //     article.article_link = a.article_link;
-        //     article.title = a.title;
-        //     article.summary = a.summary;
-        //     _context.SaveChanges();
-
-        //     return Ok(_context.articles.ToList());
-        // }
-
 
 
         // DELETE api
         [HttpDelete("{article_id}/{comment_id}")]
-        public ActionResult Delete(int article_id,int comment_id)
+        public ActionResult Delete(int article_id, int comment_id)
         {
-            
-            Comment tempComment = new Comment();
-            Article article = _context.articles.FirstOrDefault(a => a.article_id == article_id);
-            Console.WriteLine(article.title);
-            Comment comment = article.comments.FirstOrDefault(c=>c.comment_id == comment_id);
-            _context.comments.Remove(tempComment);
-            article.comments.Remove(tempComment);
+
+            Comment comment = _context.comments.FirstOrDefault(c => c.article_id == article_id && c.comment_id == comment_id);
+            _context.comments.Remove(comment);
             _context.SaveChanges();
 
-            return Ok(_context.articles.ToList());
+            return Ok(_context.articles
+           .Include(a => a.comments)
+           .ThenInclude(a => a.user));
         }
     }
 }

@@ -7,10 +7,12 @@ import {
     DELETE_ARTICLE,
     EDIT_ARTICLE,
     GET_ARTICLES,
+    GET_USER_TOKEN,
 
 } from '../constants';
 
 const initialState = {
+    loggedUser: {},
     users: [],
     articles: []
 }
@@ -27,6 +29,9 @@ const rootReducer = (state = initialState, action) => {
             ...state,
             users: action.payload
         }
+        case GET_USER_TOKEN:
+            localStorage.setItem('token', action.token);
+            break;
         case DELETE_USER:
         return {
             ...state,

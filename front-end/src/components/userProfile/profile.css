@@ -1,0 +1,34 @@
+
+.profile-container{
+    display: flex;
+    margin-top: 50px;
+    padding: 5%;
+    border: 1px solid black;
+}
+.row2{
+    margin-left: 10%;
+    width: 100%;
+}
+.row1 img{
+    margin-bottom: 30px;
+    height:150px;
+    width:auto;
+
+
+
+
+}
+h5 {
+    color: #FFD439;
+    
+}
+hr{
+    background-color: #272727;
+}
+.profile-pic {
+    padding:2px;
+    border: 1px solid #090909;
+    background: linear-gradient(#090909, 10%, #FFD439);
+
+ }
+

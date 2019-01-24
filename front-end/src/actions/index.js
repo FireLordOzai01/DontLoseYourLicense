@@ -5,6 +5,8 @@ import {
     DELETE_USER,
     EDIT_USER,
     GET_USERS,
+    GET_USER_BY_ID,
+    GET_USER_TOKEN,
     ADD_ARTICLE,
     DELETE_ARTICLE,
     EDIT_ARTICLE,
@@ -12,7 +14,9 @@ import {
 } from './../constants';
 
 export const addUser = user => async dispatch => {
-    let response = await axios.post('http://localhost:5000/api/users', user);
+    console.log(user);
+    let response = await axios.post('http://localhost:5000/api/token/register', user);
+    console.log(response);
     dispatch({ type: ADD_USER, payload: response.data })
 }
 
@@ -23,7 +27,21 @@ export const deleteUser = id => async dispatch => {
 
 export const editUser = (id, user) => async dispatch => {
     let response = await axios.put(`http://localhost:5000/api/users/${id}`, user);
-    dispatch({ type: EDIT_USER, payload: response.data })
+    dispatch({ type: EDIT_USER, payload: response.data });
+}
+
+export const getUserToken = (user) => async dispatch => {
+    let response = await axios.post('http://localhost:5000/api/token/loginUser', user);
+    dispatch({ type: GET_USER_TOKEN, token: response.data });
+    // getUserById(response.data);
+}
+
+export const getUserById = (token, id) => async dispatch => {
+    var config = {
+        header: {'Authorization': "bearer " + token}
+    }
+    let response = await axios.get(`http://localhost:5000/api/users/${id}`, config);
+    dispatch({ type: GET_USER_BY_ID, payload: response.data })
 }
 
 export const getUsers = () => async dispatch => {
