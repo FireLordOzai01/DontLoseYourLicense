@@ -33,7 +33,7 @@ class SignUp extends Component {
                         <div className="container">
                             <div className="row">
                                 <div className="social-media col-md-4 flex-container">
-                                <h5>Sign up with a social network</h5>
+                                <h4>Sign up with a social network</h4>
                                     <div className="combo ">
                                         <img
                                             src={"https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Facebook_logo_36x36.svg/2000px-Facebook_logo_36x36.svg.png"} alt="" 
@@ -58,27 +58,6 @@ class SignUp extends Component {
                                             onClick={this.twitter}
                                             /> 
                                     </div>                                      
-                                    <h5>Use a social network to sign up</h5>
-                                    <button
-                                        id="facebook"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Facebook</button>
-                                    <button
-                                        id="google"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Google+</button>
-                                    <button
-                                        id="linkedin"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Linkedin</button>
-                                    <button
-                                        id="twitter"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Twitter</button>
                                 </div>
                                 <form>
                                     <h3>&nbsp; Sign up to comment, write and receive news by email</h3>
