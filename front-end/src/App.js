@@ -37,7 +37,7 @@ class App extends Component {
             <Route exact path='/' render={(renderProps) => <Home />} />
             <Route path='/signup' render={(renderProps) => <SignUp />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
-            <Route path='/loginform' render={(renderProps) => <LogInForm/> } />
+            <Route path='/login' render={(renderProps) => <LogInForm/> } />
             <Route path='/fourm' render={(renderProps) => <Fourm /> } />
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>

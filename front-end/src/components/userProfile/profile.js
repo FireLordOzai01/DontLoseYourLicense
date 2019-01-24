@@ -87,7 +87,7 @@ class Profile extends Component {
 }
 
 const mapStateToProps = state => ({
-
+    
 })
 
 export default connect(mapStateToProps)(Profile);

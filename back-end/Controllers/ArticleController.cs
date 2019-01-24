@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 
 namespace back_end.Controllers
@@ -90,7 +91,76 @@ namespace back_end.Controllers
         }
 
 
+// async Task<string> GetXml(string url)
+// {
+//      string stringContent = null;
+//             using (HttpClient client = new HttpClient())
+//             {
+//                 try
+//                 {
+//                     var byteContent = await client.GetByteArrayAsync(url);
+//                     stringContent = Encoding.UTF8.GetString(byteContent, 0, byteContent.Length);
+//                 }
+//                 catch
+//                 {
+//                     //error handling
+//                 }
+//             }
 
+//                 return stringContent;
+
+
+// }
+
+
+
+// void AddArticles2()
+//         {
+//             List<String> links = new List<String>();
+//             List<Task> TaskList = new List<Task>(); // list of tasks
+
+//             links.Add("https://mjbizdaily.com/feed/");
+//             links.Add("https://www.cannalawblog.com/feed/"); 
+//             links.Add("https://cannabislaw.report/feed/"); 
+//             links.Add("https://cannabis.ca.gov/feed/"); 
+//             links.Add("https://420intel.com/taxonomy/term/401/feed");
+
+
+//             //find or update article DB
+//             foreach (var link in links)
+//             {
+//                  TaskList.Add(GetXml(link));
+//             }
+                
+                
+//                Task.WaitAll(TaskList.ToArray());
+               
+
+//              foreach(var xml in TaskList.ToList())
+//              {
+//                  ParseRssFile(xml.ToString());
+//              }
+
+
+//             if (_context.articles != null)
+//             {
+//                  DlylContext tempContext = _context;
+
+//                 //check for articles out of date, greater than 100 days and remove
+//                 foreach (var article in tempContext.articles)
+//                 {
+//                     if ((DateTime.Now - article.time).TotalDays > 100)
+//                     {
+
+//                         _context.articles.Remove(article);
+//                         _context.SaveChanges();
+
+
+//                     }
+//                 }
+//             }
+
+//         }
 
         void AddArticles()
         {
@@ -103,27 +173,30 @@ namespace back_end.Controllers
             links.Add("https://cannabis.ca.gov/feed/"); 
             links.Add("https://420intel.com/taxonomy/term/401/feed");
 
+
+            //find or update article DB
+            foreach (var link in links)
+            {
+                ParseRssFile(link);
+            }
+
+
             if (_context.articles != null)
             {
                  DlylContext tempContext = _context;
 
-                //check for articles out of date, greater than 100 days
+                //check for articles out of date, greater than 100 days and remove
                 foreach (var article in tempContext.articles)
                 {
                     if ((DateTime.Now - article.time).TotalDays > 100)
                     {
 
                         _context.articles.Remove(article);
+                        _context.SaveChanges();
 
 
                     }
                 }
-            }
-
-            //find or update article DB
-            foreach (var link in links)
-            {
-                ParseRssFile(link);
             }
 
         }
