@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Favicon from 'react-favicon';
 import App from './App';
 
 
@@ -17,10 +18,13 @@ const store = createStore(
 );
 
 ReactDOM.render(
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>, document.getElementById('root'));
+    <div>
+        <Favicon url="http://www.riskmanagementmonitor.com/wp-content/uploads/2015/03/no-marijuana-1024x1024.jpg" />
+        <Provider store={store}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </Provider>
+    </div>, document.getElementById('root'));
 
 

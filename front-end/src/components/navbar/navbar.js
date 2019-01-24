@@ -18,11 +18,13 @@ class Navbar extends Component {
                             </li>
                             <li>
                                 <Link className="nav-item" to="/">Home </Link>
-
                             </li>
                             <li>
-                                <Link className="nav-item" to="/signup">Signup </Link>
+                                <Link className="nav-item" to="/signup">SignUp </Link>
                             </li>
+                            {/* <li>
+                                <Link className="nav-item" to="/signup">SignUp </Link>
+                            </li> */}
                             <li>
                             <Link className="nav-item" to="/profile">Profile </Link>                                
                             </li>

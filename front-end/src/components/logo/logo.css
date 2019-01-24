@@ -1,9 +1,36 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+div {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: baseline;
+    background: 0 0;
+}
+
+#header-blog {
+    height: 90px;
+    position: relative;
+    overflow: hidden;
+    padding: 35px 0;
+    font: normal normal 14px Poppins;
+    color: #4f4f4f;
+    word-break: break-word;
+
+
+}
+
 .header-content {
     margin: 0 auto;
     overflow: hidden;
     height: 100px;
 }
-
 
 .header-logo {
     float: left;
@@ -29,12 +56,17 @@
     display:block;
 }
 
-#header-inner h1{
-    display:none;
-}
 
-#header-inner img{
-    height: 79.8px;
-    width: 200px;
+.header-inner img{
+    cursor:pointer;
+    text-decoration:none;
+    color:#FFD439;
+    padding: 0% 0%;
+    margin:1% 0%;
+    border: 0;
+    outline: 0;
+    background: 0 0;
+    height: 50px;
+    width: 306px;
     display:block;
 }
