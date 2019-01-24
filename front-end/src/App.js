@@ -8,6 +8,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/home/home';
 import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
+import Fourm from './components/fourm/fourm.js';
 
 class App extends Component {
   render() {
@@ -22,6 +23,8 @@ class App extends Component {
           <Route exact path='/' render={(renderProps) => <Home />} />
           <Route  path='/signup' render={(renderProps) => <SignUp /> } />
           <Route  path='/profile' render={(renderProps) => <Profile /> } />
+          <Route  path='/fourm' render={(renderProps) => <Fourm /> } />
+
 
         </Switch>
         {/* End of Content Wrapper */}

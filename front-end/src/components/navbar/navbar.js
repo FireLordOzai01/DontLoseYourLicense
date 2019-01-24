@@ -26,6 +26,9 @@ class Navbar extends Component {
                             <li>
                             <Link className="nav-item" to="/profile">Profile </Link>                                
                             </li>
+                            <li>
+                                <Link className="nav-item" to="/fourm">Fourm </Link>
+                            </li>
                         </ul>
                     </div>
                 </nav>
