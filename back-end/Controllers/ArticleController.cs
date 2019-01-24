@@ -30,12 +30,9 @@ namespace back_end.Controllers
             // Load the RSS file from the RSS URL
                 rssXmlDoc.Load(xml);
           
-            
 
             // Parse the Items in the RSS file
             XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
-
-            StringBuilder rssContent = new StringBuilder();
 
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
@@ -97,10 +94,11 @@ namespace back_end.Controllers
             List<String> links = new List<String>();
             List<Task> TaskList = new List<Task>(); // list of tasks
 
-            links.Add("https://mjbizdaily.com/feed/");  //keep
-            links.Add("https://www.cannalawblog.com/feed/");  //keep
-            links.Add("https://cannabislaw.report/feed/"); //keep
-            links.Add("https://cannabis.ca.gov/feed/");  //keep
+            links.Add("https://mjbizdaily.com/feed/");
+            links.Add("https://www.cannalawblog.com/feed/"); 
+            links.Add("https://cannabislaw.report/feed/"); 
+            links.Add("https://cannabis.ca.gov/feed/"); 
+            links.Add("https://420intel.com/taxonomy/term/401/feed");
 
             if (_context.articles != null)
             {
@@ -119,10 +117,7 @@ namespace back_end.Controllers
             //find or update article DB
             foreach (var link in links)
             {
-
                 ParseRssFile(link);
-                
-
             }
 
         }
@@ -179,7 +174,6 @@ namespace back_end.Controllers
         {
 
             Comment comment = _context.comments.FirstOrDefault(c => c.article_id == article_id && c.comment_id == comment_id);
-            Console.WriteLine(comment.comment);
             _context.comments.Remove(comment);
             _context.SaveChanges();
 
