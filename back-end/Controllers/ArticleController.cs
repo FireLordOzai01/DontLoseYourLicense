@@ -3,7 +3,7 @@ using System.Xml;
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
- using System.Xml.Linq;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading;
@@ -29,8 +29,8 @@ namespace back_end.Controllers
             XmlDocument rssXmlDoc = new XmlDocument();
 
             // Load the RSS file from the RSS URL
-                rssXmlDoc.Load(xml);
-          
+            rssXmlDoc.LoadXml(xml);
+
 
             // Parse the Items in the RSS file
             XmlNodeList rssNodes = rssXmlDoc.SelectNodes("rss/channel/item");
@@ -69,16 +69,14 @@ namespace back_end.Controllers
                 {
                     //if no matches with the database, we need to add it. 
                     // aka: (new article published from websites below)
-                    //Console.WriteLine(_context.articles.FirstOrDefault(a => a.title == title).article_id);
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
-                        
+
                         Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
                         _context.articles.Add(tempArticle);
                     }
                     else
                     {
-                        Console.WriteLine("made it here");
                         //we can break out of this feed because we know we have searched this far since we have an article from this source
                         break;
                     }
@@ -91,76 +89,27 @@ namespace back_end.Controllers
         }
 
 
-// async Task<string> GetXml(string url)
-// {
-//      string stringContent = null;
-//             using (HttpClient client = new HttpClient())
-//             {
-//                 try
-//                 {
-//                     var byteContent = await client.GetByteArrayAsync(url);
-//                     stringContent = Encoding.UTF8.GetString(byteContent, 0, byteContent.Length);
-//                 }
-//                 catch
-//                 {
-//                     //error handling
-//                 }
-//             }
-
-//                 return stringContent;
+        async Task<string> Download(string url) // async function
+        {
+            string stringContent = null;
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    var byteContent = await client.GetByteArrayAsync(url);
+                    stringContent = Encoding.UTF8.GetString(byteContent, 0, byteContent.Length);
+                }
+                catch
+                {
+                }
+            }
 
 
-// }
+            return stringContent;
+
+        }
 
 
-
-// void AddArticles2()
-//         {
-//             List<String> links = new List<String>();
-//             List<Task> TaskList = new List<Task>(); // list of tasks
-
-//             links.Add("https://mjbizdaily.com/feed/");
-//             links.Add("https://www.cannalawblog.com/feed/"); 
-//             links.Add("https://cannabislaw.report/feed/"); 
-//             links.Add("https://cannabis.ca.gov/feed/"); 
-//             links.Add("https://420intel.com/taxonomy/term/401/feed");
-
-
-//             //find or update article DB
-//             foreach (var link in links)
-//             {
-//                  TaskList.Add(GetXml(link));
-//             }
-                
-                
-//                Task.WaitAll(TaskList.ToArray());
-               
-
-//              foreach(var xml in TaskList.ToList())
-//              {
-//                  ParseRssFile(xml.ToString());
-//              }
-
-
-//             if (_context.articles != null)
-//             {
-//                  DlylContext tempContext = _context;
-
-//                 //check for articles out of date, greater than 100 days and remove
-//                 foreach (var article in tempContext.articles)
-//                 {
-//                     if ((DateTime.Now - article.time).TotalDays > 100)
-//                     {
-
-//                         _context.articles.Remove(article);
-//                         _context.SaveChanges();
-
-
-//                     }
-//                 }
-//             }
-
-//         }
 
         void AddArticles()
         {
@@ -168,22 +117,32 @@ namespace back_end.Controllers
             List<Task> TaskList = new List<Task>(); // list of tasks
 
             links.Add("https://mjbizdaily.com/feed/");
-            links.Add("https://www.cannalawblog.com/feed/"); 
-            links.Add("https://cannabislaw.report/feed/"); 
-            links.Add("https://cannabis.ca.gov/feed/"); 
+            links.Add("https://www.cannalawblog.com/feed/");
+            links.Add("https://cannabislaw.report/feed/");
+            links.Add("https://cannabis.ca.gov/feed/");
             links.Add("https://420intel.com/taxonomy/term/401/feed");
 
 
-            //find or update article DB
+            //multiple threads for each url
             foreach (var link in links)
             {
-                ParseRssFile(link);
+                TaskList.Add(Download(link));
+            }
+
+
+            Task.WaitAll(TaskList.ToArray());
+
+            //have xml, can now update DB
+            foreach (Task<string> task in TaskList)
+            {
+                if (task.Result != null)
+                    ParseRssFile(task.Result);
             }
 
 
             if (_context.articles != null)
             {
-                 DlylContext tempContext = _context;
+                DlylContext tempContext = _context;
 
                 //check for articles out of date, greater than 100 days and remove
                 foreach (var article in tempContext.articles)
@@ -200,7 +159,6 @@ namespace back_end.Controllers
             }
 
         }
-
 
         // GET api
         [HttpGet]

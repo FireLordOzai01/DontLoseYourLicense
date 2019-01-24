@@ -54,7 +54,7 @@ namespace back_end
             System.DateTime.Now.Hour.ToString() + ":" +
             System.DateTime.Now.Minute.ToString() + ":" +
             System.DateTime.Now.Second.ToString();
-                tempUser.active_date = Convert.ToDateTime(today);
+            tempUser.active_date = Convert.ToDateTime(today);
                 return BuildToken(tempUser);
             }
             else
