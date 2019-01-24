@@ -7,6 +7,8 @@ import {
     GET_USERS,
     GET_USER_BY_ID,
     GET_USER_TOKEN,
+    SAVE_AVATAR,
+    LOGOUT_USER,
     ADD_ARTICLE,
     DELETE_ARTICLE,
     EDIT_ARTICLE,
@@ -14,9 +16,7 @@ import {
 } from './../constants';
 
 export const addUser = user => async dispatch => {
-    console.log(user);
     let response = await axios.post('http://localhost:5000/api/token/register', user);
-    console.log(response);
     dispatch({ type: ADD_USER, payload: response.data })
 }
 
@@ -41,9 +41,18 @@ export const getUsers = () => async dispatch => {
     dispatch({ type: GET_USERS, payload: response.data })
 }
 
+export const saveAvatar = (avatar) => async dispatch => {
+    dispatch({ type: SAVE_AVATAR, avatar: avatar.avatar })
+}
+
 export const addArticle = article => async dispatch => {
     let response = await axios.post('http://localhost:5000/api/articles', article);
     dispatch({ type: ADD_ARTICLE, payload: response.data })
+}
+
+export const logoutUser = (user, id) => async dispatch => {
+    axios.put(`http://localhost:5000/api/users/${id}`, user);
+    dispatch({ type: LOGOUT_USER })
 }
 
 export const deleteArticle = id => async dispatch => {
