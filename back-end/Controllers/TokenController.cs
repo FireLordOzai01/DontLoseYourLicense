@@ -17,7 +17,7 @@ namespace back_end
 
 public class ValidUser
 {
-    public int? user_id{get;set;} = null;
+    public User user{get;set;} = null;
     public  string token{get;set;}
 
      public ValidUser(){}
@@ -26,9 +26,9 @@ public class ValidUser
         this.token = str;
     }
 
-    public ValidUser( int user_id,string str)
+    public ValidUser( User user,string str)
     {
-        this.user_id = user_id;
+        this.user = user;
         this.token = str;
     }
 
@@ -57,11 +57,10 @@ public class ValidUser
 
             if(tempUser != null && validPassword)
             {
-                //Console.WriteLine("made it here");
-                return BuildToken(tempUser.user_id);
+                return BuildToken(tempUser);
             }
             else
-            {   Console.WriteLine("made it here1");
+            {  
                 return (new ValidUser("not a valid login"));
             }
         }
@@ -78,7 +77,7 @@ public class ValidUser
            
         }
 
-        private ValidUser BuildToken(int id)
+        private ValidUser BuildToken(User user)
         {
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -91,7 +90,7 @@ public class ValidUser
               
               
 
-            return new ValidUser(id,new JwtSecurityTokenHandler().WriteToken(token));
+            return new ValidUser(user,new JwtSecurityTokenHandler().WriteToken(token));
         }
 
     }
