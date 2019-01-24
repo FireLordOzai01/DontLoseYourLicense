@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, action) => {
             users: action.payload
         }
         case GET_USER_TOKEN:
-            localStorage.setItem('token', action.token);
+            localStorage.setItem('token', action.token.token);
             break;
         case DELETE_USER:
         return {

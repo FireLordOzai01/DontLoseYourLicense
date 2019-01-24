@@ -25,14 +25,11 @@ public class ValidUser
     {
         this.token = str;
     }
-
     public ValidUser( int user_id,string str)
     {
         this.user_id = user_id;
         this.token = str;
     }
-
-
 }
 
 [Route("api/token")]
@@ -57,7 +54,6 @@ public class ValidUser
 
             if(tempUser != null && validPassword)
             {
-                //Console.WriteLine("made it here");
                 return BuildToken(tempUser.user_id);
             }
             else
