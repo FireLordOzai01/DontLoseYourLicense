@@ -20,14 +20,10 @@ class Navbar extends Component {
                                 <Link className="nav-item" to="/login">Login</Link>
                             </li>
                             <li>
-<<<<<<< Updated upstream
                                 <Link className="nav-item" to="/signup">Signup </Link>
                             </li>
                             <li>
-                                <Link className="nav-item" to="/fourm">Fourm </Link>
-=======
-                            <Link className="nav-item" to="/login">Login </Link>                                
->>>>>>> Stashed changes
+                                <Link className="nav-item" to="/fourm">Forum </Link>
                             </li>
                         </ul>
                     </div>

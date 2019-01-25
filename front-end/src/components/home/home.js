@@ -12,11 +12,7 @@ class Home extends Component {
                     <div className="clear">
                     </div>
                     <Featured />
-<<<<<<< Updated upstream
-                    <Sidebar /> 
-=======
                     <Sidebar />
->>>>>>> Stashed changes
                     <div className="clear">
                     </div>                  
             </div>
