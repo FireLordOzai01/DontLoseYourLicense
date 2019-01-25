@@ -36,6 +36,7 @@ class Featured extends Component {
 
                                         this.props.articles.map((article, index) => {
                                             return (
+<<<<<<< HEAD
                                                 <div className="post">
 
                                                     <div className="post-header">
@@ -96,6 +97,35 @@ class Featured extends Component {
                                                     <div className="post-footer">
                                                     </div>
 
+=======
+                                    <div className="post">
+                                        
+                                        <div className="post-header">
+                                        </div>
+                                        <article>
+                                            <font className="retitle">
+                                                <h2 className="post-title entry-title">
+                                                    <a href={article.article_link}>
+                                                        {article.title}
+                                                </a>
+                                                </h2>
+                                            </font>
+                                            <div className="date-header">
+                                                <div id="meta-post">
+                                                    <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
+                                                        <abbr className="published" itemprop="datePublished dateModified" title="2016-08-01T04:22:00-07:00">{article.time}
+                                                </abbr>
+                                                    </a>
+                                                </div>
+                                                <div className="resumo">
+                                                <div>
+                                                {article.summary}              
+                                                </div>
+                                                    <a className="read-more" href={article.article_link}>Read More
+                                                </a>
+                                                </div>
+                                                <div className="clear">
+>>>>>>> c3426f3ccbdcbb6b2a8eca46ef3d8024a6b0c78d
                                                 </div>
                                             )
                                         })
@@ -128,22 +158,7 @@ class Featured extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="widget HTML" data-version="1" id="HTML300">
-                    </div>
-                    <div className="widget HTML" data-version="1" id="HTML301">
-                    </div></div>
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
             </div>
         )
     }

@@ -13,6 +13,8 @@ import LogInForm from './components/login/login';
 import Fourm from './components/fourm/fourm';
 
 
+// import Admin from './components/admin/admin';
+// import MoreBooks from './components/books/moreBooks';
 
 class App extends Component {
 
@@ -20,11 +22,7 @@ class App extends Component {
     return (
       <div>
         <div className ="row home_bar">
-          <div className ="logo_home col-md-4">
-            {/* Logo */}
-            <LogoLogo />
-          </div>
-          <div className ="col-md-8">
+          <div className ="col-md-12">
             {/* Navbar */}
             <Navbar />
           </div>
