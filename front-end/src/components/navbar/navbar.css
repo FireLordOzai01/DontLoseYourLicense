@@ -24,7 +24,9 @@ nav{
     margin: 0 auto;
     font: normal normal 14px Poppins;
     color: #4f4f4f;
-    word-break: break-word;
+    /* word-break: break-word; */
+    padding: 1%
+
 }
 
 .header-menu {
@@ -69,7 +71,7 @@ ul{
     cursor: pointer;
     float: left;
     color: #F2F2F2;
-    padding: 0 20px;
+    padding: 0px 20px;
     line-height: 51px;
     text-transform: uppercase;
     font-weight: 700;
@@ -77,6 +79,6 @@ ul{
     list-style-type:none;
 }
 .nav-item:hover{
-    color: #000;
+    color: #272727 !important;
     list-style-type:none
 }
