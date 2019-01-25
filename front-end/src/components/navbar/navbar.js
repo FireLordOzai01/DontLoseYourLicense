@@ -33,10 +33,8 @@ class Navbar extends Component {
                                     to="/"
                                     onClick={() => this.props.logout(this.props.user, this.props.user.user_id)}>Logout
                                 </Link>
-                                <Link className="nav-item" to="/fourm">Fourm </Link>
-                            <Link className="nav-item" to="/login">Login </Link>                                
                             </li>
-                            : 
+                            :
                             <li>
                                 <Link className="nav-item" to="/login">Login</Link>
                             </li>

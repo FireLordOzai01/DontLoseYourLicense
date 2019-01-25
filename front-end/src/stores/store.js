@@ -26,7 +26,8 @@ const rootReducer = (state = initialState, action) => {
         case ADD_USER:
         return {
             ...state,
-            users: action.payload
+            loggedUser: action.payload,
+            isLogged: true
         }
         case GET_USER_BY_ID: 
         return {
