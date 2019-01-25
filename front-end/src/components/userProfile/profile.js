@@ -25,7 +25,7 @@ class Profile extends Component {
         return (
             <div className="profile-container container">
                 <div className="row1">
-                    {this.props.users.avatar != ""
+                    {this.props.users.avatar !== ""
                     ? <img classname="profile-pic" src={this.props.users.avatar}alt="profile" />
                     : <UploadPhoto /> }
                     <hr />
