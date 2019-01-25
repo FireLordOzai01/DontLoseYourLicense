@@ -17,7 +17,7 @@
     border: 1px solid black;
 }
 .signUpButton:hover{
-    background-color: #272727;
+    background-color: #FFD439;
     color: #272727;
     border: 1px solid #FFD439;
 }
@@ -72,7 +72,7 @@
     padding: 20px 20px;
     margin: 0px 0px 0px 0px;
     background-color: white;
-    box-shadow: 10px 5px 5px ;
+    box-shadow: 10px 9px 5px ;
 }
 img{
     height: 15%;
@@ -82,4 +82,7 @@ img{
     margin: 10% 0% 16% 0%;
     padding: 10% 0% 0% 0%;
 
+}
+.the-div-before-container{
+    border: 1px solid black;
 }

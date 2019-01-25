@@ -16,89 +16,24 @@
     font-family: "Poppins"
 }
 
-.signUpButton {
-    margin: 0px 0px 0px 30px;
-    background-color: #272727;
-    border: 1px solid black;
-}
-
-.signUpButton:hover {
-    background-color: #FFD439;
-    color: #272727;
-    border: 1px solid #FFD439;
-}
-
-/* .inputfile{
-    font-size: 1.25em;
-    font-weight: 700;
-    color: white;
-    background-color: black;
-    display: inline-block;
-    
-} */
-
-/* .inputfile:focus,
+.inputfile:focus,
 .inputfile:hover {
     background-color: #FFD439;
-} */
+}
 
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
 	position: absolute;
-	z-index: -1;
+    z-index: -1;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
 }
-
-
-#main-nav {
-    /* main dark color */
-    background-color: #FFD439;
-    position: relative;
-    width: 100%;
-    max-width: 1140px;
-    height: 48px;
-    font-size: 12px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.header-menu {
-    background-color: #FFD439;
-    height: 48px;
-    margin: 0 auto;
-    position: relative;
-    padding: 0;
-}
-
-#main-nav ul li {
-    position: relative;
-    float: left;
-    height: 48px;
-    box-sizing: border-box;
-    padding: 0;
-    /* main borders and buttons color */
-    border-right: 1px solid #272727;
-    text-decoration: none;
-
-
-}
-
-#main-nav ul {
-    list-style-type: none
-}
-
-
-#main-nav ul:hover {
-    list-style-type: none
-}
-
-#main-nav ul li:hover {
-    /* main color */
-    background-color: #FFD439;
-    list-style-type: none
-}
-
+/* 
 .nav-item {
     color: white;
     background-color: #404040;
@@ -116,7 +51,7 @@
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
 
-}
+} */
 
 .nav-item:hover {
     color: #FFD439;
