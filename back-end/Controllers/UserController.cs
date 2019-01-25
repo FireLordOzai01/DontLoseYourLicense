@@ -30,6 +30,7 @@ namespace back_end.Controllers
             return Ok(_context.users
             .Include(u => u.comments)
             .ThenInclude(u => u.article)
+            // .Include(u => u.comments.article)
             .Include(u => u.posts)
             .ToList());
         }
