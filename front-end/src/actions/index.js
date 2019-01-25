@@ -36,6 +36,18 @@ export const getUserToken = (user) => async dispatch => {
     dispatch({ type: GET_USER_BY_ID, payload: response.data.user })
 }
 
+// const getUserById = (token, id) => async dispatch => {
+//     console.log('hello');
+//     console.log(token, id);
+//     var config = {
+//         header: {'Authorization': "bearer " + token}
+//     }
+//     console.log(config);
+//     let response = await axios.get(`http://localhost:5000/api/users/${id}`, config);
+//     console.log(response);
+//     // dispatch({ type: GET_USER_BY_ID, payload: response.data })
+// }
+
 export const getUsers = () => async dispatch => {
     let response = await axios.get('http://localhost:5000/api/users');
     dispatch({ type: GET_USERS, payload: response.data })
