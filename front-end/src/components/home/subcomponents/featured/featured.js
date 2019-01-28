@@ -66,8 +66,11 @@ class Featured extends Component {
                                                                 <br/>
                                                                 <br/>
                                                                 <h2>comments</h2>
+                                                                <div>
+                                                                    
                                                                 <div className="slimshady">
                                                                     {
+                                                                        article.comments != null &&(
                                                                         article.comments.map((comment, index) => {
                                                                             return (
                                                                                 <div className>
@@ -83,7 +86,8 @@ class Featured extends Component {
                                                                                 </div>
                                                                             )
                                                                         })
-                                                                    }
+                                                                        )}
+                                                                </div>
                                                                 </div>
                                                             </div>
                                                             <div className="clear">
