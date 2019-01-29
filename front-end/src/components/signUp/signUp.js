@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './signUp.css';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
+import './signUp.css';
 
 class SignUp extends Component {
     state = {
@@ -16,16 +16,29 @@ class SignUp extends Component {
             avatar: ""
         },
         confirmPassword: "",
-        redirect: false
+        redirect: false,
+        subscribed: true
     }
     
     matchPasswords = (e) => {
         e.preventDefault();
         if (this.state.user.password !== this.state.confirmPassword) {
             alert("Passwords don't match");
+        } else {
+            this.setState({ redirect: true });
         }
-        this.props.onAddUser(this.state.user);
-        this.setState({ redirect: true });
+        if (this.state.subscribed){
+            let tempobj = {};
+            tempobj.email_address = this.state.user.email.concat("*");
+            tempobj.status = "subscribed";
+            tempobj.username = this.state.user.username;
+            tempobj.password = this.state.user.password
+            tempobj.company_affiliation = this.state.user.company_affiliation;
+            tempobj.user_industry = this.state.user.user_industry;
+            tempobj.real_name = this.state.user.real_name;
+            tempobj.avatar = this.state.avatar;
+            this.props.onAddUser(tempobj);
+        }
     }
 
     render() {
@@ -112,6 +125,12 @@ class SignUp extends Component {
                                                         onChange={e => this.setState({ confirmPassword: e.target.value })}
                                                         type="password" className="form-control input col-md-5" placeholder="Confirm Password" />
                                                 </div>
+                                                <input  type="checkbox" 
+                                                checked={this.state.subscribed}
+                                                onClick={() => this.setState({
+                                                    subscribed: !this.state.subscribed
+                                                })}
+                                                />
                                             </div>
                                         </div>
                                         <button
@@ -133,6 +152,5 @@ class SignUp extends Component {
 const mapDispatchToProps = dispatch => ({
     onAddUser: (user) => (dispatch(addUser(user)))
 })
-
 
 export default connect(null,mapDispatchToProps)(SignUp);

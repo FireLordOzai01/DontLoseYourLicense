@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+    ADD_USER_MAILCHIMP,
     ADD_USER,
     DELETE_USER,
     EDIT_USER,

@@ -55,9 +55,12 @@ class LogInForm extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    users: state.users
+});
+
 const mapPropsToDispatch = dispatch => ({
     logIn: user => (dispatch(getUserToken(user)))
 });
 
-
-export default connect(null, mapPropsToDispatch)(LogInForm);
+export default connect(mapStateToProps, mapPropsToDispatch)(LogInForm);
