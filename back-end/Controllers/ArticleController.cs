@@ -10,17 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using MailChimp.Net;
-using MailChimp.Net.Core;
-using MailChimp.Net.Models;
-using MailChimp.Net.Interfaces;
-using MailChimp.Net.Logic;
-using MailChimp.Api.Net.Helper;
-using MailChimp.Api.Net.Domain;
-using MailChimp.Api.Net.Enum;
-using MailChimp.Api.Net.Services;
-
-
 
 
 namespace back_end.Controllers

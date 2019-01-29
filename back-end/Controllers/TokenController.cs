@@ -35,10 +35,6 @@ namespace back_end
         }
     }
 
-
-
-
-
     [Route("api/token")]
     [ApiController]
     public class TokenController : Controller
@@ -97,22 +93,13 @@ namespace back_end
             }
             return responsetext;
         }
-
-
-
+        
         public void SetBasicAuthHeader(WebRequest request, string username, string password)
         {
             string auth = username + ":" + password;
             auth = Convert.ToBase64String(Encoding.Default.GetBytes(auth));
             request.Headers["Authorization"] = "Basic " + auth;
         }
-
-
-
-
-
-
-
 
         [HttpPost]
         [Route("loginUser")]

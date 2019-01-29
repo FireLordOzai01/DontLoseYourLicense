@@ -28,17 +28,10 @@ class SignUp extends Component {
             this.setState({ redirect: true });
         }
         if (this.state.subscribed){
-            let tempobj = {};
-            tempobj.email_address = this.state.user.email.concat("*");
-            tempobj.status = "subscribed";
-            tempobj.username = this.state.user.username;
-            tempobj.password = this.state.user.password
-            tempobj.company_affiliation = this.state.user.company_affiliation;
-            tempobj.user_industry = this.state.user.user_industry;
-            tempobj.real_name = this.state.user.real_name;
-            tempobj.avatar = this.state.avatar;
-            this.props.onAddUser(tempobj);
+            this.setState({email: this.state.user.email += "*"});
+            console.log(this.state.user.email);
         }
+        this.props.onAddUser(this.state.user)
     }
 
     render() {
