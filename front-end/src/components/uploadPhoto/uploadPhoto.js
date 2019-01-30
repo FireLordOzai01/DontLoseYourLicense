@@ -35,7 +35,7 @@ class UploadPhoto extends Component {
                 <div className ="textcenter" onSubmit={this.onFormSubmit}>
                     <h4 className ="textcenter font"> Upload Profile Picture </h4>
                     <input type="file" name="file" id="file" className="nav-item inputfile" onChange={(e)=>this.onChange(e)}/>
-                    <label className="nav-item" for="file">Select a file</label>
+                    <label className="nav-item select-file" for="file">Select a file</label>
                     <div >
                         <img className ="imgresize"  src={this.state.avatar} alt=""/>
                     </div>

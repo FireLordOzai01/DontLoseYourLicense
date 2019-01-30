@@ -11,3 +11,6 @@ export const ADD_ARTICLE        = 'ADD_ARTICLE';
 export const DELETE_ARTICLE     = 'DELETE_USER';
 export const EDIT_ARTICLE       = 'EDIT_ARTICLE';
 export const GET_ARTICLES       = 'GET_ARTICLES';
+
+
+export const ADD_USER_MAILCHIMP = 'ADD_USER_MAILCHIMP';
