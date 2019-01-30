@@ -24,9 +24,9 @@ namespace back_end.Controllers
 
     static class MailchimpRepository
     {
-
-        private const string ApiKey = "d06dd928c0aa534063a57fb43bcad29d-us20";
-        private const string ListId = "e6c1b52dc0";
+         static private IConfiguration _configuration;
+        static private  string ApiKey = Keys.mailChimpApi;
+        static private string ListId = Keys.listId;
         private const int TemplateId = 3293;
         static private MailChimpManager _mailChimpManager = new MailChimpManager(ApiKey);
         static private Setting _campaignSettings = new Setting
@@ -128,7 +128,6 @@ namespace back_end.Controllers
                     // aka: (new article published from websites below)
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
-
                         Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
                         _context.articles.Add(tempArticle);
 

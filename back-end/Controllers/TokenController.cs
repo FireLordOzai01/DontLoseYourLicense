@@ -159,7 +159,7 @@ namespace back_end
                 };
 
                 var requestJson = JsonConvert.SerializeObject(subscribeRequest);
-                Console.WriteLine(CallMailChimpApi("lists/e6c1b52dc0/members", requestJson, "d06dd928c0aa534063a57fb43bcad29d-us20"));
+                Console.WriteLine(CallMailChimpApi("lists/"+Keys.listId+"/members", requestJson, Keys.mailChimpApi));
             }
 
 
