@@ -13,65 +13,61 @@ using System.Text.RegularExpressions;
 using System.Net.Http.Formatting;
 using MailChimp;
 using MailChimp.Net;
-using MailChimp.Api.Net.Domain;
 using MailChimp.Net.Core;
 using MailChimp.Net.Models;
+using Microsoft.Extensions.Configuration;
+using System.Globalization;
 
 
 namespace back_end.Controllers
 {
 
-
-class MailchimpRepository
-{
- private const string ApiKey = "(your API key)";
-private const string ListId = "(your list id)";
- private const int TemplateId = 9999; // (your template id)
-private MailChimpManager _mailChimpManager = new MailChimpManager(ApiKey);
- private Setting _campaignSettings = new Setting
- {
-  ReplyTo = "your@email.com",
-  FromName = "The name that others will see when they receive the email",
-  Title = "Your campaign title",
-  SubjectLine = "The email subject",
- };
- 
- // `html` contains the content of your email using html notation
- public void CreateAndSendCampaign(string html)
- {
-  var campaign = _mailChimpManager.Campaigns.AddAsync(new Campaign
-  {
-   Settings = _campaignSettings,
-   Recipients = new Recipient { ListId = ListId },
-   Type = CampaignType.Regular
-  }).Result;
-var timeStr = DateTime.Now.ToString();
-  var content = _mailChimpManager.Content.AddOrUpdateAsync(
-   campaign.Id,
-   new ContentRequest()
-   {
-    Template = new ContentTemplate
+    static class MailchimpRepository
     {
-     Id = TemplateId,
-     Sections = new Dictionary<string, object>()
-      {
+
+        private const string ApiKey = "d06dd928c0aa534063a57fb43bcad29d-us20";
+        private const string ListId = "e6c1b52dc0";
+        private const int TemplateId = 3293;
+        static private MailChimpManager _mailChimpManager = new MailChimpManager(ApiKey);
+        static private Setting _campaignSettings = new Setting
+        {
+            ReplyTo = "DontLoseYourLicense@gmail.com",
+            FromName = "DontLoseYourLicense",
+            Title = "Dont Lose Your License new article",
+            SubjectLine = "New Article",
+        };
+
+
+
+
+        // `html` contains the content of your email using html notation
+        static public void CreateAndSendCampaign(string html)
+        {
+            var campaign = _mailChimpManager.Campaigns.AddAsync(new Campaign
+            {
+                Settings = _campaignSettings,
+                Recipients = new Recipient { ListId = ListId },
+                Type = CampaignType.Regular
+            }).Result;
+            var timeStr = DateTime.Now.ToString();
+            var content = _mailChimpManager.Content.AddOrUpdateAsync(
+             campaign.Id,
+             new ContentRequest()
+             {
+                 Template = new ContentTemplate
+                 {
+                     Id = TemplateId,
+                     Sections = new Dictionary<string, object>()
+                {
        { "body_content", html },
        { "preheader_leftcol_content", $"<p>{timeStr}</p>" }
-      }
+                }
+                 }
+             }).Result;
+            _mailChimpManager.Campaigns.SendAsync(campaign.Id).Wait();
+        }
+
     }
-   }).Result;
-_mailChimpManager.Campaigns.SendAsync(campaign.Id).Wait();
- }
-public List<Template> GetAllTemplates()
-  => _mailChimpManager.Templates.GetAllAsync().Result.ToList();
-public List<List> GetAllMailingLists()
-  => _mailChimpManager.Lists.GetAllAsync().Result.ToList();
-public Content GetTemplateDefaultContent(string templateId)
-  => (Content) _mailChimpManager.Templates.GetDefaultContentAsync(templateId).Result;
-}
-
-
-
 
 
 
@@ -135,6 +131,10 @@ public Content GetTemplateDefaultContent(string templateId)
 
                         Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
                         _context.articles.Add(tempArticle);
+
+                        //new article, send email to subscribers
+                        MailchimpRepository.CreateAndSendCampaign(modifyHTML(link));
+
                     }
                     else
                     {
@@ -151,55 +151,14 @@ public Content GetTemplateDefaultContent(string templateId)
 
 
 
-    //     public bool CampaignCreate(string campaignName, string subject, string emailText,
-    //     string emailSender, string emailSenderName, DateTime sendTime,
-    //     int templateID, string listID, ref string campaignID)
-    // {
-    //     MailChimpManager mgr = new MailChimpManager(_apiKey);
-    //     try
-    //     {
-    //         if (String.IsNullOrWhiteSpace(campaignID))
-    //             CampaignExists(campaignName, out campaignID);
 
-    //         // convert to utc and round up to nearest 15 mins
-    //         if (sendTime.Kind != DateTimeKind.Utc)
-    //             sendTime = sendTime.ToUniversalTime();
+        public static string modifyHTML(string link)
+        {
+            return "<div mc:edit=\"body_content\"><h1>&nbsp;</h1>" +
+       "<h3>New Article</h3><h4>Read the latest compliance and regulation changes so you don&#39;t lose your license!</h4>" +
+       "<p>Latest Article:<br><br><a id=\"articleLink\" href=\"" + link + "target=\"_blank\">" + link + "</a></p></div>";
 
-    //         sendTime = sendTime.RoundUp(TimeSpan.FromMinutes(15));
-
-    //         Models.Campaign newCampaign = new Models.Campaign();
-    //         newCampaign.Id = campaignID;
-    //         newCampaign.Type = CampaignType.Regular;
-    //         newCampaign.Settings = new Models.Setting();
-    //         newCampaign.Settings.Title = campaignName;
-    //         newCampaign.Settings.SubjectLine = subject;
-    //         newCampaign.Recipients = new Models.Recipient();
-    //         newCampaign.Recipients.ListId = listID;
-    //         newCampaign.Settings.FromName = emailSenderName;
-    //         newCampaign.Settings.ReplyTo = emailSender;
-    //         newCampaign.Settings.TemplateId = templateID;
-
-    //         newCampaign = mgr.Campaigns.AddOrUpdateAsync(newCampaign).Result;
-
-    //         campaignID = newCampaign.Id;
-    //         ContentRequest content = new ContentRequest();
-    //         content.Html = emailText;
-
-    //         mgr.Content.AddOrUpdateAsync(campaignID, content);
-
-    //         mgr.Campaigns.ScheduleAsync(newCampaign.Id, new CampaignScheduleRequest()
-    //         { ScheduleTime = sendTime.ToString("o") } );
-
-    //         mgr.Campaigns.SendAsync(campaignID);
-
-    //         return (!String.IsNullOrWhiteSpace(campaignID));
-    //     }
-    //     finally
-    //     {
-    //         mgr = null;
-    //     }
-    // }
-
+        }
 
         async Task<string> Download(string url) // async function
         {
@@ -273,10 +232,10 @@ public Content GetTemplateDefaultContent(string templateId)
         }
 
 
-public static string StripHTML(string input)
-{
-   return Regex.Replace(input, "<.*?>", String.Empty);
-}
+        public static string StripHTML(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
+        }
 
 
         // GET api
@@ -286,12 +245,11 @@ public static string StripHTML(string input)
             //need to update articles to DB 
             AddArticles();
 
-            foreach(var article in _context.articles)
+            foreach (var article in _context.articles)
             {
                 article.summary = StripHTML(article.summary);
             }
             _context.SaveChanges();
-
 
             return Ok(_context.articles
             .Include(a => a.comments)
