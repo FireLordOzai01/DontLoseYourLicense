@@ -85,11 +85,11 @@ class Featured extends Component {
                             <span className="showpagePoint">1
                             </span>
                             <span className="showpageNum">
-                                <a href="#" onclick="redirectpage(2);return false">2
+                                <a href="#" onClick="redirectpage(2);return false">2
                                 </a>
                             </span>
                             <span className="showpageNum">
-                                <a href="#" onclick="redirectpage(2);return false">
+                                <a href="#" onClick="redirectpage(2);return false">
                                     <i className="fa fa-angle-double-right">
                                     </i>
                                 </a>
