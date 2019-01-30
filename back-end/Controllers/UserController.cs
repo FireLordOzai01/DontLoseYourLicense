@@ -38,11 +38,19 @@ namespace back_end.Controllers
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            User user = _context.users.FirstOrDefault(u => u.user_id == id);
+            User user = _context.users.FirstOrDefault(_u => _u.user_id == id);
             if (user == null)
             {
                 return NotFound();
             }
+
+            // DateTime time = DateTime.Now;
+
+            // user.active_date = time;
+
+            // _context.users.Add(user);
+            // _context.SaveChanges();
+
             return Ok(user);
         }
 

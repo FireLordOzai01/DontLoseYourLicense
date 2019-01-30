@@ -3,18 +3,22 @@ import {
     DELETE_USER,
     EDIT_USER, 
     GET_USERS,
+    GET_USER_BY_ID,
     ADD_ARTICLE,
     DELETE_ARTICLE,
     EDIT_ARTICLE,
     GET_ARTICLES,
     GET_USER_TOKEN,
+    SAVE_AVATAR,
+    LOGOUT_USER,
 
 } from '../constants';
 
 const initialState = {
     loggedUser: {},
     users: [],
-    articles: []
+    articles: [],
+    isLogged: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -22,7 +26,13 @@ const rootReducer = (state = initialState, action) => {
         case ADD_USER:
         return {
             ...state,
-            users: action.payload
+            loggedUser: action.payload,
+            isLogged: true
+        }
+        case GET_USER_BY_ID: 
+        return {
+            ...state,
+            loggedUser: action.payload
         }
         case GET_USERS:
         return {
@@ -31,11 +41,28 @@ const rootReducer = (state = initialState, action) => {
         }
         case GET_USER_TOKEN:
             localStorage.setItem('token', action.token);
-            break;
+            return {
+                ...state,
+                isLogged: true
+            }
         case DELETE_USER:
         return {
             ...state,
             users: action.payload
+        }
+        case SAVE_AVATAR:
+        return {
+            ...state,
+            loggedUser: {
+                ...state.loggedUser,
+                avatar: action.avatar
+            }
+        }
+        case LOGOUT_USER:
+        return {
+            ...state,
+            isLogged: false,
+            loggedUser: {}
         }
         case ADD_ARTICLE:
         return {

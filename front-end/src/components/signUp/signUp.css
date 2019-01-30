@@ -17,7 +17,7 @@
     border: 1px solid black;
 }
 .signUpButton:hover{
-    background-color: #272727;
+    background-color: #FFD439;
     color: #272727;
     border: 1px solid #FFD439;
 }
@@ -49,25 +49,22 @@
     padding:  2% 3% 3.5% 3%;
     margin:  -1.89% 0% -1.9% -1.9%;;
     /* border: 1px solid black; */
-    background: #FFD439;
+    background: #272727;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
+    color: white;
 }
-.icon{
-    background-color: #FFD439;
-    border: 1px solid #FFD439;
-    /* width: 30%; */
-}
+
 .icon:hover{
     transform: scale(1.1, 1.1);
     /* background:  #090909; */
     /* border: 3px solid #090909; */
 }
 .background-div{
-    background: linear-gradient(to right,#C3C3C3, 40%, #090909);
-    padding:  5% 0%;
+    /* background: linear-gradient(to right,#C3C3C3, 40%, #090909); */
+    padding:  10% 0%;
 
 }
 .inner-div{
@@ -75,14 +72,21 @@
     padding: 20px 20px;
     margin: 0px 0px 0px 0px;
     background-color: white;
-    box-shadow: 10px 5px 5px ;
+    box-shadow: 10px 9px 5px ;
 }
+
 img{
     height: 15%;
-    width: 40%;
+    width: 100%;
+    cursor: pointer;
+    transform: scale(1.1, 1.1);
 }
+
 .combo{
     margin: 10% 0% 16% 0%;
     padding: 10% 0% 0% 0%;
 
+}
+.the-div-before-container{
+    border: 1px solid black;
 }
