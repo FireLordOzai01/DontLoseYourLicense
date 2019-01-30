@@ -111,7 +111,7 @@ namespace back_end.Controllers
 
 
                 //Articles too old? stop searching
-                if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 100)
+                if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 30)
                 {
                     break;
                 }
@@ -155,7 +155,7 @@ namespace back_end.Controllers
         {
             return "<div mc:edit=\"body_content\"><h1>&nbsp;</h1>" +
        "<h3>New Article</h3><h4>Read the latest compliance and regulation changes so you don&#39;t lose your license!</h4>" +
-       "<p>Latest Article:<br><br><a id=\"articleLink\" href=\"" + link + "target=\"_blank\">" + link + "</a></p></div>";
+       "<p>Latest Article:<br><br><a id=\"articleLink\" href=\"" + link + "\"target=\"_blank\">" + link + "</a></p></div>";
 
         }
 
@@ -191,6 +191,8 @@ namespace back_end.Controllers
             links.Add("https://cannabislaw.report/feed/");
             links.Add("https://cannabis.ca.gov/feed/");
             links.Add("https://420intel.com/taxonomy/term/401/feed");
+            links.Add("https://www.thecannifornian.com/feed/");
+            links.Add("https://www.weednews.co/feed/");
 
 
             //multiple threads for each url
@@ -212,20 +214,10 @@ namespace back_end.Controllers
 
             if (_context.articles != null)
             {
-                DlylContext tempContext = _context;
-
-                //check for articles out of date, greater than 100 days and remove
-                foreach (var article in tempContext.articles)
-                {
-                    if ((DateTime.Now - article.time).TotalDays > 100)
-                    {
-
-                        _context.articles.Remove(article);
-                        _context.SaveChanges();
-
-
-                    }
-                }
+                //check for articles out of date, greater than 30 days and remove
+                _context.articles.RemoveRange(_context.articles.Where(x => (DateTime.Now - x.time).TotalDays > 30));
+                _context.SaveChanges();
+            
             }
 
         }
