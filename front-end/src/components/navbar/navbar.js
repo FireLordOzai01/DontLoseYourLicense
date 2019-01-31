@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './navbar.css';
 import { logoutUser } from '../../actions';
@@ -22,9 +22,6 @@ class Navbar extends Component {
                             <li>
                                 <Link className="nav-item" to="/fourm">Forum </Link>
                             </li>
-                            <li>
-                                <Link className="nav-item" to="/signup">Signup </Link>
-                            </li>
                             {this.props.logged
                             ?   
                             <li>
@@ -35,9 +32,14 @@ class Navbar extends Component {
                                 </Link>
                             </li>
                             :
-                            <li>
-                                <Link className="nav-item" to="/login">Login</Link>
-                            </li>
+                            <div className="signin-login">
+                                <li>
+                                    <Link className="nav-item" to="/signup">Signup </Link>
+                                </li>
+                                <li>
+                                    <Link className="nav-item" to="/login">Login</Link>
+                                </li>
+                            </div>
                             }
                         </ul>
                     </div>

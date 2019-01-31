@@ -26,12 +26,12 @@ class SignUp extends Component {
             alert("Passwords don't match");
         } else {
             this.setState({ redirect: true });
+            this.props.onAddUser(this.state.user)
         }
         if (this.state.subscribed){
             this.setState({email: this.state.user.email += "*"});
-            console.log(this.state.user.email);
+            this.props.onAddUser(this.state.user)
         }
-        this.props.onAddUser(this.state.user)
     }
 
     render() {
@@ -124,6 +124,7 @@ class SignUp extends Component {
                                                     subscribed: !this.state.subscribed
                                                 })}
                                                 />
+                                                <label htmlFor="">Yes, I want to be subscribed to all newsletters</label>
                                             </div>
                                         </div>
                                         <button
@@ -141,9 +142,12 @@ class SignUp extends Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    logged: state.isLogged
+})
 
 const mapDispatchToProps = dispatch => ({
     onAddUser: (user) => (dispatch(addUser(user)))
 })
 
-export default connect(null,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

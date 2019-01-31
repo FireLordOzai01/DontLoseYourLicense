@@ -93,7 +93,6 @@ namespace back_end
             }
             return responsetext;
         }
-        
         public void SetBasicAuthHeader(WebRequest request, string username, string password)
         {
             string auth = username + ":" + password;
@@ -103,7 +102,7 @@ namespace back_end
 
         [HttpPost]
         [Route("loginUser")]
-        public ValidUser GetToken([FromBody] User user)
+        public ActionResult GetToken([FromBody] User user)
         {
             var tempUser = _context.users.FirstOrDefault(u => u.username == user.username);
             bool validPassword = BCrypt.Net.BCrypt.Verify(user.password, tempUser.password);
@@ -118,11 +117,11 @@ namespace back_end
             System.DateTime.Now.Second.ToString();
                 tempUser.active_date = Convert.ToDateTime(today);
                 _context.SaveChanges();
-                return BuildToken(tempUser);
+                return Ok(BuildToken(tempUser));
             }
             else
             {
-                return (new ValidUser("not a valid login"));
+                return NotFound();
             }
         }
         [HttpPost]
@@ -157,12 +156,9 @@ namespace back_end
                     email_address = user.email,
                     status = "subscribed"
                 };
-
                 var requestJson = JsonConvert.SerializeObject(subscribeRequest);
-                Console.WriteLine(CallMailChimpApi("lists/a4364e9ea5/members", requestJson, "2445e026b3e8d7348e5b9c3ef8140521-us20"));
+                Console.WriteLine(CallMailChimpApi("lists/e6c1b52dc0/members", requestJson, "d06dd928c0aa534063a57fb43bcad29d-us20"));
             }
-
-
 
             return user;
         }
