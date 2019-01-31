@@ -16,6 +16,10 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using System.Net.Http;
+using System.Web;
+// for class Encoding
+
 
 
 
@@ -29,55 +33,89 @@ namespace back_end.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] string code)
         {
-            
-            var endpoint = String.Format("https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code="+code+"&redirect_uri=http://localhost:3000/linkedin&client_id=86aojroi51e35k&client_secret=TD6uCe1IKkOP7Xkf");
-            linkeInApi(endpoint);
+            Console.WriteLine("***********");
+            Console.WriteLine(code);
 
-            return Ok();
+            string str = linkeInApi(code);
+            return Ok(str);
         }
 
-        public string linkeInApi(string endpoint)
+        public string linkeInApi(string code)
         {
-            // byte[] dataStream = Encoding.UTF8.GetBytes(requestJson);
-            var responsetext = string.Empty;
-            WebRequest request = HttpWebRequest.Create(endpoint);
-            WebResponse response = null;
-            try
-            {
-                request.ContentType = "application/x-www-form-urlencoded";
-                // SetBasicAuthHeader(request, "anystring", key);  // BASIC AUTH
-                request.Method = "POST";
-                // request.ContentLength = dataStream.Length;
-                Stream newstream = request.GetRequestStream();
 
-                // newstream.Write(dataStream, 0, dataStream.Length);
-                newstream.Close();
+            string authUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
+            var sign = "grant_type=authorization_code&code=" + HttpUtility.HtmlEncode(code) + "&redirect_uri=" + HttpUtility.HtmlEncode("http://localhost:3000/linkedin/") + "&client_id=" + "86aojroi51e35k" + "&client_secret=" + "TD6uCe1IKkOP7Xkf";
+            //byte[] byteArray = Encoding.UTF8.GetBytes(sign);
+            HttpWebRequest webRequest = WebRequest.Create(authUrl + "?" + sign) as HttpWebRequest;
 
-                response = request.GetResponse();
+            // HttpWebRequest webRequest = WebRequest.Create(url) as HttpWebRequest;
 
+            webRequest.Method = "POST";
+            webRequest.ContentType = "application/x-www-form-urlencoded";
+            Stream dataStream = webRequest.GetRequestStream();
+            String postData = String.Empty;
+            byte[] postArray = Encoding.ASCII.GetBytes(postData);
+            dataStream.Write(postArray, 0, postArray.Length);
+            dataStream.Close();
+            WebResponse response = webRequest.GetResponse();
+            dataStream = response.GetResponseStream();
+            Console.WriteLine(dataStream);
+            StreamReader responseReader = new StreamReader(dataStream);
+            String returnVal = responseReader.ReadToEnd().ToString();
+            responseReader.Close();
+            dataStream.Close();
+            response.Close();
+            // Console.WriteLine(returnVal);
+            
 
-                // get the result
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    JsonSerializer json = new JsonSerializer();
-                    JObject content = JObject.Parse(reader.ReadToEnd());
+            return returnVal;
 
-                    responsetext = reader.ReadToEnd();
-                }
+            // string authUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
 
-                response.Close();
-            }
+            // var sign = "grant_type=authorization_code" + "&code=" + code + "&redirect_uri=" + HttpUtility.HtmlEncode("http://localhost:3000/linkedin") + "&client_id=" + "86aojroi51e35k" + "&client_secret=" + "TD6uCe1IKkOP7Xkf";
+            // // var postData = String.Format("grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}", code, HttpUtility.HtmlEncode(redirectUrl), apiKey, apiSecret);
 
+            // HttpWebRequest webRequest = WebRequest.Create(authUrl + "?" + sign) as HttpWebRequest;
+            // webRequest.Method = "POST";
 
-            catch (WebException ex)
-            {
+            // //This "application/x-www-form-urlencoded"; line is important
+            // webRequest.ContentType = "application/x-www-form-urlencoded";
 
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    responsetext = sr.ReadToEnd();
-                }
-            }
-            return responsetext;
+            // webRequest.ContentLength = sign.Length;
+
+            // StreamWriter requestWriter = new StreamWriter(webRequest.GetRequestStream());
+            // requestWriter.Write(sign);
+            // requestWriter.Close();
+
+            // StreamReader responseReader = new StreamReader(webRequest.GetResponse().GetResponseStream());
+
+            // return responseReader.ReadToEnd().ToString();
+
+            // Console.WriteLine("****************");
+            // string result;
+            // Console.WriteLine("Making API Call...");
+            // using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
+            // {
+            //     client.BaseAddress = new Uri("https://www.linkedin.com/oauth/v2/");
+            //     HttpResponseMessage response = client.GetAsync("accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=http://localhost:3000/linkedin&client_id=86aojroi51e35k&client_secret=TD6uCe1IKkOP7Xkf").Result;
+            //     response.EnsureSuccessStatusCode();
+            //     result = response.Content.ReadAsStringAsync().Result;
+            //     Console.WriteLine("Result: " + result);
+            // }
+
+            // Console.ReadLine();
+            // return result;
+
+            // HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            // request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            // using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            // using (Stream stream = response.GetResponseStream())
+            // using (StreamReader reader = new StreamReader(stream))
+            // {
+            //     Console.WriteLine(reader.ReadToEnd());
+            //     return reader.ReadToEnd();
+            // }
         }
 
     }

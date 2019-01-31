@@ -32,49 +32,77 @@ class Featured extends Component {
 
                             <div className="post-outer">
                                 {
-                                    this.props.articles &&(
+                                    this.props.articles && (
 
                                         this.props.articles.map((article, index) => {
                                             return (
-                                    <div className="post" key={index}>
-                                        
-                                        <div className="post-header">
-                                        </div>
-                                        <article>
-                                            <font className="retitle">
-                                                <h2 className="post-title entry-title">
-                                                    <a href={article.article_link}>
-                                                        {article.title}
-                                                </a>
-                                                </h2>
-                                            </font>
-                                            <div className="date-header">
-                                                <div id="meta-post">
-                                                    <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
-                                                        <abbr className="published" itemProp="datePublished dateModified" title="2016-08-01T04:22:00-07:00">{article.time}
-                                                </abbr>
-                                                    </a>
-                                                </div>
-                                                <div className="resumo">
-                                                <div>
-                                                {article.summary}              
-                                                </div>
-                                                    <a className="read-more" href={article.article_link}>Read More
-                                                </a>
-                                                </div>
-                                                <div className="clear">
-                                                </div>
-                                            </div>
-                                        </article>
-                                        
-                                        <div className="clear">
-                                        </div>
-                                        <div className="post-footer">
-                                        </div>
+                                                <div className="post">
 
-                                    </div>
-                                      )
-                                    })
+                                                    <div className="post-header">
+                                                    </div>
+                                                    <article>
+                                                        <font className="retitle">
+                                                            <h2 className="post-title entry-title">
+                                                                <a href={article.article_link}>
+                                                                    {article.title}
+                                                                </a>
+                                                            </h2>
+                                                        </font>
+                                                        <div className="date-header">
+                                                            <div id="meta-post">
+                                                                <a className="timestamp-link" href="http://newcon-themexpose.blogspot.com/2016/08/apples-new-ipad-lets-you-play-latest.html" rel="bookmark" title="permanent link">
+                                                                    <abbr className="published" itemprop="datePublished dateModified" title="2016-08-01T04:22:00-07:00">{article.time}
+                                                                    </abbr>
+                                                                </a>
+                                                            </div>
+                                                            <div className="resumo">
+                                                                <span>
+
+                                                                    {article.summary}
+                                                                </span>
+                                                                <a className="read-more" href={article.article_link}>Read More
+                                                                </a>
+                                                                <br/>
+                                                                <br/>
+                                                                <br/>
+                                                                <h2>comments</h2>
+                                                                <div>
+                                                                    
+                                                                <div className="slimshady">
+                                                                    {
+                                                                        article.comments != null &&(
+                                                                        article.comments.map((comment, index) => {
+                                                                            return (
+                                                                                <div className>
+                                                                                    <ul className="cmm-widget">
+                                                                                        <li className ="c_user">
+                                                                                            @{comment.user.username}
+                                                                                        </li>
+                                                                                        <li className ="c_comment">
+                                                                                            {comment.comment}
+                                                                                        </li>
+                                                                                        <br/>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            )
+                                                                        })
+                                                                        )}
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="clear">
+                                                            </div>
+                                                        </div>
+                                                    </article>
+
+                                                    <div className="clear">
+                                                    </div>
+                                                    <div className="post-footer">
+                                                    </div>
+
+                                                </div>
+                                            )
+                                        })
                                     )}
                             </div>
                         </div>

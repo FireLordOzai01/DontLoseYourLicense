@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './signUp.css';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
@@ -17,16 +16,22 @@ class SignUp extends Component {
             avatar: ""
         },
         confirmPassword: "",
-        redirect: false
+        redirect: false,
+        subscribed: true
     }
     
     matchPasswords = (e) => {
         e.preventDefault();
         if (this.state.user.password !== this.state.confirmPassword) {
             alert("Passwords don't match");
+        } else {
+            this.setState({ redirect: true });
         }
-        this.props.onAddUser(this.state.user);
-        this.setState({ redirect: true });
+        if (this.state.subscribed){
+            this.setState({email: this.state.user.email += "*"});
+            console.log(this.state.user.email);
+        }
+        this.props.onAddUser(this.state.user)
     }
 
     render() {
@@ -114,6 +119,12 @@ class SignUp extends Component {
                                                         onChange={e => this.setState({ confirmPassword: e.target.value })}
                                                         type="password" className="form-control input col-md-5" placeholder="Confirm Password" />
                                                 </div>
+                                                <input  type="checkbox" 
+                                                checked={this.state.subscribed}
+                                                onClick={() => this.setState({
+                                                    subscribed: !this.state.subscribed
+                                                })}
+                                                />
                                             </div>
                                         </div>
                                         <button
@@ -135,6 +146,5 @@ class SignUp extends Component {
 const mapDispatchToProps = dispatch => ({
     onAddUser: (user) => (dispatch(addUser(user)))
 })
-
 
 export default connect(null,mapDispatchToProps)(SignUp);

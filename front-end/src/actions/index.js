@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+    ADD_USER_MAILCHIMP,
     ADD_USER,
     DELETE_USER,
     EDIT_USER,
@@ -97,8 +98,9 @@ export const getArticles = () => async dispatch => {
 }
 
 export const getLinkedInToken = (code) => async dispatch => {
-    console.log(code);
-    let response = await axios.post('http://localhost:5000/api/linkedin', code);
-    // console.log(response);
+    let strngyCode = JSON.stringify(code, null, 0);
+    let headers = { "Content-Type" : "application/json" };
+    let response = await axios.post('http://localhost:5000/api/linkedin', strngyCode, {headers: headers});
+    console.log(response);
     // window.localStorage.setItem('access token', response.access_token);
 }

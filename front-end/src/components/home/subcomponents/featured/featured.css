@@ -346,9 +346,9 @@ a.quickedit {
     border-bottom-width: 0;
 }
 
-.post{
+.post {
     position: relative;
-    min-height:0;
+    min-height: 0;
     display: block;
     overflow: hidden;
     word-wrap: break-word;
@@ -363,7 +363,7 @@ a.quickedit {
     width: 290px;
     height: 190px;
     margin-right: 20px;
-    opacity:1;
+    opacity: 1;
 }
 
 .block-image .thumb {
@@ -390,7 +390,7 @@ a.quickedit {
     z-index: 2;
     width: 100%;
     height: 100%;
-    background-color: rgba(40,35,40,0.05);
+    background-color: rgba(40, 35, 40, 0.05);
 }
 
 .postags {
@@ -415,15 +415,15 @@ a.quickedit {
     text-transform: uppercase;
 }
 
-.post-header{
+.post-header {
     line-height: 1.6;
 }
 
-article{
-    display:block
+article {
+    display: block
 }
 
-font{
+font {
     padding: 0;
     border: 0;
     outline: 0;
@@ -436,27 +436,27 @@ font{
     display: block;
 }
 
-.index .post h2{
+.index .post h2 {
     margin: 0 0 8px;
     padding: 0 10px 0 0;
     overflow: hidden;
 }
 
-.post h2 a{
+.post h2 a {
     color: #1c1c1c;
     font-size: 19px;
     line-height: 1.5em;
     font-weight: 500;
     text-decoration: none;
-    position:relative;
-    min-height:0;
+    position: relative;
+    min-height: 0;
 }
 
 .date-header {
     display: block;
     overflow: hidden;
     font-weight: 400;
-    margin: 0!important;
+    margin: 0 !important;
     padding: 0;
 }
 
@@ -474,7 +474,7 @@ font{
     margin-left: 0;
 }
 
-abbr{
+abbr {
     padding: 0;
     border: 0;
     outline: 0;
@@ -521,20 +521,20 @@ a.read-more {
 
 .post-footer {
     line-height: 1.6;
-    display:none!important;
+    display: none !important;
 }
 
 #blog-pager {
     overflow: hidden;
-    clear:both;
-    margin:0;
-    display:block;
+    clear: both;
+    margin: 0;
+    display: block;
     padding: 0 0 20px;
     text-align: left;
 }
 
 .showpageOf {
-    display: none!important;
+    display: none !important;
 }
 
 .showpagePoint {
@@ -544,7 +544,7 @@ a.read-more {
     padding: 0 12px;
     background: #202020;
     background-color: #FFD439;
-    color: #fff;    
+    color: #fff;
     border: 0;
     text-transform: uppercase;
     line-height: 32px;
@@ -552,7 +552,7 @@ a.read-more {
     border-radius: 0;
 }
 
-.showpageNum a{
+.showpageNum a {
     display: block;
     float: left;
     margin-right: 6px;
@@ -573,3 +573,50 @@ a.read-more {
 }
 
 
+.c_user {
+    color: #1c1c1c;
+    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    overflow: hidden;
+}
+
+h2 {
+    display: inline-block;
+    position: relative;
+    background-color: #fff;
+    color: #1c1c1c;
+    font-size: 15px;
+    letter-spacing: -.4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    z-index: 1;
+    margin: 0 0 10px;
+    padding-right: 15px;
+    padding-left: 25px;
+}
+
+.c_comment {
+    margin-top: 4px;
+    color: #bdbdbd;
+    display: block;
+    line-height: 1.2em;
+    text-transform: lowercase;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: 400;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: 0 0;
+}
+
+.slimshady {
+    border: 2px solid gray;
+    box-shadow: 13px 12px 5px 0px gray;
+    -webkit-box-shadow: 13px 12px 5px 0px gray;
+    -moz-box-shadow: 13px 12px 5px 0px gray;
+    margin: 10px 10px 10px 0px;
+    padding: 30px 50px 10px 50px;
+}
