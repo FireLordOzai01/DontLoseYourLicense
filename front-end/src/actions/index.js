@@ -81,3 +81,11 @@ export const getArticles = () => async dispatch => {
     let response = await axios.get('http://localhost:5000/api/articles');
     dispatch({ type: GET_ARTICLES, payload: response.data })
 }
+
+export const getLinkedInToken = (code) => async dispatch => {
+    let strngyCode = JSON.stringify(code, null, 0);
+    let headers = { "Content-Type" : "application/json" };
+    let response = await axios.post('http://localhost:5000/api/linkedin', strngyCode, {headers: headers});
+    console.log(response);
+    // window.localStorage.setItem('access token', response.access_token);
+}

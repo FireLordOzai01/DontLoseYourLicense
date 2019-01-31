@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
-import './signUp.css';
+import LinkedInPage from './linkedinOauth';
 
 class SignUp extends Component {
     state = {
@@ -56,11 +56,12 @@ class SignUp extends Component {
                                         className="btn btn-primary"
                                         onClick={this.match}
                                     >Sign in with Google+</button>
-                                    <button
+                                    {/* <button
                                         id="linkedin"
                                         className="btn btn-primary"
                                         onClick={this.match}
-                                    >Sign in with Linkedin</button>
+                                    >Sign in with Linkedin</button> */}
+                                    <LinkedInPage/>
                                     <button
                                         id="twitter"
                                         className="btn btn-primary"

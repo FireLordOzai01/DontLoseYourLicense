@@ -15,27 +15,33 @@ using MailChimp;
 using MailChimp.Net;
 using MailChimp.Net.Core;
 using MailChimp.Net.Models;
+using Microsoft.Extensions.Configuration;
+using System.Globalization;
 
 
 namespace back_end.Controllers
 {
 
-    class MailchimpRepository
+    static class MailchimpRepository
     {
-        private const string ApiKey = "(your API key)";
-        private const string ListId = "(your list id)";
-        private const int TemplateId = 9999; // (your template id)
-        private MailChimpManager _mailChimpManager = new MailChimpManager(ApiKey);
-        private Setting _campaignSettings = new Setting
+         static private IConfiguration _configuration;
+        static private  string ApiKey = Keys.mailChimpApi;
+        static private string ListId = Keys.listId;
+        private const int TemplateId = 3293;
+        static private MailChimpManager _mailChimpManager = new MailChimpManager(ApiKey);
+        static private Setting _campaignSettings = new Setting
         {
-            ReplyTo = "your@email.com",
-            FromName = "The name that others will see when they receive the email",
-            Title = "Your campaign title",
-            SubjectLine = "The email subject",
+            ReplyTo = "DontLoseYourLicense@gmail.com",
+            FromName = "DontLoseYourLicense",
+            Title = "Dont Lose Your License new article",
+            SubjectLine = "New Article",
         };
 
+
+
+
         // `html` contains the content of your email using html notation
-        public void CreateAndSendCampaign(string html)
+        static public void CreateAndSendCampaign(string html)
         {
             var campaign = _mailChimpManager.Campaigns.AddAsync(new Campaign
             {
@@ -60,12 +66,6 @@ namespace back_end.Controllers
              }).Result;
             _mailChimpManager.Campaigns.SendAsync(campaign.Id).Wait();
         }
-        // public List<Template> GetAllTemplates()
-        //   => _mailChimpManager.Templates.GetAllAsync().Result.ToList();
-        // public List<List> GetAllMailingLists()
-        //   => _mailChimpManager.Lists.GetAllAsync().Result.ToList();
-        public Content GetTemplateDefaultContent(string templateId)
-          => (Content)_mailChimpManager.Templates.GetDefaultContentAsync(templateId).Result;
     }
 
     [Route("api/articles")]
@@ -108,7 +108,7 @@ namespace back_end.Controllers
 
 
                 //Articles too old? stop searching
-                if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 100)
+                if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 30)
                 {
                     break;
                 }
@@ -125,9 +125,12 @@ namespace back_end.Controllers
                     // aka: (new article published from websites below)
                     if ((_context.articles.FirstOrDefault(a => a.title == title)) == null)
                     {
-
                         Article tempArticle = new Article(link, title, description, Convert.ToDateTime(pubDate));
                         _context.articles.Add(tempArticle);
+
+                        //new article, send email to subscribers
+                        MailchimpRepository.CreateAndSendCampaign(modifyHTML(link));
+
                     }
                     else
                     {
@@ -144,6 +147,7 @@ namespace back_end.Controllers
 
 
 
+<<<<<<< HEAD
         //     public bool CampaignCreate(string campaignName, string subject, string emailText,
         //     string emailSender, string emailSenderName, DateTime sendTime,
         //     int templateID, string listID, ref string campaignID)
@@ -192,7 +196,16 @@ namespace back_end.Controllers
         //         mgr = null;
         //     }
         // }
+=======
 
+        public static string modifyHTML(string link)
+        {
+            return "<div mc:edit=\"body_content\"><h1>&nbsp;</h1>" +
+       "<h3>New Article</h3><h4>Read the latest compliance and regulation changes so you don&#39;t lose your license!</h4>" +
+       "<p>Latest Article:<br><br><a id=\"articleLink\" href=\"" + link + "\"target=\"_blank\">" + link + "</a></p></div>";
+>>>>>>> 99de160edca945efb80ec71d65646937f552d52c
+
+        }
 
         async Task<string> Download(string url) // async function
         {
@@ -226,6 +239,8 @@ namespace back_end.Controllers
             links.Add("https://cannabislaw.report/feed/");
             links.Add("https://cannabis.ca.gov/feed/");
             links.Add("https://420intel.com/taxonomy/term/401/feed");
+            links.Add("https://www.thecannifornian.com/feed/");
+            links.Add("https://www.weednews.co/feed/");
 
 
             //multiple threads for each url
@@ -247,20 +262,10 @@ namespace back_end.Controllers
 
             if (_context.articles != null)
             {
-                DlylContext tempContext = _context;
-
-                //check for articles out of date, greater than 100 days and remove
-                foreach (var article in tempContext.articles)
-                {
-                    if ((DateTime.Now - article.time).TotalDays > 100)
-                    {
-
-                        _context.articles.Remove(article);
-                        _context.SaveChanges();
-
-
-                    }
-                }
+                //check for articles out of date, greater than 30 days and remove
+                _context.articles.RemoveRange(_context.articles.Where(x => (DateTime.Now - x.time).TotalDays > 30));
+                _context.SaveChanges();
+            
             }
 
         }
@@ -284,7 +289,6 @@ namespace back_end.Controllers
                 article.summary = StripHTML(article.summary);
             }
             _context.SaveChanges();
-
 
             return Ok(_context.articles
             .Include(a => a.comments)

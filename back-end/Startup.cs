@@ -80,7 +80,9 @@ namespace back_end
             app.UseAuthentication();
 
             app.UseCors(builder =>
-               builder.WithOrigins("*"));
+               builder
+                .WithOrigins("*")
+                .AllowAnyHeader());
 
             app.UseMvc();
         }
