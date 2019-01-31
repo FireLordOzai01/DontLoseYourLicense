@@ -25,6 +25,12 @@ using System.Web;
 
 namespace back_end.Controllers
 {
+    static class linkedinRepository
+    {
+        static private string clientId = Keys.linkedInClientId;
+        static private string clientSecret = Keys.linkedInClientSecret;
+    }
+
     [Route("api/linkedin")]
     [ApiController]
     public class OAuthLinkedInController : ControllerBase
@@ -44,7 +50,7 @@ namespace back_end.Controllers
         {
 
             string authUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
-            var sign = "grant_type=authorization_code&code=" + HttpUtility.HtmlEncode(code) + "&redirect_uri=" + HttpUtility.HtmlEncode("http://localhost:3000/linkedin/") + "&client_id=" + "86aojroi51e35k" + "&client_secret=" + "TD6uCe1IKkOP7Xkf";
+            var sign = "grant_type=authorization_code&code=" + HttpUtility.HtmlEncode(code) + "&redirect_uri=" + HttpUtility.HtmlEncode("http://localhost:3000/linkedin/") + "&client_id=" + Keys.linkedInClientId + "&client_secret=" + Keys.linkedInClientSecret;
             //byte[] byteArray = Encoding.UTF8.GetBytes(sign);
             HttpWebRequest webRequest = WebRequest.Create(authUrl + "?" + sign) as HttpWebRequest;
 
