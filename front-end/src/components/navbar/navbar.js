@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './navbar.css';
 import { logoutUser } from '../../actions';
@@ -10,21 +10,24 @@ class Navbar extends Component {
     render() {
         return (
             <div className="nav-container">
-                <nav id="main-nav">
+                <nav className="main-nav">
                     <Link id="logo-hover" to="/"><LogoLogo /></Link>
                     <Link className="nav-item" to="/">Home</Link>
                     <Link className="nav-item" to="/fourm">Forum </Link>
-                    <Link className="nav-item" to="/signup">Signup </Link>
                     {this.props.logged
-                            ?                             
-                                <Link 
-                                    className="nav-item logout"
-                                    to="/"
-                                    onClick={() => this.props.logout(this.props.user, this.props.user.user_id)}>Logout
+                        ?
+                        <Link
+                            className="nav-item logout"
+                            to="/"
+                            onClick={() => this.props.logout(this.props.user, this.props.user.user_id)}>Logout
                                 </Link>
-                            :                           
-                                <Link className="nav-item" to="/login">Login</Link>                          
-                            }
+                        :
+                        <div className="main-nav">
+                            <Link className="nav-item" to="/login">Login</Link>
+                            <Link className="nav-item" to="/signup">Signup </Link>
+                        </div>
+
+                    }
                 </nav>
             </div>
         )

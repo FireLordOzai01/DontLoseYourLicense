@@ -11,11 +11,8 @@ import Home from './components/home/home.js';
 import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
 import LogInForm from './components/login/login';
-import Fourm from './components/fourm/fourm';
+import Why from './components/signUp/why.js';
 
-
-// import Admin from './components/admin/admin';
-// import MoreBooks from './components/books/moreBooks';
 
 class App extends Component {
 
@@ -34,10 +31,9 @@ class App extends Component {
           {/* Routes */}
           <Switch>
             <Route exact path='/' render={(renderProps) => <Home />} />
-            <Route path='/signup' render={(renderProps) => <SignUp />} />
+            <Route path='/signup' render={(renderProps) => <Why />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/login' render={(renderProps) => <LogInForm/> } />
-            <Route path='/fourm' render={(renderProps) => <Fourm /> } />
             <Route exact path="/linkedin" component={LinkedInPopUp} />
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
@@ -51,3 +47,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+

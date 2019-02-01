@@ -12,7 +12,7 @@ class Home extends Component {
                     <div className="clear">
                     </div>
                     <Featured />
-                    <Sidebar /> 
+                    {/* <Sidebar /> */}
                     <div className="clear">
                     </div>                  
             </div>

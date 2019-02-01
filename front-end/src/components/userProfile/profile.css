@@ -1,16 +1,13 @@
-
 .profile-container{
     display: flex;
     margin-top: 50px;
-    padding: 5%;
+    /* padding: 5%; */
     border: 1px solid whitesmoke;
     background-color: #F5F5F5;
-
 }
-
 a {
     color: blue;
-    }
+}
 .row2{
     margin-left: 10%;
     width: 100%;
@@ -21,22 +18,16 @@ a {
     width:auto;
     border:3px solid rgba(245, 245, 245, 0.904);
     border-radius: 50%;
-
-
 }
-
-
 h5 {
     color: rgb(218, 180, 47);
-    
 }
 hr{
     background-color: #272727;
 }
 .profile-pic {
-    padding:2px;
+    /* padding:2px; */
     border: 1px solid #090909;
     background: linear-gradient(#090909, 10%, #FFD439);
-
- }
+}
 
