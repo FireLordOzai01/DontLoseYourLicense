@@ -17,7 +17,7 @@ import {
 const initialState = {
     loggedUser: {},
     users: [],
-    articles: [],
+    articles: null,
     isLogged: false
 }
 
@@ -70,6 +70,7 @@ const rootReducer = (state = initialState, action) => {
             articles: action.payload
         }
         case GET_ARTICLES:
+        console.log(action.payload);
         return {
             ...state,
             articles: action.payload

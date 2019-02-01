@@ -9,13 +9,33 @@ class Featured extends Component {
     state = {
 
         comment: "",
-        article : []
+        articles : null
 
 
     }
 
     componentDidMount() {
-        this.props.getArticles();
+        this.setState({articles:this.props.articles})
+        this.parseArticles();
+    }
+
+
+     parseArticles=()=>{
+
+        for(var i = 0; i<this.props.articles.length;i++){
+            //format dates
+            var dates = this.props.articles[i].time.split("T");
+            this.props.articles[i].time = dates[0];
+
+            
+            //format summary
+            this.props.articles[i].summary = this.props.articles[i].summary.substring(0, 500) + "...";
+            if(this.props.articles[i].summary === "..."){
+                this.props.articles[i].summary = "No summary available, click to read more..."
+            }
+        }
+
+
     }
 
     render() {
@@ -30,12 +50,11 @@ class Featured extends Component {
                     <div className="widget Blog" data-version="1" id="Blog1">
                         <div className="blog-posts hfeed">
 
-
                             <div className="post-outer">
                                 {
-                                    this.props.articles && (
-
-                                        this.props.articles.map((article, index) => {
+                                    this.state.articles && (
+                                        
+                                        this.state.articles.map((article, index) => {
                                             return (
                                                 <div className="post">
 
@@ -137,11 +156,8 @@ class Featured extends Component {
 };
 
 const mapStateToProps = state => ({
-    articles: state.articles
+    articles: state.articles,
 });
 
-const mapPropsToDispatch = dispatch => ({
-    getArticles: () => dispatch(getArticles())
-})
 
-export default connect(mapStateToProps, mapPropsToDispatch)(Featured);
+export default connect(mapStateToProps, null)(Featured);
