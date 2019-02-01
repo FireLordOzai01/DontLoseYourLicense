@@ -7,10 +7,9 @@ import { getArticles } from '../../../.././actions';
 
 class Featured extends Component {
     state = {
+        articles: null,
         comment: "",
-        articles : null
-
-
+        isParsed: false
     }
 
     componentDidMount() {
@@ -26,15 +25,20 @@ class Featured extends Component {
             var dates = this.props.articles[i].time.split("T");
             this.props.articles[i].time = dates[0];
 
-            
             //format summary
             this.props.articles[i].summary = this.props.articles[i].summary.substring(0, 500) + "...";
             if(this.props.articles[i].summary === "..."){
                 this.props.articles[i].summary = "No summary available, click to read more..."
             }
+             // format html
+            let summary = new DOMParser().parseFromString(this.props.articles[i].summary, 'text/html');
+            let s = summary.getElementsByTagName('body');
+            let string = [].map.call(s, function(node) {
+                return node.textContext || node.innerText || "";
+            }).join();
+            this.props.articles[i].summary = string;
         }
-
-
+        this.setState({ isParsed: true })
     }
 
     render() {
@@ -51,7 +55,7 @@ class Featured extends Component {
 
                             <div className="post-outer">
                                 {
-                                    this.state.articles && (
+                                    this.state.articles && this.state.isParsed && (
                                         
                                         this.state.articles.map((article, index) => {
                                             return (
@@ -76,35 +80,11 @@ class Featured extends Component {
                                                             </div>
                                                             <div className="resumo">
                                                                 <span>
-
                                                                     {article.summary}
                                                                 </span>
                                                                 <a className="read-more" href={article.article_link}>Read More
                                                                 </a>
                                                                 <br/>
-                                                                <div>
-                                                                    
-                                                                <div className="slimshady">
-                                                                    {
-                                                                        article.comments != null &&(
-                                                                        article.comments.map((comment, index) => {
-                                                                            return (
-                                                                                <div className>
-                                                                                    <ul className="cmm-widget">
-                                                                                        <li className ="c_user">
-                                                                                            @{comment.user.username}
-                                                                                        </li>
-                                                                                        <li className ="c_comment">
-                                                                                            {comment.comment}
-                                                                                        </li>
-                                                                                        <br/>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            )
-                                                                        })
-                                                                        )}
-                                                                </div>
-                                                                </div>
                                                             </div>
                                                             <div className="clear">
                                                             </div>
