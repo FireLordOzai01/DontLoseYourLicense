@@ -107,7 +107,7 @@ class Featured extends Component {
                             </div>
                         </div>
 
-                        <div className="blog-pager" id="blog-pager">
+                        {/* <div className="blog-pager" id="blog-pager">
                             <span className="showpageOf">Page 1 of 2
                             </span>
                             <span className="showpagePoint">1
@@ -122,7 +122,7 @@ class Featured extends Component {
                                     </i>
                                 </a>
                             </span>
-                        </div>
+                        </div> */}
                         <div className="clear">
                         </div>
                         <div className="blog-feeds">

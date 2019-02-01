@@ -46,26 +46,20 @@ class SignUp extends Component {
                             <div className="row">
                                 <div className="social-media col-md-4 flex-container">
                                     <h5>Use a social network to sign up</h5>
-                                    <button
-                                        id="facebook"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Facebook</button>
-                                    <button
-                                        id="google"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Google+</button>
-                                    <button
-                                        id="linkedin"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Linkedin</button>
-                                    <button
-                                        id="twitter"
-                                        className="btn btn-primary"
-                                        onClick={this.match}
-                                    >Sign in with Twitter</button>
+                                    {/* <div>
+                                        <img
+                                            className="icon"
+                                            src={"https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png"}
+                                            alt=""
+                                            />
+                                    </div>
+                                    <div>
+                                        <img
+                                            className="icon"
+                                            src={"http://www.logosvectorfree.com/wp-content/uploads/2018/01/LinkedIn-logo-png-free-download.png"}
+                                            alt=""
+                                        />
+                                    </div> */}
                                 </div>
                                 <form>
                                     <h3>&nbsp; Sign up to comment, write and receive news by email</h3>

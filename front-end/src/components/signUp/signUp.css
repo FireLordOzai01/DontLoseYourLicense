@@ -5,7 +5,6 @@
     border-color: #FFD439;
 }
 .signUpForm{
-    /* top right bottom left */
     margin: 0px 0px -0px 0px;
     padding: 15px 0px 20px 0px;
     flex-direction: column;
@@ -48,13 +47,16 @@
 .social-media{
     padding:  2% 3% 3.5% 3%;
     margin:  -1.89% 0% -1.9% -1.9%;;
-    /* border: 1px solid black; */
+    border: 1px solid black;
     background: #272727;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
     color: white;
+}
+.icon{
+    margin: 0 0 0 25%;
 }
 
 .icon:hover{
@@ -63,12 +65,11 @@
     /* border: 3px solid #090909; */
 }
 .background-div{
-    /* background: linear-gradient(to right,#C3C3C3, 40%, #090909); */
+    background: linear-gradient(to right,#C3C3C3, 40%, #090909);
     padding:  10% 0%;
-
 }
 .inner-div{
-    /* border: 2px solid black; */
+    border: 2px solid black;
     padding: 20px 20px;
     margin: 0;
     background-color: white;

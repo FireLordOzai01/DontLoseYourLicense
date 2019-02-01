@@ -10,7 +10,8 @@ import Home from './components/home/home.js';
 import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
 import LogInForm from './components/login/login';
-import Fourm from './components/fourm/fourm';
+import Why from './components/signUp/why.js';
+// import Fourm from './components/fourm/fourm';
 
 
 // import Admin from './components/admin/admin';
@@ -33,10 +34,10 @@ class App extends Component {
           {/* Routes */}
           <Switch>
             <Route exact path='/' render={(renderProps) => <Home />} />
-            <Route path='/signup' render={(renderProps) => <SignUp />} />
+            <Route path='/signup' render={(renderProps) => <Why />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/login' render={(renderProps) => <LogInForm/> } />
-            <Route path='/fourm' render={(renderProps) => <Fourm /> } />
+            {/* <Route path='/fourm' render={(renderProps) => <Fourm /> } /> */}
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
           {/* End of Content Wrapper */}
