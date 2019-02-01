@@ -16,7 +16,6 @@ class Featured extends Component {
         this.props.getArticles();
     }
 
-
     render() {
         return (
             <div id="main-wrapper">
@@ -63,9 +62,6 @@ class Featured extends Component {
                                                                 <a className="read-more" href={article.article_link}>Read More
                                                                 </a>
                                                                 <br/>
-                                                                <br/>
-                                                                <br/>
-                                                                <h2>comments</h2>
                                                                 <div>
                                                                     
                                                                 <div className="slimshady">
@@ -107,7 +103,7 @@ class Featured extends Component {
                             </div>
                         </div>
 
-                        <div className="blog-pager" id="blog-pager">
+                        {/* <div className="blog-pager" id="blog-pager">
                             <span className="showpageOf">Page 1 of 2
                             </span>
                             <span className="showpagePoint">1
@@ -122,15 +118,15 @@ class Featured extends Component {
                                     </i>
                                 </a>
                             </span>
-                        </div>
+                        </div> */}
                         <div className="clear">
                         </div>
-                        <div className="blog-feeds">
+                        {/* <div className="blog-feeds">
                             <div className="feed-links"> Subscribe to:
                                 <a className="feed-link" href="http://newcon-themexpose.blogspot.com/feeds/posts/default" target="_blank" type="application/atom+xml">
                                 </a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

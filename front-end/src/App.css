@@ -1,16 +1,10 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-}
-
-div {
+/* div {
     padding: 0;
     border: 0;
     outline: 0;
     vertical-align: baseline;
     background: 0 0;
-}
+} */
 
 #outer-wrapper {
     z-index:1;
@@ -30,11 +24,10 @@ div {
     display:flex;
     justify-content:center;
 }
-/* html, body {
-    margin: 0% 0% 0% 0%;
-    padding: 2% 0%;
-    background: linear-gradient(to right,#090909, 60%, #c3c3c3);
-}  */
+html, body {
+    margin: 0%;
+    padding: 0%;
+} 
 
 .home_bar{
     display:flex;

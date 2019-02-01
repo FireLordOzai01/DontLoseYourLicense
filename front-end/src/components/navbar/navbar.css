@@ -2,12 +2,12 @@
     outline:0;
 }
 
-div {
+/* div {
     border: 0;
     outline: 0;
     vertical-align: baseline;
     background: 0 0;
-}
+} */
 
 nav{
     display:block;
@@ -81,4 +81,9 @@ ul{
 .nav-item:hover{
     color: #272727 !important;
     list-style-type:none
+}
+
+.signin-login{
+    position: relative;
+    float: right;
 }
