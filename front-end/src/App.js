@@ -3,6 +3,7 @@ import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 import LogoLogo from './components/logo/logo.js';
 import Navbar from './components/navbar/navbar.js';
 import { connect } from 'react-redux';
+import {withRouter}  from 'react-router-dom';
 import './App.css';
 import { getArticles } from './actions';
 
@@ -66,7 +67,7 @@ const mapPropsToDispatch = dispatch => ({
   getArticles: () => dispatch(getArticles())
 })
 
-export default connect(mapStateToProps, mapPropsToDispatch)(App);
+export default withRouter (connect(mapStateToProps, mapPropsToDispatch)(App));
 
 
 
