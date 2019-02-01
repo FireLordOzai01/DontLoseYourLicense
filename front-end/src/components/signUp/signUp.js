@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
-import './signUp.css';
+import LinkedInPage from './linkedinOauth';
 
 class SignUp extends Component {
     state = {
@@ -26,12 +26,12 @@ class SignUp extends Component {
             alert("Passwords don't match");
         } else {
             this.setState({ redirect: true });
+            this.props.onAddUser(this.state.user)
         }
         if (this.state.subscribed){
             this.setState({email: this.state.user.email += "*"});
-            console.log(this.state.user.email);
+            this.props.onAddUser(this.state.user)
         }
-        this.props.onAddUser(this.state.user)
     }
 
     render() {
@@ -46,20 +46,27 @@ class SignUp extends Component {
                             <div className="row">
                                 <div className="social-media col-md-4 flex-container">
                                     <h5>Use a social network to sign up</h5>
-                                    {/* <div>
-                                        <img
-                                            className="icon"
-                                            src={"https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png"}
-                                            alt=""
-                                            />
-                                    </div>
-                                    <div>
-                                        <img
-                                            className="icon"
-                                            src={"http://www.logosvectorfree.com/wp-content/uploads/2018/01/LinkedIn-logo-png-free-download.png"}
-                                            alt=""
-                                        />
-                                    </div> */}
+                                    <button
+                                        id="facebook"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Facebook</button>
+                                    <button
+                                        id="google"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Google+</button>
+                                    {/* <button
+                                        id="linkedin"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Linkedin</button> */}
+                                    <LinkedInPage/>
+                                    <button
+                                        id="twitter"
+                                        className="btn btn-primary"
+                                        onClick={this.match}
+                                    >Sign in with Twitter</button>
                                 </div>
                                 <form>
                                     <h3>&nbsp; Sign up to comment, write and receive news by email</h3>
@@ -118,6 +125,7 @@ class SignUp extends Component {
                                                     subscribed: !this.state.subscribed
                                                 })}
                                                 />
+                                                <label htmlFor="">Yes, I want to be subscribed to all newsletters</label>
                                             </div>
                                         </div>
                                         <button
@@ -135,9 +143,12 @@ class SignUp extends Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    logged: state.isLogged
+})
 
 const mapDispatchToProps = dispatch => ({
     onAddUser: (user) => (dispatch(addUser(user)))
 })
 
-export default connect(null,mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

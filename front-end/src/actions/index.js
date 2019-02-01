@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import {
-    ADD_USER_MAILCHIMP,
     ADD_USER,
     DELETE_USER,
     EDIT_USER,
@@ -31,12 +30,6 @@ export const editUser = (id, user) => async dispatch => {
     dispatch({ type: EDIT_USER, payload: response.data });
 }
 
-// export const getUserToken = (user) => async dispatch => {
-//     let response = await axios.post('http://localhost:5000/api/token/login', user);
-//     dispatch({ type: GET_USER_TOKEN, token: response.data });
-//     // getUserById(response.data);
-// }
-
 export const getUserById = (token, id) => async dispatch => {
     var config = {
         header: {'Authorization': "bearer " + token}
@@ -46,22 +39,14 @@ export const getUserById = (token, id) => async dispatch => {
 }
 
 export const getUserToken = (user) => async dispatch => {
-    let response = await axios.post('http://localhost:5000/api/token/loginUser', user);
-    dispatch({ type: GET_USER_TOKEN, token: response.data.token });
-    dispatch({ type: GET_USER_BY_ID, payload: response.data.user })
+    try {
+        let response = await axios.post('http://localhost:5000/api/token/loginUser', user);
+        dispatch({ type: GET_USER_TOKEN, token: response.data.token });
+        dispatch({ type: GET_USER_BY_ID, payload: response.data.user });
+    } catch (err){
+        alert("Username and/or password is incorrect. Try again.");
+    }
 }
-
-// const getUserById = (token, id) => async dispatch => {
-//     console.log('hello');
-//     console.log(token, id);
-//     var config = {
-//         header: {'Authorization': "bearer " + token}
-//     }
-//     console.log(config);
-//     let response = await axios.get(`http://localhost:5000/api/users/${id}`, config);
-//     console.log(response);
-//     // dispatch({ type: GET_USER_BY_ID, payload: response.data })
-// }
 
 export const getUsers = () => async dispatch => {
     let response = await axios.get('http://localhost:5000/api/users');
@@ -95,4 +80,12 @@ export const editArticle = (id, article) => async dispatch => {
 export const getArticles = () => async dispatch => {
     let response = await axios.get('http://localhost:5000/api/articles');
     dispatch({ type: GET_ARTICLES, payload: response.data })
+}
+
+export const getLinkedInToken = (code) => async dispatch => {
+    let strngyCode = JSON.stringify(code, null, 0);
+    let headers = { "Content-Type" : "application/json" };
+    let response = await axios.post('http://localhost:5000/api/linkedin', strngyCode, {headers: headers});
+    console.log(response);
+    // window.localStorage.setItem('access token', response.access_token);
 }

@@ -18,10 +18,8 @@ using MailChimp.Net.Models;
 using Microsoft.Extensions.Configuration;
 using System.Globalization;
 
-
 namespace back_end.Controllers
 {
-
     static class MailchimpRepository
     {
          static private IConfiguration _configuration;
@@ -36,9 +34,6 @@ namespace back_end.Controllers
             Title = "Dont Lose Your License new article",
             SubjectLine = "New Article",
         };
-
-
-
 
         // `html` contains the content of your email using html notation
         static public void CreateAndSendCampaign(string html)
@@ -66,10 +61,7 @@ namespace back_end.Controllers
              }).Result;
             _mailChimpManager.Campaigns.SendAsync(campaign.Id).Wait();
         }
-
     }
-
-
 
     [Route("api/articles")]
     [ApiController]
@@ -80,7 +72,6 @@ namespace back_end.Controllers
         {
             _context = context;
         }
-
         void ParseRssFile(String xml)
         {
             XmlDocument rssXmlDoc = new XmlDocument();
@@ -95,7 +86,6 @@ namespace back_end.Controllers
             // Iterate through the items in the RSS file
             foreach (XmlNode rssNode in rssNodes)
             {
-
                 //get all article data
                 XmlNode rssSubNode = rssNode.SelectSingleNode("title");
                 string title = rssSubNode != null ? rssSubNode.InnerText : "";
@@ -109,13 +99,11 @@ namespace back_end.Controllers
                 rssSubNode = rssNode.SelectSingleNode("pubDate");
                 string pubDate = rssSubNode != null ? rssSubNode.InnerText : "";
 
-
                 //Articles too old? stop searching
                 if ((DateTime.Now - Convert.ToDateTime(pubDate)).TotalDays > 30)
                 {
                     break;
                 }
-
 
                 //check for relevant pages from each site, get all from ca.gov sites
                 if ((title.Contains("California") || description.Contains("California") || link.Contains("ca.gov")) && (title.Contains("compliance")
@@ -133,7 +121,6 @@ namespace back_end.Controllers
 
                         //new article, send email to subscribers
                         MailchimpRepository.CreateAndSendCampaign(modifyHTML(link));
-
                     }
                     else
                     {
@@ -141,22 +128,15 @@ namespace back_end.Controllers
                         break;
                     }
                 }
-
                 _context.SaveChanges();
-
             }
-
         }
-
-
-
 
         public static string modifyHTML(string link)
         {
             return "<div mc:edit=\"body_content\"><h1>&nbsp;</h1>" +
        "<h3>New Article</h3><h4>Read the latest compliance and regulation changes so you don&#39;t lose your license!</h4>" +
        "<p>Latest Article:<br><br><a id=\"articleLink\" href=\"" + link + "\"target=\"_blank\">" + link + "</a></p></div>";
-
         }
 
         async Task<string> Download(string url) // async function
@@ -174,13 +154,9 @@ namespace back_end.Controllers
                 }
             }
 
-
             return stringContent;
 
         }
-
-
-
         void AddArticles()
         {
             List<String> links = new List<String>();
@@ -194,13 +170,11 @@ namespace back_end.Controllers
             links.Add("https://www.thecannifornian.com/feed/");
             links.Add("https://www.weednews.co/feed/");
 
-
             //multiple threads for each url
             foreach (var link in links)
             {
                 TaskList.Add(Download(link));
             }
-
 
             Task.WaitAll(TaskList.ToArray());
 
@@ -210,8 +184,6 @@ namespace back_end.Controllers
                 if (task.Result != null)
                     ParseRssFile(task.Result);
             }
-
-
             if (_context.articles != null)
             {
                 //check for articles out of date, greater than 30 days and remove
@@ -219,15 +191,12 @@ namespace back_end.Controllers
                 _context.SaveChanges();
             
             }
-
         }
-
 
         public static string StripHTML(string input)
         {
             return Regex.Replace(input, "<.*?>", String.Empty);
         }
-
 
         // GET api
         [HttpGet]
@@ -246,7 +215,6 @@ namespace back_end.Controllers
             .Include(a => a.comments)
             .ThenInclude(a => a.user));
         }
-
 
         // POST used to add comment to a specific article
         [HttpPost]
@@ -273,7 +241,6 @@ namespace back_end.Controllers
            .Include(a => a.comments)
            .ThenInclude(a => a.user));
         }
-
 
         // DELETE api
         [HttpDelete("{article_id}/{comment_id}")]

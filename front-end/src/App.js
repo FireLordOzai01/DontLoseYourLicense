@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { LinkedInPopUp } from 'react-linkedin-login-oauth2';
 import LogoLogo from './components/logo/logo.js';
 import Navbar from './components/navbar/navbar.js';
 import './App.css';
@@ -37,7 +38,8 @@ class App extends Component {
             <Route path='/signup' render={(renderProps) => <Why />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/login' render={(renderProps) => <LogInForm/> } />
-            {/* <Route path='/fourm' render={(renderProps) => <Fourm /> } /> */}
+            <Route path='/fourm' render={(renderProps) => <Fourm /> } />
+            <Route exact path="/linkedin" component={LinkedInPopUp} />
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
           {/* End of Content Wrapper */}

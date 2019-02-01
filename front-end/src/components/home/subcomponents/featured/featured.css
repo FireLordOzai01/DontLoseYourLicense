@@ -64,7 +64,7 @@ div {
     line-height: 33px;
 }
 
-.box-title h2 {
+/* .box-title h2 {
     display: inline-block;
     position: relative;
     background-color: #fff;
@@ -77,7 +77,7 @@ div {
     margin: 0;
     padding-right: 15px;
     padding-left: 25px;
-}
+} */
 
 .box-title h2 a {
     color: #1c1c1c;
@@ -318,7 +318,6 @@ a.quickedit {
     z-index: 1;
     margin: 0;
     padding-right: 15px;
-    padding-left: 25px;
 }
 
 .posts-title h2 a {
@@ -567,22 +566,6 @@ a.read-more {
     border-radius: 0;
 }
 
-.feed-links {
-    clear: both;
-    display: none;
-    line-height: 2.5em;
-}
-
-
-.c_user {
-    color: #1c1c1c;
-    position: relative;
-    font-size: 14px;
-    font-weight: 500;
-    display: block;
-    overflow: hidden;
-}
-
 h2 {
     display: inline-block;
     position: relative;
@@ -595,29 +578,6 @@ h2 {
     z-index: 1;
     margin: 0 0 10px;
     padding-right: 15px;
-    padding-left: 25px;
 }
 
-.c_comment {
-    margin-top: 4px;
-    color: #bdbdbd;
-    display: block;
-    line-height: 1.2em;
-    text-transform: lowercase;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: 400;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    background: 0 0;
-}
 
-.slimshady {
-    border: 2px solid gray;
-    box-shadow: 13px 12px 5px 0px gray;
-    -webkit-box-shadow: 13px 12px 5px 0px gray;
-    -moz-box-shadow: 13px 12px 5px 0px gray;
-    margin: 10px 10px 10px 0px;
-    padding: 30px 50px 10px 50px;
-}

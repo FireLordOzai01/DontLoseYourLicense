@@ -8,25 +8,26 @@ class LogInForm extends Component {
     state = {
         username: '',
         password: '',
-        redirect: false
+        logged: false
     }
 
     onLogIn = e => {
         e.preventDefault();
+
         let user = {
             username: this.state.username,
             password: this.state.password
         };
-
+      
         this.props.logIn(user);
-        this.setState({ redirect: true });
     }
 
     render() {
         return (
-            this.state.redirect
-            ? <Redirect to='/profile'/>
-            :
+            this.props.isLogged
+            ? 
+            <Redirect to='/profile'/>
+            : 
             <div className="container">
                 <h2 className="mt-3">Log In</h2>
                 <form>
@@ -56,7 +57,8 @@ class LogInForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    users: state.users
+    user: state.loggedUser,
+    isLogged: state.isLogged
 });
 
 const mapPropsToDispatch = dispatch => ({
