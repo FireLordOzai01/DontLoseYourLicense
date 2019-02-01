@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
 import LinkedInPage from './linkedinOauth';
-import './signUp.css';
+import './newSignUp.css';
 
 class SignUp extends Component {
     state = {
@@ -130,7 +130,7 @@ class SignUp extends Component {
                                             </div>
                                         </div>
                                         <button
-                                            className="btn btn-primary signUpButton"
+                                            className="btn signUpButton"
                                             onClick={(e)=>this.matchPasswords(e)}
                                         >Submit</button>
                                     </div>
