@@ -9,38 +9,22 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="nav-container">
                 <nav id="main-nav">
-                    <div className="header-menu row">
-                        <ul>
-                            <li id="logo-hover">
-                                <Link  to="/"><LogoLogo /></Link>
-                            </li>
-                            <li>
-                                <Link className="nav-item" to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link className="nav-item" to="/fourm">Forum </Link>
-                            </li>
-                            <li>
-                                <Link className="nav-item" to="/signup">Signup </Link>
-                            </li>
-                            {this.props.logged
-                            ?   
-                            <li>
+                    <Link id="logo-hover" to="/"><LogoLogo /></Link>
+                    <Link className="nav-item" to="/">Home</Link>
+                    <Link className="nav-item" to="/fourm">Forum </Link>
+                    <Link className="nav-item" to="/signup">Signup </Link>
+                    {this.props.logged
+                            ?                             
                                 <Link 
-                                    className="nav-item"
+                                    className="nav-item logout"
                                     to="/"
                                     onClick={() => this.props.logout(this.props.user, this.props.user.user_id)}>Logout
                                 </Link>
-                            </li>
-                            :
-                            <li>
-                                <Link className="nav-item" to="/login">Login</Link>
-                            </li>
+                            :                           
+                                <Link className="nav-item" to="/login">Login</Link>                          
                             }
-                        </ul>
-                    </div>
                 </nav>
             </div>
         )
