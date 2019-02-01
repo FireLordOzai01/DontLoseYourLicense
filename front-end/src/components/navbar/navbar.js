@@ -13,7 +13,6 @@ class Navbar extends Component {
                 <nav className="main-nav">
                     <Link id="logo-hover" to="/"><LogoLogo /></Link>
                     <Link className="nav-item" to="/">Home</Link>
-                    <Link className="nav-item" to="/fourm">Forum </Link>
                     {this.props.logged
                         ?
                         <Link
