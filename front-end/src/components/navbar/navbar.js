@@ -9,41 +9,25 @@ class Navbar extends Component {
 
     render() {
         return (
-            <div>
-                <nav id="main-nav">
-                    <div className="header-menu row">
-                        <ul>
-                            <li id="logo-hover">
-                                <Link  to="/"><LogoLogo /></Link>
-                            </li>
-                            <li>
-                                <Link className="nav-item" to="/">Home</Link>
-                            </li>
-                            {/* <li>
-                                <Link className="nav-item" to="/fourm">Forum </Link>
-                            </li> */}
-                            
-                            {this.props.logged
-                            ?   
-                            <li>
-                                <Link 
-                                    className="nav-item"
-                                    to="/"
-                                    onClick={() => this.props.logout(this.props.user, this.props.user.user_id)}>Logout
+            <div className="nav-container">
+                <nav className="main-nav">
+                    <Link id="logo-hover" to="/"><LogoLogo /></Link>
+                    <Link className="nav-item" to="/">Home</Link>
+                    <Link className="nav-item" to="/fourm">Forum </Link>
+                    {this.props.logged
+                        ?
+                        <Link
+                            className="nav-item logout"
+                            to="/"
+                            onClick={() => this.props.logout(this.props.user, this.props.user.user_id)}>Logout
                                 </Link>
-                            </li>
-                            :
-                            <div className="signin-login">
-                                <li>
-                                    <Link className="nav-item" to="/signup">Signup </Link>
-                                </li>
-                                <li>
-                                    <Link className="nav-item" to="/login">Login</Link>
-                                </li>
-                            </div>
-                            }
-                        </ul>
-                    </div>
+                        :
+                        <div className="main-nav">
+                            <Link className="nav-item" to="/login">Login</Link>
+                            <Link className="nav-item" to="/signup">Signup </Link>
+                        </div>
+
+                    }
                 </nav>
             </div>
         )

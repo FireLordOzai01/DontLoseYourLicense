@@ -39,9 +39,6 @@ namespace back_end.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] string code)
         {
-            Console.WriteLine("***********");
-            Console.WriteLine(code);
-
             string str = linkeInApi(code);
             return Ok(str);
         }
@@ -51,10 +48,8 @@ namespace back_end.Controllers
 
             string authUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
             var sign = "grant_type=authorization_code&code=" + HttpUtility.HtmlEncode(code) + "&redirect_uri=" + HttpUtility.HtmlEncode("http://localhost:3000/linkedin/") + "&client_id=" + Keys.linkedInClientId + "&client_secret=" + Keys.linkedInClientSecret;
-            //byte[] byteArray = Encoding.UTF8.GetBytes(sign);
-            HttpWebRequest webRequest = WebRequest.Create(authUrl + "?" + sign) as HttpWebRequest;
 
-            // HttpWebRequest webRequest = WebRequest.Create(url) as HttpWebRequest;
+            HttpWebRequest webRequest = WebRequest.Create(authUrl + "?" + sign) as HttpWebRequest;
 
             webRequest.Method = "POST";
             webRequest.ContentType = "application/x-www-form-urlencoded";
@@ -71,60 +66,22 @@ namespace back_end.Controllers
             responseReader.Close();
             dataStream.Close();
             response.Close();
-            // Console.WriteLine(returnVal);
             
-
             return returnVal;
-
-            // string authUrl = "https://www.linkedin.com/uas/oauth2/accessToken";
-
-            // var sign = "grant_type=authorization_code" + "&code=" + code + "&redirect_uri=" + HttpUtility.HtmlEncode("http://localhost:3000/linkedin") + "&client_id=" + "86aojroi51e35k" + "&client_secret=" + "TD6uCe1IKkOP7Xkf";
-            // // var postData = String.Format("grant_type=authorization_code&code={0}&redirect_uri={1}&client_id={2}&client_secret={3}", code, HttpUtility.HtmlEncode(redirectUrl), apiKey, apiSecret);
-
-            // HttpWebRequest webRequest = WebRequest.Create(authUrl + "?" + sign) as HttpWebRequest;
-            // webRequest.Method = "POST";
-
-            // //This "application/x-www-form-urlencoded"; line is important
-            // webRequest.ContentType = "application/x-www-form-urlencoded";
-
-            // webRequest.ContentLength = sign.Length;
-
-            // StreamWriter requestWriter = new StreamWriter(webRequest.GetRequestStream());
-            // requestWriter.Write(sign);
-            // requestWriter.Close();
-
-            // StreamReader responseReader = new StreamReader(webRequest.GetResponse().GetResponseStream());
-
-            // return responseReader.ReadToEnd().ToString();
-
-            // Console.WriteLine("****************");
-            // string result;
-            // Console.WriteLine("Making API Call...");
-            // using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
-            // {
-            //     client.BaseAddress = new Uri("https://www.linkedin.com/oauth/v2/");
-            //     HttpResponseMessage response = client.GetAsync("accessToken?grant_type=authorization_code&code=" + code + "&redirect_uri=http://localhost:3000/linkedin&client_id=86aojroi51e35k&client_secret=TD6uCe1IKkOP7Xkf").Result;
-            //     response.EnsureSuccessStatusCode();
-            //     result = response.Content.ReadAsStringAsync().Result;
-            //     Console.WriteLine("Result: " + result);
-            // }
-
-            // Console.ReadLine();
-            // return result;
-
-            // HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            // request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
-            // using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            // using (Stream stream = response.GetResponseStream())
-            // using (StreamReader reader = new StreamReader(stream))
-            // {
-            //     Console.WriteLine(reader.ReadToEnd());
-            //     return reader.ReadToEnd();
-            // }
         }
 
-    }
+        // public string linkedInGetUserInfo(string code)
+        // {
+        //     string apiRequest = "https://api.linkedin.com/v2/me";
+        // }
 
+        public void SetBasicAuthHeader(WebRequest request, string username, string password)
+       {
+           string auth = username + ":" + password;
+           auth = Convert.ToBase64String(Encoding.Default.GetBytes(auth));
+           request.Headers["Authorization"] = "Bearer " + auth;
+       }
+
+    }
 
 }

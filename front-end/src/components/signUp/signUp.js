@@ -50,7 +50,7 @@ class SignUp extends Component {
                                     <button
                                         id="facebook"
                                         className="btn btn-primary"
-                                        onClick={this.match}
+                                    onClick={this.match}
                                     >Sign in with Facebook</button>
                                     <button
                                         id="google"

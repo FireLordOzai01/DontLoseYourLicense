@@ -8,7 +8,9 @@ import { getArticles } from '../../../.././actions';
 class Featured extends Component {
     state = {
 
-        comment: ""
+        comment: "",
+        article : []
+
 
     }
 
