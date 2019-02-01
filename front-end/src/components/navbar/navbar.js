@@ -19,12 +19,6 @@ class Navbar extends Component {
                             <li>
                                 <Link className="nav-item" to="/">Home</Link>
                             </li>
-                            {/* <li>
-                                <Link className="nav-item" to="/fourm">Forum </Link>
-                            </li> */}
-                            <li>
-                                <Link className="nav-item" to="/signup">Signup </Link>
-                            </li>
                             {this.props.logged
                             ?   
                             <li>
