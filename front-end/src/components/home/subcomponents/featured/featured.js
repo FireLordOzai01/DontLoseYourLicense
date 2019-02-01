@@ -7,7 +7,6 @@ import { getArticles } from '../../../.././actions';
 
 class Featured extends Component {
     state = {
-
         comment: "",
         articles : null
 
@@ -40,7 +39,7 @@ class Featured extends Component {
 
     render() {
         return (
-            <div id="main-wrapper">
+            <div className="container" id="main-wrapper">
                 <div className="posts-title">
                     <h2>
                         <a href="/search?&amp;max-results=10">Recent Featured Posts</a>
@@ -123,31 +122,6 @@ class Featured extends Component {
                                     )}
                             </div>
                         </div>
-
-                        {/* <div className="blog-pager" id="blog-pager">
-                            <span className="showpageOf">Page 1 of 2
-                            </span>
-                            <span className="showpagePoint">1
-                            </span>
-                            <span className="showpageNum">
-                                <a href="#" onClick="redirectpage(2);return false">2
-                                </a>
-                            </span>
-                            <span className="showpageNum">
-                                <a href="#" onClick="redirectpage(2);return false">
-                                    <i className="fa fa-angle-double-right">
-                                    </i>
-                                </a>
-                            </span>
-                        </div> */}
-                        <div className="clear">
-                        </div>
-                        {/* <div className="blog-feeds">
-                            <div className="feed-links"> Subscribe to:
-                                <a className="feed-link" href="http://newcon-themexpose.blogspot.com/feeds/posts/default" target="_blank" type="application/atom+xml">
-                                </a>
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </div>
