@@ -1,3 +1,10 @@
+#main-wrapper {
+    margin-top: 0;
+    float: left;
+    overflow: hidden;
+    width: 68%;
+    word-wrap: break-word
+}
 .posts-title {
     margin-right: 2%;
     position: relative;
@@ -6,7 +13,6 @@
     margin-bottom: 10px;
     line-height: 33px;
 }
-
 .posts-title h2 {
     display: inline-block;
     position: relative;
@@ -20,11 +26,9 @@
     margin: 0;
     padding-right: 15px;
 }
-
 .posts-title h2 a {
     color: #1c1c1c;
 }
-
 .posts-title:after {
     content: "";
     position: absolute;
