@@ -31,25 +31,25 @@ class LogInForm extends Component {
             <div className="loginBackground">
                 <div className="loginOverlay">
                     <div className="container inputButtonCombo">
-                        <h2 className="loginHeader">Log In</h2>
-                        <form>
+                        <h4 id="loginHeader">Log In</h4>
+                        <form className="loginForm">
                             <div className="form-group">
                                 <input  type="text" 
-                                        className="form-control loginWidth" 
-                                        placeholder="Enter username" 
+                                        className="form-control loginWidth loginInput" 
+                                        placeholder="Username" 
                                         value={this.state.username}
                                         onChange={(e) => this.setState({ username: e.target.value })}/>
                             </div>
                             <div className="form-group">
                                 <input  type="password" 
-                                        className="form-control loginWidth"  
-                                        placeholder="Enter password"
+                                        className="form-control loginWidth loginInput"  
+                                        placeholder="Password"
                                         value={this.state.password}
                                         onChange={(e) => this.setState({ password: e.target.value })}/>
                             </div>
                             <button 
-                                className="btn btn-outline-primary mt-3 mb-4"
-                                onClick={(e) => this.onLogIn(e)}>Log In</button>
+                                className="btn btn-primary loginButton"
+                                onClick={(e) => this.onLogIn(e)}>Submit</button>
                         </form>
                     </div>
                 </div>
