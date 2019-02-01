@@ -165,53 +165,6 @@ a.read-more {
     overflow: hidden;
 }
 
-.post-footer {
-    line-height: 1.6;
-    display: none !important;
-}
-
-#blog-pager {
-    overflow: hidden;
-    clear: both;
-    margin: 0;
-    display: block;
-    padding: 0 0 20px;
-    text-align: left;
-}
-
-.showpageOf {
-    display: none !important;
-}
-
-.showpagePoint {
-    display: block;
-    float: left;
-    margin-right: 6px;
-    padding: 0 12px;
-    background: #202020;
-    background-color: #FFD439;
-    color: #fff;
-    border: 0;
-    text-transform: uppercase;
-    line-height: 32px;
-    font-weight: 500;
-    border-radius: 0;
-}
-
-.showpageNum a {
-    display: block;
-    float: left;
-    margin-right: 6px;
-    padding: 0 12px;
-    background: #202020;
-    color: #fff;
-    border: 0;
-    text-transform: uppercase;
-    line-height: 32px;
-    font-weight: 500;
-    border-radius: 0;
-}
-
 h2 {
     display: inline-block;
     position: relative;
@@ -225,5 +178,3 @@ h2 {
     margin: 0 0 10px;
     padding-right: 15px;
 }
-
-
