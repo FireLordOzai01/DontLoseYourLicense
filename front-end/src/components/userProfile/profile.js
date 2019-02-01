@@ -9,18 +9,6 @@ class Profile extends Component {
         active_date: ''
     }
 
-    // getActiveDate = () => {
-    //     let activeTime = this.props.users.active_date;
-    //     activeTime = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(activeTime);
-    //     return activeTime;
-    // }
-
-    // getCreationDate = () => {
-    //     let creationTime = this.props.users.creation_date;
-    //     creationTime = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(creationTime);
-    //     return creationTime;
-    // }
-
     render() {
         return (
             <div className="profile-container container">
@@ -45,16 +33,7 @@ class Profile extends Component {
                     <p>Last log in: {this.props.users.active_date} </p>
                     <hr />
                     <h5>Posts and Comments</h5>
-                {/* {this.props.users.map((user, index) => {
-                    return (
-                        <div key={index}>
-                            <p>{user.}</p> <p>Santa Ana, Ca</p>
-                        </div>
-                    )
-                })} */}
                 </div>
-
-
             </div>
         );
     }

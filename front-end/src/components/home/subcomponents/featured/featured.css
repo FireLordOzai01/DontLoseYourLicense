@@ -64,7 +64,7 @@ div {
     line-height: 33px;
 }
 
-.box-title h2 {
+/* .box-title h2 {
     display: inline-block;
     position: relative;
     background-color: #fff;
@@ -77,7 +77,7 @@ div {
     margin: 0;
     padding-right: 15px;
     padding-left: 25px;
-}
+} */
 
 .box-title h2 a {
     color: #1c1c1c;
