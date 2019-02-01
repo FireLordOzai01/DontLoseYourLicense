@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions';
 import LinkedInPage from './linkedinOauth';
+import './signUp.css';
 
 class SignUp extends Component {
     state = {

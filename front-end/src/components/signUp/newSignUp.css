@@ -1,0 +1,63 @@
+.background{
+    height: 100vh;
+    background: url('https://www.urlaubsguru.at/wp-content/uploads/2017/01/coffeeshop-amsterdam-1-1200x335.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.overlay{
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signUpForm{
+    padding: 15px 0px 20px 0px;
+    flex-direction: column;
+    background-color: inherit;
+}
+.signUpButton{
+    margin-left: 40%;
+    background-color: #272727;
+    border: 1px solid black;
+}
+.signUpButton:hover{
+    background-color: #FFD439;
+    color: #272727;
+    border: 1px solid #FFD439;
+}
+.input {
+    border: 1px solid transparent;
+    border-bottom: 2px solid black;
+    display: inline;
+    margin: 0% 0% 4% 0%;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.input:focus{
+    appearance: none;
+    border-bottom-color: black;
+    box-shadow: none;
+}
+.input:active{
+   outline: none;
+}
+.passwordCombo{
+    width: 112% !important;
+}
+.form{
+    width: 145%;
+    margin-left: 40%;
+}
+.newsLetter{
+    color: white;
+}
+#mainTxt{
+    color: white;
+    margin-left: 40%;
+    padding-bottom: 2%;
+}

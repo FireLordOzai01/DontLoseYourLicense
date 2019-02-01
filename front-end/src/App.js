@@ -11,7 +11,7 @@ import Home from './components/home/home.js';
 import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
 import LogInForm from './components/login/login';
-import Why from './components/signUp/why.js';
+import Why from './components/signUp/newSignUp.js';
 // import Fourm from './components/fourm/fourm';
 
 
@@ -29,8 +29,8 @@ class App extends Component {
             <Navbar />
           </div>
         </div>
-        <div id="outer-wrapper" className="index home">
-          <div className="clear">
+        <div id="" className="">
+          <div className="">
           </div>
           {/* Routes */}
           <Switch>
@@ -38,12 +38,12 @@ class App extends Component {
             <Route path='/signup' render={(renderProps) => <Why />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/login' render={(renderProps) => <LogInForm/> } />
-            <Route path='/fourm' render={(renderProps) => <Fourm /> } />
+            {/* <Route path='/fourm' render={(renderProps) => <Fourm /> } /> */}
             <Route exact path="/linkedin" component={LinkedInPopUp} />
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
           {/* End of Content Wrapper */}
-          <div className="clear">
+          <div className="">
           </div>
       </div>
     </div>
