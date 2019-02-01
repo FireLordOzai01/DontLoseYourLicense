@@ -1,0 +1,25 @@
+.loginBackground{
+    height: 100vh;
+    background: url('https://thefreshtoast.com/wp-content/uploads/2019/01/wanted-real-cannabis-photography.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.loginOverlay{
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .3);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginWidth{
+    width: 60%;
+}
+.inputButtonCombo{
+    margin: 0% 0% 20% 25%;
+}
+.loginHeader{
+    color: white;
+}
