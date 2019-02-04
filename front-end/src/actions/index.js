@@ -31,9 +31,7 @@ export const editUser = (id, user) => async dispatch => {
 }
 
 export const getUserById = (token, id) => async dispatch => {
-    var config = {
-        header: {'Authorization': "bearer " + token}
-    }
+    var config = { header: {'Authorization': "bearer " + token} };
     let response = await axios.get(`http://localhost:5000/api/users/${id}`, config);
     dispatch({ type: GET_USER_BY_ID, payload: response.data })
 }
@@ -43,7 +41,7 @@ export const getUserToken = (user) => async dispatch => {
         let response = await axios.post('http://localhost:5000/api/token/loginUser', user);
         dispatch({ type: GET_USER_TOKEN, token: response.data.token });
         dispatch({ type: GET_USER_BY_ID, payload: response.data.user });
-    } catch (err){
+    } catch (err) {
         alert("Username and/or password is incorrect. Try again.");
     }
 }
@@ -53,8 +51,8 @@ export const getUsers = () => async dispatch => {
     dispatch({ type: GET_USERS, payload: response.data })
 }
 
-export const saveAvatar = (avatar) => async dispatch => {
-    dispatch({ type: SAVE_AVATAR, avatar: avatar.avatar })
+export const saveAvatar = ({ avatar }) => async dispatch => {
+    dispatch({ type: SAVE_AVATAR, avatar })
 }
 
 export const addArticle = article => async dispatch => {

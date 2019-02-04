@@ -28,18 +28,18 @@ class SignUp extends Component {
         } else {
             this.setState({ redirect: true });
             this.props.onAddUser(this.state.user)
-        }
-        if (this.state.subscribed){
-            this.setState({email: this.state.user.email += "*"});
-            this.props.onAddUser(this.state.user)
-        }
+            if (this.state.subscribed) {
+                this.setState({email: this.state.user.email += "*"});
+                this.props.onAddUser(this.state.user)
+            }
+        } 
     }
 
     render() {
         return (
             this.state.redirect
             ? <Redirect to='/profile'/>
-            :
+            : (
             <div className="background-div">
                 <div className="the-div-before-container">
                     <div className="container inner-div">
@@ -136,20 +136,20 @@ class SignUp extends Component {
                                     </div>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
+            )
         );
     }
 }
 const mapStateToProps = state => ({
     logged: state.isLogged
-})
+});
 
 const mapDispatchToProps = dispatch => ({
     onAddUser: (user) => (dispatch(addUser(user)))
-})
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(SignUp);

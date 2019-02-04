@@ -1,8 +1,6 @@
 .profile-container{
     display: flex;
     margin-top: 50px;
-    /* padding: 5%; */
-    border: 1px solid whitesmoke;
     background-color: #F5F5F5;
 }
 a {
@@ -31,3 +29,8 @@ hr{
     background: linear-gradient(#090909, 10%, #FFD439);
 }
 
+#namecss {
+    padding-top: 10%;
+    background-color: #F5F5F5;
+    font-size: 20px;
+}

@@ -9,6 +9,11 @@ class Profile extends Component {
         active_date: ''
     }
 
+    getDate = () => {
+        let date = this.props.users.creation_date.substring(0,4);
+        return date;
+    }
+
     render() {
         return (
             <div className="profile-container container">
@@ -24,13 +29,13 @@ class Profile extends Component {
                     <p>{this.props.users.user_industry}</p>
                 </div>
                 <div className="row2">
-                    <h2>{this.props.users.username}</h2>
+                    <h2 id="namecss">{this.props.users.username}</h2>
                     <hr />
                     <h5>About</h5>
-                    <p>Member since: {this.props.users.creation_date}</p>
+                    <p>Member since: {this.props.users.creation_date ? new Date(this.props.users.creation_date.toString()).getFullYear() : ""}</p>
                     <p>Email: {this.props.users.email} </p>
                     <p>Posts and replies: 12</p>
-                    <p>Last log in: {this.props.users.active_date} </p>
+                    <p>Last log in: {this.props.users.active_date ? new Date(this.props.users.active_date.toString()).getMonth() + 1 + "/" + new Date(this.props.users.active_date.toString()).getFullYear() : ""} </p>
                     <hr />
                     <h5>Posts and Comments</h5>
                 </div>

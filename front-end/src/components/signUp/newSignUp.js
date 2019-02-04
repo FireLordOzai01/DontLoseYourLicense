@@ -112,7 +112,7 @@ class Why extends Component {
                                                 <input
                                                     value={this.state.user.password}
                                                     onChange={e => this.setState({ ...this.state, user: { ...this.state.user, password: e.target.value } })}
-                                                    type="password" className="form-control input col-md-5" placeholder="Password" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                    type="password" className="form-control input col-md-5" placeholder="Password" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                                             {/* Confirm Password */}
                                                 <input
                                                     value={this.state.confirmPassword}
