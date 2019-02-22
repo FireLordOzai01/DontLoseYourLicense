@@ -12,7 +12,11 @@ import {
     ADD_ARTICLE,
     DELETE_ARTICLE,
     EDIT_ARTICLE,
-    GET_ARTICLES
+    GET_ARTICLES,
+    GET_THREADS,
+    ADD_THREAD,
+    EDIT_THREAD,
+    DELETE_THREAD
 } from './../constants';
 
 export const addUser = user => async dispatch => {
@@ -86,4 +90,14 @@ export const getLinkedInToken = (code) => async dispatch => {
     let response = await axios.post('http://localhost:5000/api/linkedin', strngyCode, {headers: headers});
     console.log(response);
     // window.localStorage.setItem('access token', response.access_token);
+}
+
+export const addThread = thread => async dispatch => {
+    let response = await axios.post('http://localhost:5000/api/forum', thread);
+    dispatch({ type: ADD_THREAD, payload: response.data })
+}
+
+export const getThreads = () => async dispatch => {
+    let response = await axios.get('http://localhost:5000/api/forum');
+    dispatch({ type: GET_THREADS, payload: response.data })
 }

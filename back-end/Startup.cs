@@ -35,7 +35,7 @@ namespace back_end
             {
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connectionString = Configuration.GetConnectionString("DlylContext");
             services.AddEntityFrameworkNpgsql().AddDbContext<DlylContext>(options => options.UseNpgsql(connectionString));

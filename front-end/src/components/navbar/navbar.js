@@ -5,6 +5,7 @@ import './navbar.css';
 import { logoutUser } from '../../actions';
 import LogoLogo from './../logo/logo';
 
+
 class Navbar extends Component {
 
     render() {
@@ -24,6 +25,7 @@ class Navbar extends Component {
                         <div className="main-nav">
                             <Link className="nav-item" to="/login">Login</Link>
                             <Link className="nav-item" to="/signup">Signup </Link>
+                            <Link className="nav-item" to="/forum"> Forum </Link>
                         </div>
 
                     }

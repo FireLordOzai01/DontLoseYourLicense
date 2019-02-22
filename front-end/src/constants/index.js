@@ -12,3 +12,5 @@ export const DELETE_ARTICLE     = 'DELETE_USER';
 export const EDIT_ARTICLE       = 'EDIT_ARTICLE';
 export const GET_ARTICLES       = 'GET_ARTICLES';
 
+export const ADD_THREAD         = 'ADD_THREAD';
+export const GET_THREADS        = 'GET_THREADS'

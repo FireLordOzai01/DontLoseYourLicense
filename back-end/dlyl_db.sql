@@ -37,3 +37,12 @@ post_id                 integer REFERENCES POSTS (post_id) ON DELETE CASCADE,
 article_id              integer REFERENCES ARTICLES (article_id) ON DELETE CASCADE,
 time                    timestamp
 );
+
+CREATE TABLE THREADS(
+thread_id SERIAL        PRIMARY KEY,
+user_id                 integer REFERENCES USERS (user_id) ON DELETE CASCADE,
+title                   varchar(100),
+body                    text,
+comment                 text,
+time                    timestamp
+)

@@ -11,6 +11,8 @@ import {
     GET_USER_TOKEN,
     SAVE_AVATAR,
     LOGOUT_USER,
+    ADD_THREAD,
+    GET_THREADS
 
 } from '../constants';
 
@@ -18,7 +20,8 @@ const initialState = {
     loggedUser: {},
     users: [],
     articles: null,
-    isLogged: false
+    isLogged: false,
+    threads: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -79,6 +82,16 @@ const rootReducer = (state = initialState, action) => {
         return {
             ...state,
             articles: action.payload
+        }
+        case ADD_THREAD:
+        return {
+            ...state,
+            threads: action.payload
+        }
+        case GET_THREADS:
+        return {
+            ...state, 
+            threads: action.payload
         }
         default:
         return state;

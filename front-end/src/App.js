@@ -15,6 +15,7 @@ import SignUp from './components/signUp/signUp';
 import Profile from './components/userProfile/profile';
 import LogInForm from './components/login/login';
 import Why from './components/signUp/newSignUp.js';
+import Forum from './components/forum/forum';
 // import Fourm from './components/fourm/fourm';
 
 
@@ -47,6 +48,7 @@ class App extends Component {
             <Route path='/signup' render={(renderProps) => <Why />} />
             <Route path='/profile' render={(renderProps) => <Profile />} />
             <Route path='/login' render={(renderProps) => <LogInForm/> } />
+            <Route path='/forum' render={(renderProps) => <Forum/> } />
             <Route exact path="/linkedin" component={LinkedInPopUp} />
             {/* <Route  path='/admin' render={(renderProps) => <Admin /> } /> */}
           </Switch>
